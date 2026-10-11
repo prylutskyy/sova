@@ -315,3 +315,7 @@ Age is measured from extension ingestion, not from the chat platform's displayed
 Six development/regression identity misses and four independently evaluated holdout cases are fixed; no previously correct case regressed. Twenty-three new identity checks and ten mocked SAFE cache checks cover advice, negation, quoted examples, sentence boundaries, exact-result reuse, changed evidence/dialogue, expiry, reset and stale responses.
 
 Final full run without live Groq: 65 passing files and one failing corpus file; 693 passing tests and one failing aggregate corpus assertion (32 remaining exact mismatches). Focused run: 37/37. TypeScript compilation passes. Final log: tests/results/vitest-identity-safe-final-2026-10-10.log; baseline: tests/results/evaluation-before-identity-safe-2026-10-10.json. Raw results remain local.
+
+## 2026-10-11 — окрема перевірка маршрутизації та combined
+
+[Звіт](../review/ROUTING_EVALUATION_REPORT.md): 600 offline-діалогів для маршрутизації й дій; 28 live-діалогів через production-псевдонімізацію. F1 на 24 визначених прикладах: local fallback 77,4%, combined 85,7%; FP 3 → 0, FN 4 → 4. У live-прогоні було одне надмірне блокування через AI-тип. Після додавання перевірки криптоконтексту replay тих самих відповідей дає 0; нових API-запитів не робили. Це інша вибірка й інша точка вимірювання: вона не замінює F1 75,5%/73,9% raw-класифікатора A/B і не додається до pooled-бейджів. 953 офлайн-тести пройшли.

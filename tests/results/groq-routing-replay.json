@@ -1,0 +1,896 @@
+{
+  "generatedAt": "2026-10-11T05:25:57.297Z",
+  "sourceReportSha256": "6d022d5173caf319a0abe95a6241ba14c9df87ff08e76629d53452497a9480d5",
+  "mode": "offline replay of the same real replies after guard change, not another live run",
+  "requests": 0,
+  "metrics": {
+    "combined": {
+      "n": 24,
+      "tp": 12,
+      "fp": 0,
+      "fn": 4,
+      "tn": 8,
+      "f1": 0.8571428571428571,
+      "incorrectLocks": 0
+    },
+    "groq": {
+      "n": 24,
+      "tp": 16,
+      "fp": 0,
+      "fn": 0,
+      "tn": 8,
+      "f1": 1,
+      "incorrectLocks": 0
+    }
+  },
+  "results": [
+    {
+      "id": "R-0001",
+      "assessment": "threat",
+      "route": false,
+      "expectedType": "MILITARY_SABOTAGE_RECRUITMENT",
+      "expectedAction": "LOCK_INPUT",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": true,
+        "type": "MILITARY_SABOTAGE_RECRUITMENT",
+        "action": "LOCK_INPUT"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0002",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "VERIFICATION_PHISHING",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": true,
+        "type": "VERIFICATION_PHISHING",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "VERIFICATION_PHISHING",
+        "action": "WARN"
+      },
+      "previousCombined": {
+        "detected": true,
+        "type": "VERIFICATION_PHISHING",
+        "action": "WARN"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0003",
+      "assessment": "threat",
+      "route": false,
+      "expectedType": "ESCROW_DELIVERY_SCAM",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0004",
+      "assessment": "safe",
+      "route": true,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "MILITARY_SABOTAGE_RECRUITMENT",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0005",
+      "assessment": "safe",
+      "route": false,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0006",
+      "assessment": "safe",
+      "route": true,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0007",
+      "assessment": "disputed",
+      "route": false,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0008",
+      "assessment": "threat",
+      "route": false,
+      "expectedType": "SEED_PHRASE_THEFT",
+      "expectedAction": "LOCK_INPUT",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": true,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": true,
+        "type": "CRYPTO_WALLET_COMPROMISE",
+        "action": "LOCK_INPUT"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0009",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "PAYMENT_CREDENTIAL_THEFT",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "previousCombined": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0010",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "VERIFICATION_PHISHING",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": true,
+        "type": "VERIFICATION_PHISHING",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "VERIFICATION_PHISHING",
+        "action": "WARN"
+      },
+      "previousCombined": {
+        "detected": true,
+        "type": "VERIFICATION_PHISHING",
+        "action": "WARN"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0011",
+      "assessment": "safe",
+      "route": true,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0012",
+      "assessment": "safe",
+      "route": true,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0014",
+      "assessment": "threat",
+      "route": false,
+      "expectedType": "PAYMENT_CREDENTIAL_THEFT",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0016",
+      "assessment": "disputed",
+      "route": false,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0018",
+      "assessment": "safe",
+      "route": false,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0019",
+      "assessment": "safe",
+      "route": true,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0020",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "IDENTITY_PROBING",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "previousCombined": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0021",
+      "assessment": "safe",
+      "route": false,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0024",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "IDENTITY_PROBING",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "previousCombined": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0025",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "MILITARY_SABOTAGE_RECRUITMENT",
+      "expectedAction": "LOCK_INPUT",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "MILITARY_SABOTAGE_RECRUITMENT",
+        "action": "LOCK_INPUT"
+      },
+      "groq": {
+        "detected": true,
+        "type": "MILITARY_SABOTAGE_RECRUITMENT",
+        "action": "LOCK_INPUT"
+      },
+      "combined": {
+        "detected": true,
+        "type": "MILITARY_SABOTAGE_RECRUITMENT",
+        "action": "LOCK_INPUT"
+      },
+      "previousCombined": {
+        "detected": true,
+        "type": "MILITARY_SABOTAGE_RECRUITMENT",
+        "action": "LOCK_INPUT"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0029",
+      "assessment": "disputed",
+      "route": false,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0032",
+      "assessment": "disputed",
+      "route": true,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "previousCombined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0057",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "ESCROW_DELIVERY_SCAM",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "ESCROW_DELIVERY_SCAM",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": true,
+        "type": "ESCROW_DELIVERY_SCAM",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "ESCROW_DELIVERY_SCAM",
+        "action": "WARN"
+      },
+      "previousCombined": {
+        "detected": true,
+        "type": "ESCROW_DELIVERY_SCAM",
+        "action": "WARN"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0061",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "OFF_PLATFORM_REDIRECT",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "previousCombined": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0091",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "OTHER",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "previousCombined": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0092",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "OFF_PLATFORM_REDIRECT",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "previousCombined": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0124",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "SEED_PHRASE_THEFT",
+      "expectedAction": "LOCK_INPUT",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": true,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": true,
+        "type": "CRYPTO_WALLET_COMPROMISE",
+        "action": "LOCK_INPUT"
+      },
+      "combined": {
+        "detected": true,
+        "type": "CRYPTO_WALLET_COMPROMISE",
+        "action": "LOCK_INPUT"
+      },
+      "previousCombined": {
+        "detected": true,
+        "type": "CRYPTO_WALLET_COMPROMISE",
+        "action": "LOCK_INPUT"
+      },
+      "changedAction": false
+    },
+    {
+      "id": "R-0146",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "OTHER",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "walletContext": false,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "groq": {
+        "detected": true,
+        "type": "CRYPTO_WALLET_COMPROMISE",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "CRYPTO_WALLET_COMPROMISE",
+        "action": "WARN"
+      },
+      "previousCombined": {
+        "detected": true,
+        "type": "CRYPTO_WALLET_COMPROMISE",
+        "action": "LOCK_INPUT"
+      },
+      "changedAction": true
+    }
+  ]
+}

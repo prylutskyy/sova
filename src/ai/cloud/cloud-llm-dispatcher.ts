@@ -7,6 +7,7 @@ import { OpenRouterDriver } from './drivers/openrouter-driver';
 import { SimulatorPersona, DialogueMessage, ChatSimulatorEngine } from '../../heuristics/chat-simulator';
 
 export class CloudLLMDispatcher {
+  private static providerCooldown = new Map<LLMProviderType, number>();
   private static drivers: Map<LLMProviderType, ICloudLLMDriver> = new Map([
     ['gemini', new GeminiDriver()],
     ['openai', new OpenAIDriver()],
@@ -40,6 +41,9 @@ export class CloudLLMDispatcher {
   ): Promise<CloudVerificationResponse | null> {
     const config = await SecureKeyStore.getConfig();
     const effectiveConfig = { ...config, ...overrideConfig };
+
+    // A quota failure is unavailable arbitration, never SAFE; avoid repeated calls during backoff.
+    if (Date.now() < (this.providerCooldown.get(effectiveConfig.provider) ?? 0)) return null;
 
     const apiKey = await SecureKeyStore.getApiKey(effectiveConfig.provider);
     if (!apiKey) {
@@ -75,6 +79,13 @@ export class CloudLLMDispatcher {
       const result = await driver.verifyThreat(request);
       return result;
     } catch (err: any) {
+      if (err?.status === 429) {
+        const seconds = Number(err.retryAfter);
+        const dateDelay = Date.parse(err.retryAfter ?? '') - Date.now();
+        const delay = Number.isFinite(seconds) && seconds > 0 ? seconds * 1000
+          : Number.isFinite(dateDelay) && dateDelay > 0 ? dateDelay : 60000;
+        this.providerCooldown.set(effectiveConfig.provider, Date.now() + Math.max(1000, delay));
+      }
       if (err?.name === 'AbortError' || combinedSignal.aborted) {
         console.warn(`[SOVA:CloudAI] Запит до ${effectiveConfig.provider} перервано за таймаутом (${timeoutMs} мс).`);
       } else {

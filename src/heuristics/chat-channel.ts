@@ -6,6 +6,7 @@ import { ChromeBuiltinAIProvider } from './chrome-ai-provider';
 import { checkOutboundChatLeakage } from './input-detector';
 import { GlobalInputInterceptor } from './input-interceptor';
 import { DebuggerOverlay } from '../ui/debugger-overlay';
+import { decideAIRoute } from './ai-routing-policy';
 import { getLocalFallbackAction } from './threat-mitigation-policy';
 
 export type MessageDirection = 'inbound' | 'outbound' | 'unknown';
@@ -300,13 +301,14 @@ export class ChatChannelMonitor {
 
     // Використовуємо stateful-класифікатор, який пам'ятає попередні повідомлення
     const scan = ChatSessionState.addMessageAndEvaluate(text, 'inbound');
+    const routing = decideAIRoute(scan, text);
     if (scan.telemetry) {
       DebuggerOverlay.recordVectorTelemetry(scan.telemetry);
     }
 
     if (this.debugMode) {
       if (scan.localClassifier) {
-        DebuggerOverlay.log('Лінійний класифікатор · спостереження', scan.localClassifier, '#9CA3AF');
+        DebuggerOverlay.log('Лінійний класифікатор · прогноз', scan.localClassifier, '#9CA3AF');
       }
       // Безпечне логування: маскуємо сирий текст, щоб PII не зберігався в пам'яті Shadow DOM
       const safePreview = text.length <= 20
@@ -356,6 +358,9 @@ export class ChatChannelMonitor {
             action: `Резервна дія без відповіді ШІ: ${fallbackActionLabel}`,
             status: 'Очікує арбітражу ШІ',
           }, '#EF4444');
+        } else if (routing.route) {
+          DebuggerOverlay.log('3. Перевірка контексту ШІ', { reason: routing.reason,
+            status: 'Локального вердикту немає; блокування не застосовано' }, '#F59E0B');
         } else {
           DebuggerOverlay.log('3. Класифікація Загрози', 'Загрози не виявлено', '#22C55E');
         }
@@ -364,7 +369,7 @@ export class ChatChannelMonitor {
     // Важлива логіка: жертва може процитувати шахрая "Платити на цей номер 4149...",
     // це є вихідний текст і ми зупинимо це як leakage даних!
     // Ми скануємо вхідні повідомлення на наявність намірів:
-    if (scan.hasFormedIntent) {
+    if (routing.route) {
       if (this.debugMode) DebuggerOverlay.log('3. Intent Formed!', scan.intentType, '#EF4444');
       
       this.recentLuresCache.add(text);
@@ -376,7 +381,7 @@ export class ChatChannelMonitor {
       const suspiciousUrls = scan.suspiciousUrls || [];
       const isOffPlatformLure = scan.clustersDetected.includes('off_platform');
 
-      console.warn('[SOVA:ChatChannel] Виявлено загрозу (Tier 1):', {
+      console.warn('[SOVA:ChatChannel] Запит на перевірку (Tier 1):', {
         text: text.slice(0, 80),
         keywords,
         urls: suspiciousUrls
@@ -391,7 +396,7 @@ export class ChatChannelMonitor {
           suspiciousUrls,
           timestamp: Date.now(),
           confidence: scan.confidence || 0,
-          intentType: scan.intentType,
+          intentType: routing.intentType,
           intentTitle: scan.intentTitle,
         });
       }

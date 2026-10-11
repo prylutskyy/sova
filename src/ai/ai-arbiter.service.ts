@@ -110,20 +110,7 @@ export class AIArbiterService {
       return null;
     }
 
-    // 0. Session quarantine for a previously confirmed threat.
-    if (ChatSessionState.sessionLlmVerdict === 'SCAM') {
-      const result: AIArbiterVerifyResult = {
-        isScam: true,
-        confidence: 99,
-        reasoning: 'Автоматичний карантин: чат вже визнано небезпечним (ШІ)',
-        provider: 'session-quarantine'
-      };
-      const id = DebuggerOverlay.beginAICheck({ sessionId: options.context.sessionId || null,
-        source: 'session-quarantine', intent: options.intentType || options.context.scenario });
-      DebuggerOverlay.finishAICheck(id, 'completed', result);
-      return result;
-    }
-    
+    // A previous SCAM is diagnostic, not authority to invent a verdict for new evidence.
     // A safe verdict is a result for a particular request, not session immunity.
     // Reuse the original result via the exact-context TTL cache below.
     if (ChatSessionState.sessionLlmVerdict === 'SAFE') {

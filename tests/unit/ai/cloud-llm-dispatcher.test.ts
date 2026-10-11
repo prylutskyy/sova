@@ -209,6 +209,24 @@ describe('CloudLLMDispatcher & Drivers (TDD Suite)', () => {
   });
 
   describe('CloudLLMDispatcher Workflow', () => {
+    it('backs off after 429 without converting quota failure into SAFE', async () => {
+      vi.useFakeTimers();
+      try {
+        await SecureKeyStore.saveConfig({ provider: 'groq', enabled: true });
+        await SecureKeyStore.saveApiKey('groq', 'test_key', 'device_encrypted');
+        const fetchMock = vi.fn().mockResolvedValue({ ok: false, status: 429,
+          headers: new Headers({ 'retry-after': '2' }), json: async () => ({ error: { message: 'tokens per minute' } }) });
+        globalThis.fetch = fetchMock;
+        expect(await CloudLLMDispatcher.verifyThreat('Synthetic request')).toBeNull();
+        expect(await CloudLLMDispatcher.verifyThreat('New request during backoff')).toBeNull();
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+        await vi.advanceTimersByTimeAsync(2001);
+        fetchMock.mockResolvedValue({ ok: true, json: async () => ({ choices: [{ message: { content:
+          JSON.stringify({ isScam: false, confidence: 95, scamType: 'UNKNOWN', reasoning: 'Безпечний діалог.' }) } }] }) });
+        expect((await CloudLLMDispatcher.verifyThreat('After backoff'))?.isScam).toBe(false);
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+      } finally { vi.useRealTimers(); }
+    });
     it('returns no verdict when Groq responds with invalid JSON instead of confirming SAFE', async () => {
       await SecureKeyStore.saveConfig({ provider: 'groq', enabled: true });
       await SecureKeyStore.saveApiKey('groq', 'test_key', 'device_encrypted');

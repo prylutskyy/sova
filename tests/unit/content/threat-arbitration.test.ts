@@ -123,6 +123,58 @@ describe('Content runtime: incoming message → arbiter → real banner and inpu
     expectEditable();
   });
 
+  it('does not turn an AI payment verdict into a military lock because reasoning mentions military', async () => {
+    response = { isScam: true, confidence: 98, scamType: 'PAYMENT_CREDENTIAL_THEFT', reasoning: 'Шахрай прикривається допомогою військовим, щоб отримати реквізити.' };
+    await receive();
+    expect(DebuggerOverlay['state'].activeDecision?.intentType).toBe('PAYMENT_CREDENTIAL_THEFT');
+    expectEditable();
+  });
+
+  it('routes an uncertain request without a local verdict and does not warn on provider failure', async () => {
+    await receive('Надайте інформацію про родину мені в особистий чат.');
+    expect(sendMessage.mock.calls.some(([message]) => message.type === 'AI_VERIFY')).toBe(true);
+    expect(banner()).toBeNull();
+    expect(DebuggerOverlay['state'].sessionId).toBeNull();
+    expect(DebuggerOverlay['state'].severity).toBe('LOW');
+    expectEditable();
+  });
+
+  it('does not hard-lock on a strong military resemblance without a concrete harmful request', async () => {
+    vi.spyOn(ChatSessionState, 'addMessageAndEvaluate').mockReturnValue({ hasFormedIntent: true,
+      intentType: 'MILITARY_SABOTAGE_RECRUITMENT', confidence: 95, matchedSpans: [], clustersDetected: ['semantic_trigger'],
+      normalizedText: 'Можу розкласти по кроках.' });
+    await receive('Можу розкласти по кроках.');
+    expect(banner()).not.toBeNull();
+    expect(DebuggerOverlay['state'].activeDecision?.action).toBe('WARN');
+    expectEditable();
+  });
+
+  it('keeps input editable for a tentative critical AI verdict', async () => {
+    response = { isScam: true, confidence: 60, scamType: 'MILITARY_SABOTAGE_RECRUITMENT', reasoning: 'Потрібна перевірка контексту.' };
+    await receive();
+    expect(DebuggerOverlay['state'].activeDecision?.action).toBe('WARN');
+    expectEditable();
+  });
+  it('does not apply a crypto lock to an AI-misclassified non-wallet request', async () => {
+    response = { isScam: true, confidence: 99, scamType: 'CRYPTO_WALLET_COMPROMISE', reasoning: 'Запит секретного ключа.' };
+    await receive('Надішліть пароль від облікового запису для перевірки доступу.');
+    expect(DebuggerOverlay['state'].activeDecision?.action).toBe('WARN');
+    expectEditable();
+  });
+
+  it('preserves WARN when background replays a military context', async () => {
+    const callback = (chrome.runtime.onMessage.addListener as any).mock.calls[0][0];
+    // Enable debug mode so inherited contexts render the actual banner too.
+    callback({ type: 'SET_DEBUG_MODE', enabled: true });
+    callback({ type: 'CONTEXT_UPDATED', payload: { sessionId: 'saved', sourcePlatform: 'localhost',
+      scenario: 'MILITARY_SABOTAGE_RECRUITMENT', threatLevel: 'HIGH', detectedKeywords: [], offPlatformLure: false,
+      timestamp: Date.now(), ttlMs: 900000, mitigationAction: 'WARN', decisionConfidence: 60 } });
+    await vi.advanceTimersByTimeAsync(0);
+    expect(banner()).not.toBeNull();
+    expect(DebuggerOverlay['state'].activeDecision?.action).toBe('WARN');
+    expectEditable();
+  });
+
   it('removes an existing critical warning and restores input after convincing SAFE', async () => {
     await receive('Please provide your seed phrase and send your password to synchronize wallet');
     expect(banner()).not.toBeNull();

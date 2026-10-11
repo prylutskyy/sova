@@ -1,0 +1,773 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-11T05:17:52.120Z",
+  "model": "qwen/qwen3.8-27b",
+  "completed": 28,
+  "cohort": {
+    "schemaVersion": 1,
+    "datasetSha256": "3f75c7a6e924bb4367beac3b6c33549d8dcc156a62bb7991af6fcca0ce011705",
+    "referenceSha256": "dfdb7d6203716575071c2483b87e1dd3463d41661547106ee539fc7c8198bdba",
+    "selection": "Sorted IDs; first two per agreed threat type, first eight agreed safe, first four uncertain; selection precedes inference. Diagnostic stratified cohort, not population estimate.",
+    "ids": [
+      "R-0003",
+      "R-0057",
+      "R-0020",
+      "R-0024",
+      "R-0001",
+      "R-0025",
+      "R-0061",
+      "R-0092",
+      "R-0091",
+      "R-0146",
+      "R-0009",
+      "R-0014",
+      "R-0008",
+      "R-0124",
+      "R-0002",
+      "R-0010",
+      "R-0004",
+      "R-0005",
+      "R-0006",
+      "R-0011",
+      "R-0012",
+      "R-0018",
+      "R-0019",
+      "R-0021",
+      "R-0007",
+      "R-0016",
+      "R-0029",
+      "R-0032"
+    ]
+  },
+  "sourceReportSha256": "1dcf651faea87165f072ec856291d4a062e0bc978f8da456898150ec284222f3",
+  "results": [
+    {
+      "id": "R-0001",
+      "assessment": "threat",
+      "route": false,
+      "expectedType": "MILITARY_SABOTAGE_RECRUITMENT",
+      "expectedAction": "LOCK_INPUT",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "MILITARY_SABOTAGE_RECRUITMENT",
+        "action": "LOCK_INPUT"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "4320c0a72229797f8409cf0200c83377e3cd8f143971098f6afe88368bf29f3d"
+    },
+    {
+      "id": "R-0002",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "VERIFICATION_PHISHING",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "VERIFICATION_PHISHING",
+        "action": "WARN"
+      },
+      "aiConfidence": 98,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "VERIFICATION_PHISHING",
+        "action": "WARN"
+      },
+      "promptSha256": "6e17de6353118aeb9092390ca8d01e54e0ba1f1b032b7b351034c5a413d7e56a"
+    },
+    {
+      "id": "R-0003",
+      "assessment": "threat",
+      "route": false,
+      "expectedType": "ESCROW_DELIVERY_SCAM",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "a6a99738a786f4dc1b713de5ae7cb5ba65a007a4612e51e02228f371f8541b5d"
+    },
+    {
+      "id": "R-0004",
+      "assessment": "safe",
+      "route": true,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": true,
+        "type": "MILITARY_SABOTAGE_RECRUITMENT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "8c2971d37e8954d87574da173e9295b0fe7c444e23f06cbe647684f751fec612"
+    },
+    {
+      "id": "R-0005",
+      "assessment": "safe",
+      "route": false,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "5c6048e77a1b38e18b92ca99b149e4df927e50d4be728f962d3ef804188c1041"
+    },
+    {
+      "id": "R-0006",
+      "assessment": "safe",
+      "route": true,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "f56afc2e6e6912aee516d0a4d5f1a373556574ccda09dad855d326277f5b174e"
+    },
+    {
+      "id": "R-0007",
+      "assessment": "disputed",
+      "route": false,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "f081d1eba75d43a2150f9b751d3a2c100478e0d4ce2c41f56c99c2c265491c94"
+    },
+    {
+      "id": "R-0008",
+      "assessment": "threat",
+      "route": false,
+      "expectedType": "SEED_PHRASE_THEFT",
+      "expectedAction": "LOCK_INPUT",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "CRYPTO_WALLET_COMPROMISE",
+        "action": "LOCK_INPUT"
+      },
+      "aiConfidence": 98,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "fd3a27e23ee09863693f73ff9d7e9362b0b9c639bac4600c829898f56a458eb1"
+    },
+    {
+      "id": "R-0009",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "PAYMENT_CREDENTIAL_THEFT",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "aiConfidence": 98,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "promptSha256": "fc1a2d36a9c359351384a1fae3c12699026079c0633940bca80a174c8e41f415"
+    },
+    {
+      "id": "R-0010",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "VERIFICATION_PHISHING",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "VERIFICATION_PHISHING",
+        "action": "WARN"
+      },
+      "aiConfidence": 98,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "VERIFICATION_PHISHING",
+        "action": "WARN"
+      },
+      "promptSha256": "0267d0564869b72fe99962fb53004170dbac7ab266268f47216672b47403438d"
+    },
+    {
+      "id": "R-0011",
+      "assessment": "safe",
+      "route": true,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "a6300ab8ab70f785114a0c5cb0661325e115464c1d3c0178583c99fa28c58d8d"
+    },
+    {
+      "id": "R-0012",
+      "assessment": "safe",
+      "route": true,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "3066313f1e85baaecf362e0a205c10eba50c7377f7db8cc434fd491676ecbe5e"
+    },
+    {
+      "id": "R-0014",
+      "assessment": "threat",
+      "route": false,
+      "expectedType": "PAYMENT_CREDENTIAL_THEFT",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "5a41c6ed2e583a6002beffe41f2718960a3afab000a7735ae40855c86e5e3226"
+    },
+    {
+      "id": "R-0016",
+      "assessment": "disputed",
+      "route": false,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "fbcaa46b9bb57b2f08cc9a61159f98abe0a3ff38f415575ffdcde329e866fe49"
+    },
+    {
+      "id": "R-0018",
+      "assessment": "safe",
+      "route": false,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "4d7effe8a50b6f28e1ba48aab8f5ebcc80699a8b5a07de44ad01da1c8291fc95"
+    },
+    {
+      "id": "R-0019",
+      "assessment": "safe",
+      "route": true,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "e1334674f1b98b0009cab8f54b66cef41f68d3431c3745ebf6ecc1f1f299d198"
+    },
+    {
+      "id": "R-0020",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "IDENTITY_PROBING",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "aiConfidence": 98,
+      "local": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "promptSha256": "1bb796a045ae5b2c310f13833f3f68240e3ff7d1cdfec0a33c21a21173b15657"
+    },
+    {
+      "id": "R-0021",
+      "assessment": "safe",
+      "route": false,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "2bacfeccd8b9d1c24bb78f7d0022d8cea73210deb090690dbcd1b0ac971fff4a"
+    },
+    {
+      "id": "R-0024",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "IDENTITY_PROBING",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "IDENTITY_PROBING",
+        "action": "WARN"
+      },
+      "promptSha256": "4418079d2a6173a5d6d4f1ec512920fc37bccc9a0ccc24167d1ac14f0b2cd48a"
+    },
+    {
+      "id": "R-0025",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "MILITARY_SABOTAGE_RECRUITMENT",
+      "expectedAction": "LOCK_INPUT",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "MILITARY_SABOTAGE_RECRUITMENT",
+        "action": "LOCK_INPUT"
+      },
+      "aiConfidence": 98,
+      "local": {
+        "detected": true,
+        "type": "MILITARY_SABOTAGE_RECRUITMENT",
+        "action": "LOCK_INPUT"
+      },
+      "combined": {
+        "detected": true,
+        "type": "MILITARY_SABOTAGE_RECRUITMENT",
+        "action": "LOCK_INPUT"
+      },
+      "promptSha256": "b0da79e5d14b73ee9a51905567b5b53056bf071663270424f77ee4494731e791"
+    },
+    {
+      "id": "R-0029",
+      "assessment": "disputed",
+      "route": false,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "ba1971d29d071e91da64111005250d638ba3488d44e8b1a3986fb273c603918d"
+    },
+    {
+      "id": "R-0032",
+      "assessment": "disputed",
+      "route": true,
+      "expectedType": null,
+      "expectedAction": "ALLOW",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "combined": {
+        "detected": false,
+        "type": null,
+        "action": "ALLOW"
+      },
+      "promptSha256": "0df30ff2c6b9df538d5f7a27c5971deba091532adb3cdb5d340de206a26cd8bf"
+    },
+    {
+      "id": "R-0057",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "ESCROW_DELIVERY_SCAM",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "ESCROW_DELIVERY_SCAM",
+        "action": "WARN"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": true,
+        "type": "ESCROW_DELIVERY_SCAM",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "ESCROW_DELIVERY_SCAM",
+        "action": "WARN"
+      },
+      "promptSha256": "b98cccd42e1b01c1de9cf46916a65b4ba5f0e55257cc3b884aced6f7561e43c2"
+    },
+    {
+      "id": "R-0061",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "OFF_PLATFORM_REDIRECT",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "aiConfidence": 85,
+      "local": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "promptSha256": "66066c09dfd55bbe9457f2c2fae9f96ba8879f8721d101ed077178498812b8dd"
+    },
+    {
+      "id": "R-0091",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "OTHER",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "promptSha256": "6c995a9d25ceeba13927860f2876217347c09c94c95e96f2e85c9a0576a88214"
+    },
+    {
+      "id": "R-0092",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "OFF_PLATFORM_REDIRECT",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "OFF_PLATFORM_REDIRECT",
+        "action": "WARN"
+      },
+      "promptSha256": "e546afac32c0c0da340153b7f1abc6791287b3f1402c371dc3be1c585d353caa"
+    },
+    {
+      "id": "R-0124",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "SEED_PHRASE_THEFT",
+      "expectedAction": "LOCK_INPUT",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "CRYPTO_WALLET_COMPROMISE",
+        "action": "LOCK_INPUT"
+      },
+      "aiConfidence": 98,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "CRYPTO_WALLET_COMPROMISE",
+        "action": "LOCK_INPUT"
+      },
+      "promptSha256": "38bd1eb6bafbb2b42bb56015c845225b7c7d5461b268d4c030e8410896f4cf24"
+    },
+    {
+      "id": "R-0146",
+      "assessment": "threat",
+      "route": true,
+      "expectedType": "OTHER",
+      "expectedAction": "WARN",
+      "typeAgreement": true,
+      "actionAgreement": true,
+      "groq": {
+        "detected": true,
+        "type": "CRYPTO_WALLET_COMPROMISE",
+        "action": "LOCK_INPUT"
+      },
+      "aiConfidence": 95,
+      "local": {
+        "detected": true,
+        "type": "PAYMENT_CREDENTIAL_THEFT",
+        "action": "WARN"
+      },
+      "combined": {
+        "detected": true,
+        "type": "CRYPTO_WALLET_COMPROMISE",
+        "action": "LOCK_INPUT"
+      },
+      "promptSha256": "1a8d7618142726ce4dfeb08674e5ed7daa0002c0a0b6b9c9c5c35e1cba2d4871"
+    }
+  ]
+}

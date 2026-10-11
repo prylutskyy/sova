@@ -10,6 +10,9 @@ export interface ActiveThreatContext {
   timestamp: number;
   ttlMs: number;
   targetSuspiciousUrl?: string;
+  /** Preserve the actual decision across background updates and reloads. */
+  mitigationAction?: 'WARN' | 'LOCK_INPUT';
+  decisionConfidence?: number;
 }
 
 export interface HeuristicResult {

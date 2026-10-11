@@ -80,7 +80,7 @@ export class GroqDriver implements ICloudLLMDriver {
     const allowedTypes = new Set(['PAYMENT_CREDENTIAL_THEFT', 'IDENTITY_PROBING',
       'ESCROW_DELIVERY_SCAM', 'OFF_PLATFORM_REDIRECT', 'VERIFICATION_PHISHING',
       'URGENCY_PRESSURE', 'MILITARY_SABOTAGE_RECRUITMENT', 'CRYPTO_WALLET_COMPROMISE',
-      'SUSPICIOUS_LURE', 'UNKNOWN']);
+      'SEED_PHRASE_THEFT', 'SUSPICIOUS_LURE', 'UNKNOWN']);
     if (!parsed || typeof parsed.isScam !== 'boolean' ||
       typeof parsed.confidence !== 'number' || !Number.isFinite(parsed.confidence) ||
       parsed.confidence < 0 || parsed.confidence > 100 ||

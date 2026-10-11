@@ -16,8 +16,10 @@ import { ClipboardInterceptor } from '../src/interceptors/clipboard.interceptor'
 import { ProactiveFieldProtector } from '../src/heuristics/proactive-field-protector';
 import { AIArbiterService } from '../src/ai/ai-arbiter.service';
 import { SpaNavigationDetector } from '../src/core/spa-navigation';
+import { ChatSessionState } from '../src/heuristics/chat-session-state';
 import { ScamIntentType } from '../src/heuristics/intent-classifier';
-import { getThreatMitigationAction, getLocalFallbackAction } from '../src/heuristics/threat-mitigation-policy';
+import { decideAIVerdict, getRuntimeFallbackAction, hasWalletContext } from '../src/heuristics/ai-routing-policy';
+import { getThreatMitigationAction } from '../src/heuristics/threat-mitigation-policy';
 
 export default defineContentScript({
   matches: ['<all_urls>'],
@@ -116,6 +118,7 @@ export default defineContentScript({
     };
 
     const applyContext = (ctx: ActiveThreatContext) => {
+      const inheritedAction = ctx.mitigationAction === 'LOCK_INPUT' ? 'LOCK_INPUT' : 'WARN';
       if (activeContext && activeContext !== ctx) {
         invalidateThreatAnalysis();
       }
@@ -146,12 +149,10 @@ export default defineContentScript({
           ctx.scenario,
           undefined,
           undefined,
-          clearThreatContext
+          clearThreatContext,
+          inheritedAction
         );
-        const action = getThreatMitigationAction(true, ctx.scenario);
-        if (action !== 'ALLOW') {
-          DebuggerOverlay.setThreatDecision(action, ctx.scenario || 'UNKNOWN', 75, 'inherited');
-        }
+        DebuggerOverlay.setThreatDecision(inheritedAction, ctx.scenario || 'UNKNOWN', ctx.decisionConfidence ?? 75, 'inherited');
       }
     };
 
@@ -287,6 +288,7 @@ export default defineContentScript({
       intentType: string = 'UNKNOWN',
       confidence?: number
     ) => {
+      const previousDecisionContext = activeContext?.mitigationAction ? activeContext : null;
       const sessionId = activeContext?.sessionId || ('session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7));
       const requestUrl = typeof window !== 'undefined' && window.location ? window.location.href : '';
 
@@ -328,9 +330,13 @@ export default defineContentScript({
         subtitle: string,
         threatIntent: ScamIntentType,
         threatScore: number,
-        source: 'local' | 'ai' = 'ai'
+        source: 'local' | 'ai' = 'ai',
+        allowLock = true
       ) => {
-        const isCritical = getThreatMitigationAction(true, threatIntent) === 'LOCK_INPUT';
+        const isCritical = allowLock && getThreatMitigationAction(true, threatIntent) === 'LOCK_INPUT';
+        context.mitigationAction = isCritical ? 'LOCK_INPUT' : 'WARN';
+        context.decisionConfidence = threatScore;
+        if (!isCritical) GlobalInputInterceptor.setHardLock(null);
 
         if (isCritical) {
           GlobalInputInterceptor.setHardLock(context);
@@ -351,7 +357,8 @@ export default defineContentScript({
             }
           },
           threatScore,
-          clearThreat
+          clearThreat,
+          isCritical ? 'LOCK_INPUT' : 'WARN'
         );
         DebuggerOverlay.setSession(context.sessionId || null, context.threatLevel);
         DebuggerOverlay.setThreatDecision(isCritical ? 'LOCK_INPUT' : 'WARN', threatIntent, threatScore, source);
@@ -366,18 +373,25 @@ export default defineContentScript({
               keywords: context.detectedKeywords || [],
               offPlatformLure: context.offPlatformLure,
               suspiciousUrl: context.targetSuspiciousUrl,
+              mitigationAction: context.mitigationAction,
+              decisionConfidence: context.decisionConfidence,
             },
           });
         } catch {}
       };
 
       const applyLocalFallback = () => {
-        const action = getLocalFallbackAction(intentType, confidence);
+        const action = getRuntimeFallbackAction(intentType, confidence, ChatSessionState.getRecentMessages().filter(m => m.direction === 'inbound').map(m => m.rawText));
         if (action !== 'ALLOW') {
-          displayThreatAlert(localContext, bannerSubtitle, intentType as ScamIntentType, confidence!, 'local');
+          displayThreatAlert(localContext, bannerSubtitle, intentType as ScamIntentType, confidence!, 'local', action === 'LOCK_INPUT');
         } else {
-          activeContext = null;
+          activeContext = previousDecisionContext;
           invalidateThreatAnalysis();
+          DebuggerOverlay.setSession(previousDecisionContext?.sessionId ?? null, previousDecisionContext?.threatLevel ?? 'LOW');
+          if (previousDecisionContext) {
+            DebuggerOverlay.setThreatDecision(previousDecisionContext.mitigationAction!, previousDecisionContext.scenario,
+              previousDecisionContext.decisionConfidence ?? 75, 'inherited');
+          }
         }
       };
 
@@ -400,7 +414,8 @@ export default defineContentScript({
           return;
         }
 
-        if (!aiResult.isScam && (aiResult.confidence === undefined || aiResult.confidence >= 50)) {
+        const verdict = decideAIVerdict(aiResult, hasWalletContext(ChatSessionState.getRecentMessages().filter(m => m.direction === 'inbound').map(m => m.rawText)));
+        if (verdict.action === 'ALLOW') {
           // Якщо ШІ переконливо спростував загрозу (False Positive Mitigation):
           console.log('[SOVA:Content] ШІ-Арбітр спростував евристичну загрозу:', aiResult.reasoning);
           activeContext = null;
@@ -431,70 +446,12 @@ export default defineContentScript({
           }
 
           window.postMessage({ type: 'THREAT_SHIELD_CONTEXT_CLEARED' }, '*');
-        } else if (aiResult.isScam) {
-          console.log('[SOVA:Content] ШІ-Арбітр підтвердив загрозу:', aiResult);
-          if (debugMode) {
-            DebuggerOverlay.log(
-              'ШІ-Арбітр (Вердикт)',
-              `Загрозу підтверджено [${aiResult.provider || 'ШІ'}: ${aiResult.modelUsed || ''}]: ${aiResult.reasoning} (${aiResult.confidence}%)`,
-              '#EF4444'
-            );
-          }
-
-          // Динамічна ескалація або корекція за вердиктом ШІ
-          const reasoningText = (aiResult.reasoning || '').toLowerCase();
-          const rawTextLower = (rawTextToScan || '').toLowerCase();
-          const detectedKeywordsList = (localContext.detectedKeywords || []).map((k) => k.toLowerCase());
-
-          // Ознаки диверсії/вербування в поясненні ШІ або в самому повідомленні
-          const sabotagePattern =
-            /диверс|верб|розвід|шпигун|куратор|підпал|релейн|військов|зсу|тцк|координат|ппо|ворож|спецслужб|фсб|гру|держзрад|111|113|114|небезпечн.*діяльн/i;
-
-          const isAiReasoningSabotage = sabotagePattern.test(reasoningText);
-          const isRawTextSabotage =
-            sabotagePattern.test(rawTextLower) ||
-            detectedKeywordsList.some((k) => sabotagePattern.test(k));
-          const isAiTypeSabotage = /MILITARY_SABOTAGE|RECRUITMENT|SABOTAGE|SPY/i.test(aiResult.scamType || '');
-
-          const isAiOtherType =
-            aiResult.scamType &&
-            [
-              'PAYMENT_CREDENTIAL_THEFT',
-              'ESCROW_DELIVERY_SCAM',
-              'SEED_PHRASE_THEFT',
-              'IDENTITY_PROBING',
-              'OFF_PLATFORM_REDIRECT',
-              'VERIFICATION_PHISHING',
-              'URGENCY_PRESSURE',
-              'CRYPTO_WALLET_COMPROMISE',
-            ].includes(aiResult.scamType);
-
-          const isMilitarySabotage =
-            isAiTypeSabotage ||
-            isAiReasoningSabotage ||
-            isRawTextSabotage ||
-            (intentType === 'MILITARY_SABOTAGE_RECRUITMENT' && !isAiOtherType);
-
-          if (isMilitarySabotage) {
-            localContext.scenario = 'MILITARY_SABOTAGE_RECRUITMENT';
-            localContext.threatLevel = 'HIGH';
-            displayThreatAlert(
-              localContext,
-              'ст. 111-2, 113 ККУ (Вербування / Диверсія)',
-              'MILITARY_SABOTAGE_RECRUITMENT',
-              aiResult.confidence || 95
-            );
-          } else {
-            const confirmedScenario = (aiResult.scamType as ScamIntentType) || (intentType !== 'UNKNOWN' ? (intentType as ScamIntentType) : 'SUSPICIOUS_LURE');
-            localContext.scenario = confirmedScenario;
-            localContext.threatLevel = 'HIGH';
-            displayThreatAlert(
-              localContext,
-              aiResult.reasoning || bannerSubtitle || 'Виявлено ознаки шахрайства',
-              confirmedScenario,
-              aiResult.confidence || confidence || 90
-            );
-          }
+        } else if (verdict.action === 'WARN' || verdict.action === 'LOCK_INPUT') {
+          const confirmedScenario = verdict.type as ScamIntentType;
+          localContext.scenario = confirmedScenario;
+          localContext.threatLevel = 'HIGH';
+          displayThreatAlert(localContext, aiResult.reasoning || bannerSubtitle,
+            confirmedScenario, aiResult.confidence, 'ai', verdict.action === 'LOCK_INPUT');
         } else {
           // A low-confidence SAFE response does not convincingly dismiss local evidence.
           applyLocalFallback();

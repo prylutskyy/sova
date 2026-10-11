@@ -362,7 +362,8 @@ export class SecurityFriction {
     intentType?: string,
     onClose?: () => void,
     confidence?: number,
-    onClearThreat?: () => void
+    onClearThreat?: () => void,
+    mitigationAction?: 'WARN' | 'LOCK_INPUT'
   ): void {
     const root = ShadowHost.getRoot();
 
@@ -395,7 +396,11 @@ export class SecurityFriction {
     const isVerification = effectiveIntent === 'VERIFICATION_PHISHING';
     const isSuspiciousLure = effectiveIntent === 'SUSPICIOUS_LURE';
 
-    const isCritical = isSabotage || isSeed;
+    const isCritical = mitigationAction ? mitigationAction === 'LOCK_INPUT' : isSabotage || isSeed;
+    const isSabotageLock = isSabotage && isCritical;
+    if (!isCritical && typeof window !== 'undefined') {
+      window.postMessage({ type: 'THREAT_SHIELD_DISABLE_CHAT_FREEZE' }, '*');
+    }
 
     let tag = 'Кібербезпека';
     let subtag = customSubtitle ? 'ШІ-Арбітр' : 'Соціальна інженерія';
@@ -539,7 +544,7 @@ export class SecurityFriction {
 
     const banner = document.createElement('div');
     banner.id = 'threat-shield-context-banner';
-    banner.className = `dynamic-island-anchor summoning${isSabotage ? ' single-action' : ''}`;
+    banner.className = `dynamic-island-anchor summoning${isSabotageLock ? ' single-action' : ''}`;
 
     banner.innerHTML = `
       <svg class="sr-only" width="0" height="0" style="position: absolute; width: 0; height: 0; pointer-events: none;">
@@ -838,7 +843,7 @@ export class SecurityFriction {
       <div class="liquid-membrane-layer" aria-hidden="true">
         <div class="membrane-pill"></div>
         <div class="membrane-droplet droplet-action-1"></div>
-        ${!isSabotage ? '<div class="membrane-droplet droplet-action-2"></div>' : ''}
+        ${!isSabotageLock ? '<div class="membrane-droplet droplet-action-2"></div>' : ''}
       </div>
 
       <!-- 2. FOREGROUND CRISP OPTICAL STAGE -->
@@ -887,7 +892,7 @@ export class SecurityFriction {
         </div>
 
         <!-- Action Buttons -->
-        ${isSabotage ? `
+        ${isSabotageLock ? `
           <a id="ts-btn-evorog" href="https://t.me/evorog_bot" target="_blank" rel="noopener noreferrer" class="ts-action-btn btn-action-1" style="width: 110px;" title="Повідомити в офіційний чат-бот оборони України «єВорог»">
             <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/>

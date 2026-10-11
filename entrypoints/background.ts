@@ -44,7 +44,7 @@ export default defineBackground(() => {
         return false;
       }
       
-      const { sessionId, sourcePlatform, scenario, keywords, offPlatformLure, suspiciousUrl } = message.payload;
+      const { sessionId, sourcePlatform, scenario, keywords, offPlatformLure, suspiciousUrl, mitigationAction, decisionConfidence } = message.payload;
       console.warn(`[SOVA:Background] Отримано сигнал небезпеки на вкладці ${tabId}:`, message.payload);
 
       contextManager.setTaintedContext(tabId, {
@@ -55,6 +55,8 @@ export default defineBackground(() => {
         detectedKeywords: keywords || [],
         offPlatformLure: !!offPlatformLure,
         targetSuspiciousUrl: suspiciousUrl,
+        mitigationAction: mitigationAction === 'LOCK_INPUT' ? 'LOCK_INPUT' : 'WARN',
+        decisionConfidence: Number.isFinite(decisionConfidence) ? Math.max(0, Math.min(100, decisionConfidence)) : undefined,
       }).then((ctx) => {
         if (chrome.action) {
           chrome.action.setBadgeText({ text: '!', tabId });

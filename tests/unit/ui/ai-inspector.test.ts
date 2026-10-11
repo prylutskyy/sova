@@ -99,12 +99,12 @@ describe('Structured check lifecycle through the actual arbiter', () => {
     expect(root().querySelector('.sc-check-detail')!.textContent).toContain('Нового звернення до моделі немає');
     expect(root().querySelector('.sc-check-detail')!.textContent).not.toContain('515 мс у провайдера');
   });
-  it('labels session quarantine as policy reuse rather than a new model result', async () => {
-    const send = vi.fn(); vi.stubGlobal('chrome', { runtime: { sendMessage: send } });
+  it('rechecks changed evidence instead of inventing a verdict from session quarantine', async () => {
+    const send = vi.fn((_m, callback) => callback({ aiResult: safe })); vi.stubGlobal('chrome', { runtime: { sendMessage: send } });
     ChatSessionState.sessionLlmVerdict = 'SCAM'; await AIArbiterService.verify(options);
-    expect(send).not.toHaveBeenCalled();
-    expect(DebuggerOverlay.getAIChecks()[0].source).toBe('session-quarantine');
-    openAI(); expect(root().textContent).toContain('Оцінка політики карантину');
+    expect(send).toHaveBeenCalledTimes(1);
+    expect(DebuggerOverlay.getAIChecks()[0].source).not.toBe('session-quarantine');
+    expect(ChatSessionState.sessionLlmVerdict).toBe('SAFE');
   });
 });
 
