@@ -1,0 +1,1670 @@
+<!doctype html><html lang="uk"><meta charset="utf-8"><title>С.О.В.А. · spectrum-narrow · локальний preview</title><style>/* ==========================================================================
+   S.O.V.A. DESIGN SYSTEM: ATOMIC DESIGN TOKENS
+   ========================================================================== */
+
+:root, :host {
+  /* Surfaces & Glass Diffraction */
+  --sanctuary-canvas:         #F5F5F7;
+  --sanctuary-surface:        #FFFFFF;
+  --sanctuary-surface-subtle: #FAFAFC;
+  --sanctuary-surface-hover:  rgba(0, 0, 0, 0.03);
+  --sanctuary-surface-active: rgba(0, 0, 0, 0.06);
+  --sanctuary-glass-bg:       rgba(255, 255, 255, 0.85);
+  --sanctuary-glass-elevated: rgba(255, 255, 255, 0.92);
+  --sanctuary-backdrop:       rgba(0, 0, 0, 0.32);
+  --sanctuary-glass-sheen:    rgba(255, 255, 255, 0.65);
+
+  /* Typography Inks (Optically Tuned for WCAG 2.1 AA & AAA Compliance) */
+  --sanctuary-ink-primary:    #1D1D1F; /* 16.1:1 on #FFFFFF (Passes AAA) */
+  --sanctuary-ink-secondary:  #6E6E73; /* 5.05:1 on #FFFFFF, 4.62:1 on #F5F5F7 (Passes AA) */
+  --sanctuary-ink-tertiary:   #86868B; /* 3.58:1 on #FFFFFF (Passes AA for graphical elements/large text) */
+  --sanctuary-ink-quaternary: #A1A1A6; /* 2.52:1 (Calibrated for inactive placeholders & decorative hairlines) */
+
+  /* Functional Accents & Semantic Tints (WCAG 2.1 AA Calibrated) */
+  --sanctuary-blue:           #0071E3; /* 4.75:1 on #FFFFFF (Passes AA) */
+  --sanctuary-blue-hover:     #0065CC;
+  --sanctuary-blue-active:    #005BB5;
+  --sanctuary-blue-bg:        rgba(0, 113, 227, 0.08);
+  --sanctuary-blue-bd:        rgba(0, 113, 227, 0.20);
+  --sanctuary-blue-surface:   #F0F7FF;
+
+  --sanctuary-green:          #34C759;
+  --sanctuary-green-hover:    #2DB84F;
+  --sanctuary-green-ink:      #1E7E34; /* 5.15:1 on #FFFFFF (Passes AA) */
+  --sanctuary-green-bg:       rgba(52, 199, 89, 0.10);
+  --sanctuary-green-bd:       rgba(52, 199, 89, 0.24);
+
+  --sanctuary-amber:          #FF9500;
+  --sanctuary-amber-hover:    #E08500;
+  --sanctuary-amber-ink:      #A04F00; /* 5.20:1 on #FFFFFF (Passes AA) */
+  --sanctuary-amber-bg:       rgba(255, 149, 0, 0.10);
+  --sanctuary-amber-bd:       rgba(255, 149, 0, 0.24);
+  --sanctuary-amber-surface:  #FFF8EF;
+
+  --sanctuary-red:            #FF3B30;
+  --sanctuary-red-hover:      #E03228;
+  --sanctuary-red-ink:        #D70015; /* 5.40:1 on #FFFFFF (Passes AA) */
+  --sanctuary-red-ink-hover:  #B80012;
+  --sanctuary-red-bg:         rgba(255, 59, 48, 0.08);
+  --sanctuary-red-bd:         rgba(255, 59, 48, 0.22);
+  --sanctuary-red-surface:    #FFF3F2;
+
+  --sanctuary-purple-ink:     #8944AB; /* 5.10:1 on #FFFFFF (Passes AA) */
+  --sanctuary-teal-ink:       #007D8C; /* 4.65:1 on #FFFFFF (Passes AA) */
+
+  /* Hairlines & Dividers */
+  --sanctuary-hairline:        rgba(0, 0, 0, 0.07);
+  --sanctuary-hairline-subtle: rgba(0, 0, 0, 0.04);
+  --sanctuary-hairline-glass:  rgba(255, 255, 255, 0.45);
+  --sanctuary-divider:         rgba(0, 0, 0, 0.05);
+
+  /* Superellipse Radii */
+  --radius-pill:      9999px;
+  --radius-modal:     22px;
+  --radius-card:      14px;
+  --radius-control:   10px;
+  --radius-nested:    8px;
+  --radius-micro:     4px;
+
+  /* Layered Shadow Elevations */
+  --shadow-sm:         0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-card:       0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.07);
+  --shadow-modal:      0 0 0 1px rgba(255, 255, 255, 0.6) inset, 0 8px 20px rgba(0, 0, 0, 0.08), 0 24px 64px rgba(0, 0, 0, 0.16);
+  --shadow-knob:       0 0.5px 1.5px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.16);
+  --shadow-elevated:   0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+
+  /* Apple Spring Kinematics */
+  --ease-apple-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-apple-press:   cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-apple-sheet:   cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-apple-rebound: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Fonts */
+  --font-sanctuary: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:      "SF Mono", Menlo, Consolas, Monaco, monospace;
+
+  /* Shared scale for popup, diagnostics and in-page protection. */
+  --text-caption: 11px;
+  --text-body: 12px;
+  --text-title: 13px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --control-height: 32px;
+  --sanctuary-focus-ring: rgba(0, 113, 227, 0.30);
+  --sanctuary-scroll-thumb: rgba(0, 0, 0, 0.18);
+
+  /* Sanctuary Core Obsidian Dark HUD Tokens (Apple VisionOS Calibrated) */
+  --sc-obsidian-bg:               rgba(16, 16, 20, 0.94);
+  --sc-obsidian-blur:             blur(32px) saturate(190%);
+  --sc-obsidian-header:           rgba(24, 24, 30, 0.82);
+  --sc-obsidian-nav:              rgba(14, 14, 18, 0.88);
+  --sc-obsidian-card:             rgba(26, 26, 32, 0.70);
+  --sc-obsidian-card-elevated:    linear-gradient(135deg, rgba(28, 28, 36, 0.85) 0%, rgba(18, 18, 24, 0.95) 100%);
+  --sc-obsidian-well:             rgba(10, 10, 14, 0.85);
+  --sc-obsidian-code:             rgba(8, 8, 12, 0.95);
+  
+  --sc-obsidian-border:           rgba(255, 255, 255, 0.12);
+  --sc-obsidian-border-subtle:    rgba(255, 255, 255, 0.07);
+  --sc-obsidian-sheen:            rgba(255, 255, 255, 0.18);
+
+  --sc-ink-primary:               #FFFFFF;
+  --sc-ink-secondary:             rgba(255, 255, 255, 0.85);
+  --sc-ink-muted:                 rgba(255, 255, 255, 0.60);
+  --sc-ink-subtle:                rgba(255, 255, 255, 0.40);
+
+  --sc-emerald:                   #30D158;
+  --sc-emerald-bg:                rgba(48, 209, 88, 0.16);
+  --sc-emerald-border:            rgba(48, 209, 88, 0.32);
+  --sc-emerald-glow:              0 0 16px rgba(48, 209, 88, 0.35);
+
+  --sc-amber:                     #FF9F0A;
+  --sc-amber-bg:                  rgba(255, 159, 10, 0.16);
+  --sc-amber-border:              rgba(255, 159, 10, 0.32);
+  --sc-amber-glow:                0 0 16px rgba(255, 159, 10, 0.35);
+
+  --sc-crimson:                   #FF453A;
+  --sc-crimson-bg:                rgba(255, 69, 58, 0.16);
+  --sc-crimson-border:            rgba(255, 69, 58, 0.32);
+  --sc-crimson-glow:              0 0 16px rgba(255, 69, 58, 0.35);
+
+  --sc-sapphire:                  #0A84FF;
+  --sc-sapphire-hover:            #0077ED;
+  --sc-sapphire-bg:               rgba(10, 132, 255, 0.16);
+  --sc-sapphire-border:           rgba(10, 132, 255, 0.32);
+  --sc-sapphire-glow:             0 0 16px rgba(10, 132, 255, 0.40);
+
+  --sc-squircle-window:           20px;
+  --sc-squircle-card:             14px;
+  --sc-squircle-control:          8px;
+  --sc-squircle-chip:             6px;
+
+  /* Backward Compatibility Aliases */
+  --fx-canvas:         var(--sanctuary-canvas);
+  --fx-surface:        var(--sanctuary-surface);
+  --fx-surface-hover:  var(--sanctuary-surface-hover);
+  --fx-surface-active: var(--sanctuary-surface-active);
+  --fx-border:         var(--sanctuary-hairline);
+  --fx-border-subtle:  var(--sanctuary-hairline-subtle);
+  --fx-text:           var(--sanctuary-ink-primary);
+  --fx-text-secondary: var(--sanctuary-ink-secondary);
+  --fx-text-muted:     var(--sanctuary-ink-tertiary);
+
+  --fx-blue:           var(--sanctuary-blue);
+  --fx-blue-hover:     var(--sanctuary-blue-hover);
+  --fx-blue-active:    var(--sanctuary-blue-active);
+  --fx-blue-bg:        var(--sanctuary-blue-bg);
+  --fx-blue-bd:        var(--sanctuary-blue-bd);
+
+  --fx-green:          var(--sanctuary-green);
+  --fx-green-hover:    var(--sanctuary-green-hover);
+  --fx-green-bg:       var(--sanctuary-green-bg);
+  --fx-green-bd:       var(--sanctuary-green-bd);
+
+  --fx-amber:          var(--sanctuary-amber);
+  --fx-amber-bg:       var(--sanctuary-amber-bg);
+  --fx-amber-bd:       var(--sanctuary-amber-bd);
+
+  --fx-red:            var(--sanctuary-red);
+  --fx-red-hover:      var(--sanctuary-red-hover);
+  --fx-red-bg:         var(--sanctuary-red-bg);
+  --fx-red-bd:         var(--sanctuary-red-bd);
+}
+
+/* Foundations stay inside the popup document or an isolated ShadowRoot. */
+button, input, select, textarea {
+  font-family: var(--font-sanctuary);
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--sanctuary-blue) !important;
+  outline-offset: 2px !important;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(:root, :host) [class][class],
+  :is(:root, :host) [class][class]::before,
+  :is(:root, :host) [class][class]::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body{margin:0;padding:24px;background:var(--sanctuary-canvas);font-family:var(--font-sanctuary);color:var(--sanctuary-ink-primary)}.preview-frame{width:460px;height:680px;margin:0 auto}.preview-caption{text-align:center;font-size:12px;margin:0 0 16px;color:var(--sanctuary-ink-secondary)}.preview-frame{width:340px}</style><body><p class="preview-caption">Локальний preview · синтетичні дані</p><div class="preview-frame">
+      <style>
+        /* ==========================================================================
+   S.O.V.A. DESIGN SYSTEM: ATOMIC DESIGN TOKENS
+   ========================================================================== */
+
+:root, :host {
+  /* Surfaces & Glass Diffraction */
+  --sanctuary-canvas:         #F5F5F7;
+  --sanctuary-surface:        #FFFFFF;
+  --sanctuary-surface-subtle: #FAFAFC;
+  --sanctuary-surface-hover:  rgba(0, 0, 0, 0.03);
+  --sanctuary-surface-active: rgba(0, 0, 0, 0.06);
+  --sanctuary-glass-bg:       rgba(255, 255, 255, 0.85);
+  --sanctuary-glass-elevated: rgba(255, 255, 255, 0.92);
+  --sanctuary-backdrop:       rgba(0, 0, 0, 0.32);
+  --sanctuary-glass-sheen:    rgba(255, 255, 255, 0.65);
+
+  /* Typography Inks (Optically Tuned for WCAG 2.1 AA & AAA Compliance) */
+  --sanctuary-ink-primary:    #1D1D1F; /* 16.1:1 on #FFFFFF (Passes AAA) */
+  --sanctuary-ink-secondary:  #6E6E73; /* 5.05:1 on #FFFFFF, 4.62:1 on #F5F5F7 (Passes AA) */
+  --sanctuary-ink-tertiary:   #86868B; /* 3.58:1 on #FFFFFF (Passes AA for graphical elements/large text) */
+  --sanctuary-ink-quaternary: #A1A1A6; /* 2.52:1 (Calibrated for inactive placeholders & decorative hairlines) */
+
+  /* Functional Accents & Semantic Tints (WCAG 2.1 AA Calibrated) */
+  --sanctuary-blue:           #0071E3; /* 4.75:1 on #FFFFFF (Passes AA) */
+  --sanctuary-blue-hover:     #0065CC;
+  --sanctuary-blue-active:    #005BB5;
+  --sanctuary-blue-bg:        rgba(0, 113, 227, 0.08);
+  --sanctuary-blue-bd:        rgba(0, 113, 227, 0.20);
+  --sanctuary-blue-surface:   #F0F7FF;
+
+  --sanctuary-green:          #34C759;
+  --sanctuary-green-hover:    #2DB84F;
+  --sanctuary-green-ink:      #1E7E34; /* 5.15:1 on #FFFFFF (Passes AA) */
+  --sanctuary-green-bg:       rgba(52, 199, 89, 0.10);
+  --sanctuary-green-bd:       rgba(52, 199, 89, 0.24);
+
+  --sanctuary-amber:          #FF9500;
+  --sanctuary-amber-hover:    #E08500;
+  --sanctuary-amber-ink:      #A04F00; /* 5.20:1 on #FFFFFF (Passes AA) */
+  --sanctuary-amber-bg:       rgba(255, 149, 0, 0.10);
+  --sanctuary-amber-bd:       rgba(255, 149, 0, 0.24);
+  --sanctuary-amber-surface:  #FFF8EF;
+
+  --sanctuary-red:            #FF3B30;
+  --sanctuary-red-hover:      #E03228;
+  --sanctuary-red-ink:        #D70015; /* 5.40:1 on #FFFFFF (Passes AA) */
+  --sanctuary-red-ink-hover:  #B80012;
+  --sanctuary-red-bg:         rgba(255, 59, 48, 0.08);
+  --sanctuary-red-bd:         rgba(255, 59, 48, 0.22);
+  --sanctuary-red-surface:    #FFF3F2;
+
+  --sanctuary-purple-ink:     #8944AB; /* 5.10:1 on #FFFFFF (Passes AA) */
+  --sanctuary-teal-ink:       #007D8C; /* 4.65:1 on #FFFFFF (Passes AA) */
+
+  /* Hairlines & Dividers */
+  --sanctuary-hairline:        rgba(0, 0, 0, 0.07);
+  --sanctuary-hairline-subtle: rgba(0, 0, 0, 0.04);
+  --sanctuary-hairline-glass:  rgba(255, 255, 255, 0.45);
+  --sanctuary-divider:         rgba(0, 0, 0, 0.05);
+
+  /* Superellipse Radii */
+  --radius-pill:      9999px;
+  --radius-modal:     22px;
+  --radius-card:      14px;
+  --radius-control:   10px;
+  --radius-nested:    8px;
+  --radius-micro:     4px;
+
+  /* Layered Shadow Elevations */
+  --shadow-sm:         0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-card:       0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.07);
+  --shadow-modal:      0 0 0 1px rgba(255, 255, 255, 0.6) inset, 0 8px 20px rgba(0, 0, 0, 0.08), 0 24px 64px rgba(0, 0, 0, 0.16);
+  --shadow-knob:       0 0.5px 1.5px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.16);
+  --shadow-elevated:   0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+
+  /* Apple Spring Kinematics */
+  --ease-apple-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-apple-press:   cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-apple-sheet:   cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-apple-rebound: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Fonts */
+  --font-sanctuary: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:      "SF Mono", Menlo, Consolas, Monaco, monospace;
+
+  /* Shared scale for popup, diagnostics and in-page protection. */
+  --text-caption: 11px;
+  --text-body: 12px;
+  --text-title: 13px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --control-height: 32px;
+  --sanctuary-focus-ring: rgba(0, 113, 227, 0.30);
+  --sanctuary-scroll-thumb: rgba(0, 0, 0, 0.18);
+
+  /* Sanctuary Core Obsidian Dark HUD Tokens (Apple VisionOS Calibrated) */
+  --sc-obsidian-bg:               rgba(16, 16, 20, 0.94);
+  --sc-obsidian-blur:             blur(32px) saturate(190%);
+  --sc-obsidian-header:           rgba(24, 24, 30, 0.82);
+  --sc-obsidian-nav:              rgba(14, 14, 18, 0.88);
+  --sc-obsidian-card:             rgba(26, 26, 32, 0.70);
+  --sc-obsidian-card-elevated:    linear-gradient(135deg, rgba(28, 28, 36, 0.85) 0%, rgba(18, 18, 24, 0.95) 100%);
+  --sc-obsidian-well:             rgba(10, 10, 14, 0.85);
+  --sc-obsidian-code:             rgba(8, 8, 12, 0.95);
+  
+  --sc-obsidian-border:           rgba(255, 255, 255, 0.12);
+  --sc-obsidian-border-subtle:    rgba(255, 255, 255, 0.07);
+  --sc-obsidian-sheen:            rgba(255, 255, 255, 0.18);
+
+  --sc-ink-primary:               #FFFFFF;
+  --sc-ink-secondary:             rgba(255, 255, 255, 0.85);
+  --sc-ink-muted:                 rgba(255, 255, 255, 0.60);
+  --sc-ink-subtle:                rgba(255, 255, 255, 0.40);
+
+  --sc-emerald:                   #30D158;
+  --sc-emerald-bg:                rgba(48, 209, 88, 0.16);
+  --sc-emerald-border:            rgba(48, 209, 88, 0.32);
+  --sc-emerald-glow:              0 0 16px rgba(48, 209, 88, 0.35);
+
+  --sc-amber:                     #FF9F0A;
+  --sc-amber-bg:                  rgba(255, 159, 10, 0.16);
+  --sc-amber-border:              rgba(255, 159, 10, 0.32);
+  --sc-amber-glow:                0 0 16px rgba(255, 159, 10, 0.35);
+
+  --sc-crimson:                   #FF453A;
+  --sc-crimson-bg:                rgba(255, 69, 58, 0.16);
+  --sc-crimson-border:            rgba(255, 69, 58, 0.32);
+  --sc-crimson-glow:              0 0 16px rgba(255, 69, 58, 0.35);
+
+  --sc-sapphire:                  #0A84FF;
+  --sc-sapphire-hover:            #0077ED;
+  --sc-sapphire-bg:               rgba(10, 132, 255, 0.16);
+  --sc-sapphire-border:           rgba(10, 132, 255, 0.32);
+  --sc-sapphire-glow:             0 0 16px rgba(10, 132, 255, 0.40);
+
+  --sc-squircle-window:           20px;
+  --sc-squircle-card:             14px;
+  --sc-squircle-control:          8px;
+  --sc-squircle-chip:             6px;
+
+  /* Backward Compatibility Aliases */
+  --fx-canvas:         var(--sanctuary-canvas);
+  --fx-surface:        var(--sanctuary-surface);
+  --fx-surface-hover:  var(--sanctuary-surface-hover);
+  --fx-surface-active: var(--sanctuary-surface-active);
+  --fx-border:         var(--sanctuary-hairline);
+  --fx-border-subtle:  var(--sanctuary-hairline-subtle);
+  --fx-text:           var(--sanctuary-ink-primary);
+  --fx-text-secondary: var(--sanctuary-ink-secondary);
+  --fx-text-muted:     var(--sanctuary-ink-tertiary);
+
+  --fx-blue:           var(--sanctuary-blue);
+  --fx-blue-hover:     var(--sanctuary-blue-hover);
+  --fx-blue-active:    var(--sanctuary-blue-active);
+  --fx-blue-bg:        var(--sanctuary-blue-bg);
+  --fx-blue-bd:        var(--sanctuary-blue-bd);
+
+  --fx-green:          var(--sanctuary-green);
+  --fx-green-hover:    var(--sanctuary-green-hover);
+  --fx-green-bg:       var(--sanctuary-green-bg);
+  --fx-green-bd:       var(--sanctuary-green-bd);
+
+  --fx-amber:          var(--sanctuary-amber);
+  --fx-amber-bg:       var(--sanctuary-amber-bg);
+  --fx-amber-bd:       var(--sanctuary-amber-bd);
+
+  --fx-red:            var(--sanctuary-red);
+  --fx-red-hover:      var(--sanctuary-red-hover);
+  --fx-red-bg:         var(--sanctuary-red-bg);
+  --fx-red-bd:         var(--sanctuary-red-bd);
+}
+
+/* Foundations stay inside the popup document or an isolated ShadowRoot. */
+button, input, select, textarea {
+  font-family: var(--font-sanctuary);
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--sanctuary-blue) !important;
+  outline-offset: 2px !important;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(:root, :host) [class][class],
+  :is(:root, :host) [class][class]::before,
+  :is(:root, :host) [class][class]::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+        
+  .sc-review-toolbar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .sc-review-toolbar .sc-btn-ghost { min-height:32px; padding:4px 8px; font-size:11px; }
+  .sc-live-state { color:var(--sanctuary-blue-active); font-weight:600; }
+  .sc-review-note,.sc-check-meta,.sc-history-meta { color:var(--sanctuary-ink-secondary); font-size:var(--text-caption); line-height:1.5; overflow-wrap:anywhere; }
+  .sc-review-note { margin:6px 0 12px; }
+  .sc-update-button:empty { display:none; }
+  .sc-ai-scope { display:flex; gap:8px; align-items:center; margin:12px 0; }
+  .sc-ai-scope select { min-width:0; flex:1; height:32px; border:1px solid var(--sanctuary-hairline); background:var(--sanctuary-surface); color:var(--sanctuary-ink-primary); border-radius:var(--radius-control); padding:0 8px; }
+  .sc-check-heading { display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between; }
+  .sc-check-state { font-size:11px; padding:3px 7px; border-radius:var(--radius-nested); background:var(--sanctuary-surface-active); }
+  .sc-check-red { color:var(--sanctuary-red-ink); background:var(--sanctuary-red-bg); }
+  .sc-check-green { color:var(--sanctuary-green-ink); background:var(--sanctuary-green-bg); }
+  .sc-check-blue { color:var(--sanctuary-blue-active); background:var(--sanctuary-blue-bg); }
+  .sc-check-amber { color:var(--sanctuary-amber-ink); background:var(--sanctuary-amber-bg); }
+  .sc-check-verdict { font-size:15px; margin:14px 0 4px; line-height:1.4; }
+  .sc-verdict-label { color:var(--sanctuary-ink-secondary); font-size:11px; margin:14px 0 0; }
+  .sc-verdict-label + .sc-check-verdict { margin-top:3px; }
+  .sc-confidence { font-size:11px; color:var(--sanctuary-ink-secondary); margin:0 0 8px; }
+  .sc-check-reason { font-size:12px; line-height:1.6; overflow-wrap:anywhere; }
+  .sc-check-protection { background:var(--sanctuary-surface-subtle); border:1px solid var(--sanctuary-hairline); padding:12px; border-radius:var(--radius-control); margin:12px 0; }
+  .sc-check-protection p { margin:4px 0; }
+  .sc-check-protection span { font-size:11px; color:var(--sanctuary-ink-secondary); }
+  .sc-inspector-section { border-top:1px solid var(--sanctuary-hairline); }
+  .sc-inspector-section summary { cursor:pointer; padding:12px 0; font-size:12px; font-weight:600; }
+  .sc-inspector-section-body { padding-bottom:12px; overflow-wrap:anywhere; }
+  .sc-inspector-section h4 { font-size:11px; margin:8px 0; }
+  .sc-inspector-code { white-space:pre-wrap; overflow-wrap:anywhere; font:11px/1.6 var(--font-mono); background:var(--sanctuary-canvas); border:1px solid var(--sanctuary-hairline); border-radius:var(--radius-nested); padding:10px; margin:8px 0; max-height:260px; overflow:auto; }
+  .sc-history-title { font-size:13px; margin:0 0 8px; }
+  .sc-check-history { display:flex; flex-direction:column; gap:4px; }
+  .sc-history-row { text-align:left; cursor:pointer; color:var(--sanctuary-ink-primary); background:transparent; border:1px solid transparent; border-radius:var(--radius-control); padding:8px; display:flex; flex-direction:column; gap:3px; overflow-wrap:anywhere; font-size:12px; }
+  .sc-history-row:hover { background:var(--sanctuary-surface-hover); }
+  .sc-history-row.selected { background:var(--sanctuary-blue-bg); border-color:var(--sanctuary-blue-bd); }
+
+
+        :host {
+          all: initial;
+          font-family: var(--font-sanctuary);
+          color: var(--sanctuary-ink-primary);
+          box-sizing: border-box;
+          -webkit-font-smoothing: antialiased;
+          color-scheme: light;
+          line-height: 1.5;
+        }
+
+        *, *:before, *:after {
+          box-sizing: border-box;
+        }
+
+        /* 1. Pure Crystalline Ceramic Glass Container */
+        .sc-window {
+          container-type: inline-size;
+          width: 100%;
+          height: 100%;
+          background: var(--sanctuary-canvas);
+          backdrop-filter: blur(32px) saturate(180%);
+          -webkit-backdrop-filter: blur(32px) saturate(180%);
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          border-radius: var(--radius-modal);
+          box-shadow: var(--shadow-modal);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          font-size: 12.5px;
+          color: var(--sanctuary-ink-primary);
+        }
+
+        /* 2. Apple Precision Titlebar */
+        .sc-titlebar {
+          background: var(--sanctuary-surface);
+          padding: 12px 14px 10px;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 8px;
+          cursor: grab;
+          user-select: none;
+        }
+        .sc-titlebar:active {
+          cursor: grabbing;
+        }
+        .sc-brand-group {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          min-width: 0;
+        }
+        .sc-brand-icon {
+          width: 24px;
+          height: 24px;
+          border-radius: 7px;
+          background: linear-gradient(135deg, var(--sanctuary-blue) 0%, #42A5F5 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--sanctuary-surface);
+          box-shadow: 0 2px 6px rgba(0, 113, 227, 0.3);
+        }
+        .sc-brand-meta {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 2px;
+          min-width: 0;
+        }
+        .sc-brand-name {
+          font-size: 14px;
+          line-height: 18px;
+          font-weight: 650;
+          color: var(--sanctuary-ink-primary);
+          letter-spacing: -0.015em;
+        }
+        .sc-brand-context { max-width: 178px; color: var(--sanctuary-ink-secondary); font-size: 10px; line-height: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .sc-brand-pill {
+          font-size: 10px;
+          font-weight: 600;
+          padding: 2px 7px;
+          background: rgba(0, 0, 0, 0.05);
+          color: var(--sanctuary-ink-secondary);
+          border-radius: 9999px;
+          letter-spacing: 0.02em;
+        }
+
+        .sc-win-controls {
+          display: flex;
+          align-items: center;
+          gap: 2px;
+          flex-shrink: 0;
+          padding-top: 1px;
+        }
+        .sc-tool-btn {
+          width: var(--control-height);
+          height: var(--control-height);
+          border-radius: var(--radius-nested);
+          border: 1px solid transparent;
+          background: transparent;
+          color: var(--sanctuary-ink-secondary);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sc-tool-btn:hover {
+          background: rgba(0, 0, 0, 0.05);
+          color: var(--sanctuary-ink-primary);
+        }
+        .sc-tool-btn:active {
+          transform: scale(0.92);
+        }
+        .sc-tool-btn-close:hover {
+          background: rgba(255, 59, 48, 0.12);
+          color: var(--sanctuary-red-ink);
+        }
+
+        /* 3. Cupertino Segmented Tab Bar */
+        .sc-tab-bar {
+          display: flex;
+          background: var(--sanctuary-surface-subtle);
+          border: 1px solid var(--sanctuary-hairline);
+          border-radius: 12px;
+          padding: 4px;
+          margin: 10px 14px 2px;
+          gap: 2px;
+        }
+        .sc-tab-btn {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          padding: 7px 6px;
+          min-width: 0;
+          min-height: var(--control-height);
+          border-radius: 9px;
+          border: 1px solid transparent;
+          background: transparent;
+          color: var(--sanctuary-ink-secondary);
+          font-size: 11.5px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sc-tab-btn.active {
+          background: var(--sanctuary-blue-surface);
+          border-color: var(--sanctuary-blue-bd);
+          color: var(--sanctuary-blue);
+          font-weight: 650;
+          box-shadow: var(--shadow-sm);
+        }
+        .sc-tab-btn.active svg { color: var(--sanctuary-blue); }
+        .sc-tab-btn > svg { flex-shrink: 0; }
+        .sc-tab-btn:hover:not(.active) {
+          color: var(--sanctuary-ink-primary);
+          background: var(--sanctuary-surface-hover);
+        }
+        .sc-tab-count { min-width: 17px; padding: 1px 5px; border-radius: var(--radius-pill); background: var(--sanctuary-surface-active); color: var(--sanctuary-ink-secondary); font-size: 9px; line-height: 14px; font-variant-numeric: tabular-nums; }
+        .sc-tab-btn.active .sc-tab-count { background: rgba(0, 113, 227, 0.11); color: var(--sanctuary-blue); }
+        .sc-shell-status { display: inline-flex; align-items: center; gap: 5px; margin: 1px 4px 0 auto; padding: 5px 8px; border-radius: var(--radius-pill); border: 1px solid var(--sanctuary-green-bd); background: var(--sanctuary-green-bg); color: var(--sanctuary-green-ink); font-size: 9px; line-height: 13px; font-weight: 600; white-space: nowrap; }
+        .sc-shell-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+        .sc-shell-status.warning { border-color: var(--sanctuary-amber-bd); background: var(--sanctuary-amber-bg); color: var(--sanctuary-amber-ink); }
+        .sc-shell-status.locked { border-color: var(--sanctuary-red-bd); background: var(--sanctuary-red-bg); color: var(--sanctuary-red-ink); }
+
+        /* 4. Viewport Scroll Container */
+        .sc-viewport {
+          flex: 1;
+          min-height: 0;
+          overflow-y: auto;
+          padding: 12px 16px 16px 16px;
+        }
+        .sc-viewport::-webkit-scrollbar {
+          width: 5px;
+        }
+        .sc-viewport::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.12);
+          border-radius: 9999px;
+        }
+
+        /* 5. Inset Cards */
+        .sc-card {
+          background: var(--sanctuary-surface);
+          border: 1px solid rgba(0, 0, 0, 0.06);
+          border-radius: var(--radius-card);
+          padding: var(--space-4);
+          margin-bottom: 12px;
+          box-shadow: var(--shadow-card);
+        }
+
+        /* Hero: The Swiss Loupe Dial */
+        .sc-loupe-hero {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+        .sc-gauge-section {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+        .sc-gauge-container {
+          position: relative;
+          width: 78px;
+          height: 78px;
+          flex-shrink: 0;
+        }
+        .sc-gauge-svg {
+          width: 100%;
+          height: 100%;
+          transform: rotate(-90deg);
+        }
+        .sc-gauge-bg {
+          fill: none;
+          stroke: rgba(0, 0, 0, 0.06);
+          stroke-width: 6.5;
+        }
+        .sc-gauge-progress {
+          fill: none;
+          stroke-width: 6.5;
+          stroke-linecap: round;
+          transition: stroke-dashoffset 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sc-gauge-text {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          line-height: 1.1;
+        }
+        .sc-gauge-value {
+          font-size: 21px;
+          font-weight: 700;
+          color: var(--sanctuary-ink-primary);
+          letter-spacing: -0.03em;
+        }
+        .sc-gauge-label {
+          font-size: 8.5px;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: var(--sanctuary-ink-secondary);
+          letter-spacing: 0.04em;
+        }
+
+        .sc-hero-meta {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+        .sc-site-name {
+          font-size: 15px;
+          font-weight: 600;
+          color: var(--sanctuary-ink-primary);
+          letter-spacing: -0.015em;
+        }
+        .sc-subtext {
+          font-size: 10.5px;
+          color: var(--sanctuary-ink-secondary);
+        }
+
+        /* 4 Swiss Loupe Pillars */
+        .sc-loupe-pillars {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+          gap: 7px;
+        }
+        .sc-pillar-cell {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 4px;
+          min-height: 58px;
+          padding: 9px 10px;
+          background: var(--sanctuary-surface-subtle);
+          border: 1px solid var(--sanctuary-hairline);
+          border-radius: var(--radius-control);
+          min-width: 0;
+        }
+        .sc-pillar-label {
+          font-size: 9.5px;
+          color: var(--sanctuary-ink-secondary);
+          font-weight: 500;
+        }
+        .sc-pillar-val {
+          font-size: 11px;
+          font-weight: 600;
+          color: var(--sanctuary-ink-primary);
+          line-height: 1.35;
+          overflow-wrap: anywhere;
+        }
+        .sc-pillar-neutral { color: var(--sanctuary-ink-primary); }
+        .sc-pillar-blue { color: var(--sanctuary-blue); }
+        .sc-pillar-amber { color: var(--sanctuary-amber-ink); }
+        .sc-pillar-red { color: var(--sanctuary-red-ink); }
+        .sc-val-green { color: var(--sanctuary-green-ink); }
+        .sc-val-blue { color: var(--sanctuary-blue); }
+        .sc-val-amber { color: var(--sanctuary-amber-ink); }
+        .sc-val-indigo { color: #5E5CE6; }
+
+        /* Badges */
+        .sc-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          padding: 3px 8px;
+          border-radius: 9999px;
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.01em;
+          width: fit-content;
+        }
+        .sc-badge-green {
+          background: rgba(52, 199, 89, 0.12);
+          border: 1px solid rgba(52, 199, 89, 0.25);
+          color: var(--sanctuary-green-ink);
+        }
+        .sc-badge-amber {
+          background: rgba(255, 149, 0, 0.12);
+          border: 1px solid rgba(255, 149, 0, 0.25);
+          color: var(--sanctuary-amber-ink);
+        }
+        .sc-badge-red {
+          background: rgba(255, 59, 48, 0.10);
+          border: 1px solid rgba(255, 59, 48, 0.22);
+          color: var(--sanctuary-red-ink);
+        }
+        .sc-badge-blue {
+          background: rgba(0, 113, 227, 0.10);
+          border: 1px solid rgba(0, 113, 227, 0.20);
+          color: var(--sanctuary-blue);
+        }
+
+        /* Verdict Card */
+        .sc-verdict-card {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .sc-verdict-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .sc-card-title {
+          font-size: 12px;
+          font-weight: 600;
+          color: var(--sanctuary-ink-primary);
+        }
+        .sc-verdict-text {
+          font-size: 11.5px;
+          color: var(--sanctuary-ink-secondary);
+          line-height: 1.45;
+          margin: 0;
+        }
+        .sc-triggers-wrap {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+        .sc-triggers-label {
+          font-size: 10.5px;
+          font-weight: 600;
+          color: var(--sanctuary-ink-secondary);
+        }
+        .sc-triggers-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 4px;
+        }
+        .sc-trigger-chip {
+          font-size: 10px;
+          padding: 2px 7px;
+          background: rgba(0, 0, 0, 0.04);
+          border: 1px solid rgba(0, 0, 0, 0.06);
+          border-radius: 5px;
+          color: var(--sanctuary-ink-primary);
+        }
+
+        .sc-action-row {
+          display: flex;
+          gap: 8px;
+          margin-top: 4px;
+        }
+        .sc-btn {
+          min-height: var(--control-height);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          padding: 6px 12px;
+          font-size: 11px;
+          font-weight: 500;
+          border-radius: 8px;
+          border: 1px solid rgba(0, 0, 0, 0.10);
+          background: var(--sanctuary-surface);
+          color: var(--sanctuary-ink-primary);
+          cursor: pointer;
+          transition: all 0.15s ease;
+        }
+        .sc-btn:hover {
+          background: rgba(0, 0, 0, 0.03);
+          border-color: rgba(0, 0, 0, 0.16);
+        }
+        .sc-btn:active {
+          transform: scale(0.97);
+        }
+        .sc-btn-pill {
+          border-radius: 9999px;
+        }
+        .sc-btn-ghost {
+          background: transparent;
+          border: none;
+          color: var(--sanctuary-blue);
+          font-size: 10.5px;
+          font-weight: 500;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          padding: 2px 5px;
+          border-radius: 4px;
+        }
+        .sc-btn-ghost:hover {
+          background: rgba(0, 113, 227, 0.08);
+        }
+
+        /* Toolbar & Search */
+        .sc-filter-toolbar {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-bottom: 0;
+        }
+        .sc-events-controls {
+          background: var(--sanctuary-surface);
+          border: 1px solid rgba(0, 0, 0, 0.07);
+          border-radius: 14px;
+          padding: 12px;
+          margin: 10px 0 12px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.025);
+        }
+        .sc-events-controls-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 9px; }
+        .sc-events-heading { font-size: 13px; font-weight: 650; letter-spacing: -0.015em; color: var(--sanctuary-ink-primary); }
+        .sc-events-count { margin-top: 1px; color: var(--sanctuary-ink-secondary); font-size: 10.5px; }
+        }
+        .sc-search-box {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background: var(--sanctuary-surface);
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          border-radius: 9px;
+          padding: 6px 10px;
+        }
+        .sc-search-input {
+          flex: 1;
+          border: none;
+          background: transparent;
+          font-size: 11.5px;
+          color: var(--sanctuary-ink-primary);
+          outline: none;
+        }
+        .sc-search-input::placeholder {
+          color: var(--sanctuary-ink-secondary);
+        }
+        .sc-search-clear {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          display: flex;
+        }
+        .sc-filter-chips {
+          display: flex;
+          gap: 4px;
+        }
+        .sc-chip {
+          padding: 5px 9px;
+          border-radius: 9999px;
+          border: 1px solid rgba(0, 0, 0, 0.06);
+          background: rgba(0, 0, 0, 0.03);
+          color: var(--sanctuary-ink-secondary);
+          font-size: 10.5px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.15s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          min-height: 28px;
+        }
+        .sc-chip span { font-size: 9px; opacity: 0.72; font-variant-numeric: tabular-nums; }
+        .sc-chip.active {
+          background: var(--sanctuary-blue-bg);
+          color: var(--sanctuary-blue);
+          border-color: var(--sanctuary-blue-bd);
+        }
+        .sc-chip.sc-chip-danger {
+          border-color: rgba(239, 68, 68, 0.35);
+          background: rgba(239, 68, 68, 0.08);
+          color: var(--sanctuary-red-ink);
+        }
+        .sc-chip.sc-chip-danger.active {
+          background: var(--sanctuary-red-bg);
+          color: var(--sanctuary-red-ink);
+          border-color: var(--sanctuary-red-bd);
+        }
+
+        /* Events Timeline */
+        .sc-event-card {
+          background: var(--sanctuary-surface);
+          border: 1px solid rgba(0, 0, 0, 0.06);
+          border-radius: 12px;
+          padding: 11px 12px;
+          margin-bottom: 8px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+          transition: all 0.15s ease;
+        }
+        .sc-event-card:hover {
+          border-color: rgba(0, 0, 0, 0.11);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+        .sc-event-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 6px;
+        }
+        .sc-event-preview {
+          margin: 0;
+          color: var(--sanctuary-ink-secondary);
+          font-size: 11px;
+          line-height: 1.5;
+          overflow-wrap: anywhere;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .sc-event-details { margin-top: 8px; border-top: 1px solid rgba(0, 0, 0, 0.06); padding-top: 7px; }
+        .sc-event-details summary { cursor: pointer; color: var(--sanctuary-blue); font-size: 10.5px; font-weight: 550; }
+        .sc-event-copy { margin-top: 6px; }
+        .sc-events-empty { margin: 18px 0; border: 1px dashed rgba(0, 0, 0, 0.12); border-radius: 14px; background: var(--sanctuary-surface); }
+        .sc-event-title-wrap {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+        }
+        .sc-status-dot {
+          width: 6.5px;
+          height: 6.5px;
+          border-radius: 9999px;
+          flex-shrink: 0;
+        }
+        .sc-event-badge {
+          font-size: 9.5px;
+          font-weight: 700;
+          padding: 1.5px 6px;
+          border-radius: 5px;
+          font-family: var(--font-mono, monospace);
+          letter-spacing: 0.02em;
+        }
+        .sc-badge-ai {
+          background: rgba(0, 113, 227, 0.08);
+          color: var(--sanctuary-blue);
+        }
+        .sc-badge-form {
+          background: rgba(52, 199, 89, 0.10);
+          color: var(--sanctuary-green-ink);
+        }
+        .sc-badge-risk { background: var(--sanctuary-red-bg); color: var(--sanctuary-red-ink); }
+        .sc-badge-ctx {
+          background: rgba(94, 92, 230, 0.08);
+          color: #5E5CE6;
+        }
+        .sc-badge-vault {
+          background: rgba(175, 82, 222, 0.08);
+          color: #AF52DE;
+        }
+        .sc-badge-log {
+          background: rgba(0, 0, 0, 0.04);
+          color: var(--sanctuary-ink-secondary);
+        }
+        .sc-event-title {
+          font-size: 11.5px;
+          font-weight: 600;
+          color: var(--sanctuary-ink-primary);
+          letter-spacing: -0.01em;
+        }
+        .sc-event-right {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+        .sc-event-time {
+          font-size: 10px;
+          color: var(--sanctuary-ink-secondary);
+          font-family: var(--font-mono, monospace);
+        }
+        .sc-copy-icon-btn {
+          background: transparent;
+          border: none;
+          color: var(--sanctuary-ink-secondary);
+          cursor: pointer;
+          padding: 1px 3px;
+          border-radius: 4px;
+        }
+        .sc-copy-icon-btn:hover {
+          color: var(--sanctuary-blue);
+          background: rgba(0, 113, 227, 0.08);
+        }
+        .sc-event-code {
+          margin: 0;
+          background: var(--sanctuary-canvas);
+          border: 1px solid rgba(0, 0, 0, 0.04);
+          border-radius: 6px;
+          padding: 6px 8px;
+          font-size: 10px;
+          font-family: var(--font-mono, monospace);
+          color: var(--sanctuary-ink-primary);
+          overflow-x: auto;
+          white-space: pre-wrap;
+          word-break: break-all;
+        }
+
+        /* Empty states */
+        .sc-empty-state {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 32px 16px;
+          gap: 6px;
+        }
+        .sc-empty-title {
+          font-size: 12.5px;
+          font-weight: 600;
+          color: var(--sanctuary-ink-primary);
+        }
+        .sc-empty-sub {
+          font-size: 11px;
+          color: var(--sanctuary-ink-secondary);
+          line-height: 1.4;
+        }
+
+        @keyframes sc-spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .sc-spin {
+          display: inline-block;
+          animation: sc-spin 1.2s linear infinite;
+        }
+
+        /* Spectrum uses the same cards, controls and type scale as every tab. */
+        .sc-vectors-view { display: flex; flex-direction: column; gap: var(--space-3); }
+        .sc-vectors-view > .sc-card { margin-bottom: 0; }
+        .sc-vector-hero, .sc-vector-graph-card, .sc-dim-breakdown-card {
+          display: flex; flex-direction: column; gap: var(--space-3);
+        }
+        .sc-vector-hero-top { display: flex; align-items: flex-start; gap: var(--space-3); }
+        .sc-vector-sim-badge {
+          display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+          padding: var(--space-3); border-radius: var(--radius-control); min-width: 116px; flex-shrink: 0;
+        }
+        .sc-sim-title, .sc-sim-caption { font-size: var(--text-caption); line-height: 1.4; }
+        .sc-sim-value { font-size: 30px; line-height: 1.2; font-weight: 650; font-variant-numeric: tabular-nums; }
+        .sc-sim-unit { font-size: 16px; font-weight: 500; margin-left: 2px; }
+        .sc-vector-status-block { min-width: 0; flex: 1; padding-top: 2px; }
+        .sc-vector-status-title { font-size: var(--text-title); font-weight: 600; margin-bottom: var(--space-1); }
+        .sc-vector-status-sub, .sc-vector-note { font-size: var(--text-caption); color: var(--sanctuary-ink-secondary); line-height: 1.5; }
+        .sc-vector-note { margin: 0; }
+        .sc-proto-selector { display: flex; flex-direction: column; gap: var(--space-2); }
+        .sc-proto-label, .sc-vector-raw-label { font-size: var(--text-caption); font-weight: 600; color: var(--sanctuary-ink-secondary); }
+        .sc-proto-chips { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-2); }
+        .sc-proto-chip { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); text-align: left; padding: 8px 10px; border-radius: var(--radius-control); min-height: var(--control-height); }
+        .sc-chip-sim { flex-shrink: 0; font-size: var(--text-caption); font-weight: 600; font-variant-numeric: tabular-nums; }
+        .sc-vector-raw-box { background: var(--sanctuary-surface-subtle); border: 1px solid var(--sanctuary-hairline); border-radius: var(--radius-control); padding: var(--space-3); }
+        .sc-vector-raw-label { display: block; margin-bottom: var(--space-1); }
+        .sc-vector-raw-text { font-size: var(--text-body); color: var(--sanctuary-ink-primary); line-height: 1.5; overflow-wrap: anywhere; }
+        .sc-graph-header, .sc-graph-title-group { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1); }
+        .sc-graph-sub { font-size: var(--text-caption); color: var(--sanctuary-ink-secondary); }
+        .sc-graph-legend { display: flex; flex-wrap: wrap; gap: var(--space-3); font-size: var(--text-caption); color: var(--sanctuary-ink-secondary); margin-top: var(--space-1); }
+        .sc-legend-item { display: flex; align-items: center; gap: 6px; }
+        .sc-legend-dot { width: 8px; height: 8px; border-radius: var(--radius-pill); }
+        .sc-dot-blue, .sc-bar-blue { background: var(--sanctuary-blue); }
+        .sc-dot-red, .sc-bar-red { background: var(--sanctuary-red-ink); }
+        .sc-svg-wrapper { background: var(--sanctuary-surface-subtle); border: 1px solid var(--sanctuary-hairline); border-radius: var(--radius-control); padding: var(--space-2); overflow-x: auto; }
+        .sc-vector-svg { display: block; width: 100%; min-width: 440px; height: auto; }
+        .sc-dim-grid { display: flex; flex-direction: column; gap: var(--space-2); }
+        .sc-dim-row { background: var(--sanctuary-surface-subtle); border: 1px solid var(--sanctuary-hairline); border-radius: var(--radius-control); padding: 10px 12px; }
+        .sc-dim-row.matched { background: var(--sanctuary-red-bg); border-color: var(--sanctuary-red-bd); }
+        .sc-dim-meta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-1); margin-bottom: 6px; }
+        .sc-dim-name { display: flex; gap: 6px; align-items: center; font-size: var(--text-body); font-weight: 600; color: var(--sanctuary-ink-primary); }
+        .sc-dim-number { color: var(--sanctuary-ink-secondary); font-size: var(--text-caption); font-weight: 500; min-width: 14px; font-variant-numeric: tabular-nums; }
+        .sc-dim-weights { display: flex; gap: var(--space-2); font-size: var(--text-caption); font-variant-numeric: tabular-nums; }
+        .sc-val-in { color: var(--sanctuary-blue); }
+        .sc-val-proto { color: var(--sanctuary-red-ink); }
+        .sc-dim-bars { display: flex; flex-direction: column; gap: var(--space-1); }
+        .sc-bar-track { height: 4px; background: var(--sanctuary-surface-active); border-radius: var(--radius-pill); overflow: hidden; }
+        .sc-bar-fill { height: 100%; border-radius: var(--radius-pill); transition: width 0.2s ease; }
+        .sc-dim-tokens { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: 6px; }
+        .sc-dim-token-chip { font-size: var(--text-caption); padding: 2px 6px; background: var(--sanctuary-surface); color: var(--sanctuary-ink-secondary); border-radius: var(--radius-micro); border: 1px solid var(--sanctuary-hairline); }
+
+        @container (max-width: 380px) {
+          .sc-titlebar { padding-inline: 10px; }
+          .sc-tab-bar { margin-inline: 10px; }
+          .sc-tab-btn { gap: 3px; padding-inline: 3px; font-size: 10.5px; }
+          .sc-tab-btn > svg { display: none; }
+          .sc-brand-context { display: none; }
+          .sc-shell-status { font-size: 0; width: 20px; height: 20px; justify-content: center; padding: 0; margin-top: 5px; }
+          .sc-shell-status::before { width: 7px; height: 7px; }
+          .sc-vector-hero-top { flex-direction: column; }
+          .sc-vector-sim-badge { width: 100%; }
+          .sc-action-row { flex-wrap: wrap; }
+        }
+      </style>
+
+      <div class="sc-window">
+        <!-- 1. Apple Precision Titlebar -->
+        <div class="sc-titlebar" id="drag-handle">
+          <div class="sc-brand-group">
+            <div class="sc-brand-icon" title="С.О.В.А." style="background: transparent; padding: 0; overflow: hidden; border-radius: 6px;">
+              <img src="logo.png" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            </div>
+            <div class="sc-brand-meta">
+              <span class="sc-brand-name">С.О.В.А.</span>
+              <span class="sc-brand-context" title="preview.sova.local">preview.sova.local</span>
+            </div>
+          </div>
+          <span class="sc-shell-status monitoring" title="Поточний стан захисту">Моніторинг</span>
+          <div class="sc-win-controls">
+            <button type="button" class="sc-tool-btn" id="btn-export-json" aria-label="Експортувати звіт у JSON" title="Експортувати звіт у JSON">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </button>
+            <button type="button" class="sc-tool-btn" id="btn-clear-all" aria-label="Очистити події" title="Очистити події">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            </button>
+            <button type="button" class="sc-tool-btn" id="btn-minimize" aria-label="Згорнути вікно дебагера" title="Згорнути вікно дебагера">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+            <button type="button" class="sc-tool-btn sc-tool-btn-close" id="btn-close-window" aria-label="Закрити вікно дебагера" title="Закрити вікно">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Cupertino Segmented Navigation -->
+        <nav class="sc-tab-bar" aria-label="Розділи діагностики">
+          <button type="button" class="sc-tab-btn " data-tab="overview" aria-label="Огляд" aria-pressed="false">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span>Огляд</span>
+            
+          </button>
+          <button type="button" class="sc-tab-btn " data-tab="events" aria-label="Події, 0" aria-pressed="false">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+            <span>Події</span><span class="sc-tab-count">0</span>
+          </button>
+          <button type="button" class="sc-tab-btn " data-tab="ai" aria-label="ШІ, 0" aria-pressed="false">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+            <span>ШІ</span><span class="sc-tab-count">0</span>
+          </button>
+          <button type="button" class="sc-tab-btn active" data-tab="vectors" aria-pressed="true" title="Векторний спектр">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            <span>Спектр</span>
+            <span class="sc-badge sc-badge-red" style="padding:1px 5px; font-size:8.5px;">84%</span>
+          </button>
+        </nav>
+
+        <!-- 3. Viewport Content -->
+        <div class="sc-viewport">
+          
+        <div class="sc-vectors-view">
+          <!-- 1. Hero Card: Метрика косинусної подібності та статус -->
+          <div class="sc-card sc-vector-hero">
+            <div class="sc-vector-hero-top">
+              <div class="sc-vector-sim-badge sc-badge-red">
+                <span class="sc-sim-title">Схожість з еталоном</span>
+                <span class="sc-sim-value">84<span class="sc-sim-unit">%</span></span>
+                <span class="sc-sim-caption">cos(θ) = 0.84</span>
+              </div>
+              <div class="sc-vector-status-block">
+                <div class="sc-vector-status-title">
+                  Локальний класифікатор виявив намір
+                </div>
+                <div class="sc-vector-status-sub">
+                  Демонстраційний збіг за матрицею намірів (вербування / розвідка)
+                </div>
+              </div>
+            </div>
+
+            <!-- Селектор еталонного вектора атаки -->
+            <div class="sc-proto-selector">
+              <span class="sc-proto-label">Еталон для порівняння</span>
+              <div class="sc-proto-chips">
+                
+                    <button type="button" class="sc-chip sc-proto-chip active sc-chip-danger" data-proto-id="MILITARY_SABOTAGE_RECRUITMENT" aria-pressed="true">
+                      <span>Вербування / Диверсія</span>
+                      <span class="sc-chip-sim">84% [ТРИГЕР]</span>
+                    </button>
+                  
+                    <button type="button" class="sc-chip sc-proto-chip  " data-proto-id="PAYMENT_CREDENTIAL_THEFT" aria-pressed="false">
+                      <span>Викрадення CVV</span>
+                      <span class="sc-chip-sim">18%</span>
+                    </button>
+                  
+              </div>
+            </div>
+
+            <!-- Контекст останнього відсканованого тексту -->
+            <div class="sc-vector-raw-box">
+              <span class="sc-vector-raw-label">Останнє проаналізоване повідомлення:</span>
+              <div class="sc-vector-raw-text">«Шукаємо кур’єрів-розвідників у Дніпрі, підійди за адресою і сфотографуй будівлю ТЦК та номери машин, плачу 500$ у крипті»</div>
+            </div>
+            <p class="sc-vector-note">Схожість показує близькість ознак до еталона. Застосоване попередження або блокування відображається у вкладці «Огляд».</p>
+          </div>
+
+          <!-- 2. Візуальний SVG Графік Накладання Векторів -->
+          <div class="sc-card sc-vector-graph-card">
+            <div class="sc-graph-header">
+              <div class="sc-graph-title-group">
+                <span class="sc-card-title">Порівняння ознак</span>
+                <span class="sc-graph-sub">10 ознак · нормалізовані ваги від 0 до 1</span>
+              </div>
+              <div class="sc-graph-legend">
+                <div class="sc-legend-item">
+                  <span class="sc-legend-dot sc-dot-blue"></span>
+                  <span>Повідомлення співрозмовника</span>
+                </div>
+                <div class="sc-legend-item">
+                  <span class="sc-legend-dot sc-dot-red"></span>
+                  <span>Обраний еталон</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sc-svg-wrapper">
+              <svg class="sc-vector-svg" viewBox="0 0 540 185" role="img" aria-label="Порівняння ваг повідомлення й обраного еталона; назви ознак наведені нижче">
+                <defs>
+                  <!-- Градієнт для вхідного повідомлення (Блакитний) -->
+                  <linearGradient id="grad-input" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="var(--sanctuary-blue)" stop-opacity="0.30"></stop>
+                    <stop offset="100%" stop-color="var(--sanctuary-blue)" stop-opacity="0.02"></stop>
+                  </linearGradient>
+                  <!-- Градієнт для еталона загрози (Червоний) -->
+                  <linearGradient id="grad-proto" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="var(--sanctuary-red-ink)" stop-opacity="0.22"></stop>
+                    <stop offset="100%" stop-color="var(--sanctuary-red-ink)" stop-opacity="0.02"></stop>
+                  </linearGradient>
+                </defs>
+
+                <!-- Горизонтальні лінії сітки (Grid) -->
+                <line x1="45" y1="25" x2="515" y2="25" stroke="#E5E5EA" stroke-width="1" stroke-dasharray="2 3"></line>
+                <text x="37" y="28" fill="var(--sanctuary-ink-secondary)" font-size="8.5" text-anchor="end">1.0</text>
+
+                <line x1="45" y1="56.25" x2="515" y2="56.25" stroke="#E5E5EA" stroke-width="1" stroke-dasharray="2 3"></line>
+                <text x="37" y="59.25" fill="var(--sanctuary-ink-secondary)" font-size="8.5" text-anchor="end">0.75</text>
+
+                <line x1="45" y1="87.5" x2="515" y2="87.5" stroke="#E5E5EA" stroke-width="1" stroke-dasharray="2 3"></line>
+                <text x="37" y="90.5" fill="var(--sanctuary-ink-secondary)" font-size="8.5" text-anchor="end">0.5</text>
+
+                <line x1="45" y1="118.75" x2="515" y2="118.75" stroke="#E5E5EA" stroke-width="1" stroke-dasharray="2 3"></line>
+                <text x="37" y="121.75" fill="var(--sanctuary-ink-secondary)" font-size="8.5" text-anchor="end">0.25</text>
+
+                <!-- Базова лінія (Y = 0) -->
+                <line x1="45" y1="150" x2="515" y2="150" stroke="#C7C7CC" stroke-width="1"></line>
+                <text x="37" y="153" fill="var(--sanctuary-ink-secondary)" font-size="8.5" text-anchor="end">0.0</text>
+
+                <!-- Вертикальні напрямні та осі -->
+                
+                  <line x1="45" y1="25" x2="45" y2="150" stroke="#F2F2F7" stroke-width="1"></line>
+                
+                  <line x1="97" y1="25" x2="97" y2="150" stroke="#F2F2F7" stroke-width="1"></line>
+                
+                  <line x1="149" y1="25" x2="149" y2="150" stroke="#F2F2F7" stroke-width="1"></line>
+                
+                  <line x1="202" y1="25" x2="202" y2="150" stroke="#F2F2F7" stroke-width="1"></line>
+                
+                  <line x1="254" y1="25" x2="254" y2="150" stroke="#F2F2F7" stroke-width="1"></line>
+                
+                  <line x1="306" y1="25" x2="306" y2="150" stroke="#F2F2F7" stroke-width="1"></line>
+                
+                  <line x1="358" y1="25" x2="358" y2="150" stroke="#F2F2F7" stroke-width="1"></line>
+                
+                  <line x1="411" y1="25" x2="411" y2="150" stroke="#F2F2F7" stroke-width="1"></line>
+                
+                  <line x1="463" y1="25" x2="463" y2="150" stroke="#F2F2F7" stroke-width="1"></line>
+                
+                  <line x1="515" y1="25" x2="515" y2="150" stroke="#F2F2F7" stroke-width="1"></line>
+                
+
+                <!-- Заливка площі еталона загрози -->
+                <path d="M 45 44 C 71 44, 71 38, 97 38 C 123 38, 123 40, 149 40 C 175.5 40, 175.5 48, 202 48 C 228 48, 228 53, 254 53 C 280 53, 280 44, 306 44 C 332 44, 332 63, 358 63 C 384.5 63, 384.5 69, 411 69 C 437 69, 437 138, 463 138 C 489 138, 489 131, 515 131 L 515 150 L 45 150 Z" fill="url(#grad-proto)"></path>
+                <!-- Лінія кривої еталона загрози -->
+                <path d="M 45 44 C 71 44, 71 38, 97 38 C 123 38, 123 40, 149 40 C 175.5 40, 175.5 48, 202 48 C 228 48, 228 53, 254 53 C 280 53, 280 44, 306 44 C 332 44, 332 63, 358 63 C 384.5 63, 384.5 69, 411 69 C 437 69, 437 138, 463 138 C 489 138, 489 131, 515 131" fill="none" stroke="var(--sanctuary-red-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+
+                <!-- Заливка площі вхідного повідомлення -->
+                <path d="M 45 25 C 71 25, 71 25, 97 25 C 123 25, 123 25, 149 25 C 175.5 25, 175.5 44, 202 44 C 228 44, 228 38, 254 38 C 280 38, 280 150, 306 150 C 332 150, 332 150, 358 150 C 384.5 150, 384.5 150, 411 150 C 437 150, 437 150, 463 150 C 489 150, 489 150, 515 150 L 515 150 L 45 150 Z" fill="url(#grad-input)"></path>
+                <!-- Лінія кривої вхідного повідомлення -->
+                <path d="M 45 25 C 71 25, 71 25, 97 25 C 123 25, 123 25, 149 25 C 175.5 25, 175.5 44, 202 44 C 228 44, 228 38, 254 38 C 280 38, 280 150, 306 150 C 332 150, 332 150, 358 150 C 384.5 150, 384.5 150, 411 150 C 437 150, 437 150, 463 150 C 489 150, 489 150, 515 150" fill="none" stroke="var(--sanctuary-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+
+                <!-- Точки на графіку: Еталон загрози -->
+                
+                  <circle cx="45" cy="44" r="3" fill="var(--sanctuary-red-ink)" stroke="var(--sanctuary-surface)" stroke-width="1.2"></circle>
+                
+                  <circle cx="97" cy="38" r="3" fill="var(--sanctuary-red-ink)" stroke="var(--sanctuary-surface)" stroke-width="1.2"></circle>
+                
+                  <circle cx="149" cy="40" r="3" fill="var(--sanctuary-red-ink)" stroke="var(--sanctuary-surface)" stroke-width="1.2"></circle>
+                
+                  <circle cx="202" cy="48" r="3" fill="var(--sanctuary-red-ink)" stroke="var(--sanctuary-surface)" stroke-width="1.2"></circle>
+                
+                  <circle cx="254" cy="53" r="3" fill="var(--sanctuary-red-ink)" stroke="var(--sanctuary-surface)" stroke-width="1.2"></circle>
+                
+                  <circle cx="306" cy="44" r="3" fill="var(--sanctuary-red-ink)" stroke="var(--sanctuary-surface)" stroke-width="1.2"></circle>
+                
+                  <circle cx="358" cy="63" r="3" fill="var(--sanctuary-red-ink)" stroke="var(--sanctuary-surface)" stroke-width="1.2"></circle>
+                
+                  <circle cx="411" cy="69" r="3" fill="var(--sanctuary-red-ink)" stroke="var(--sanctuary-surface)" stroke-width="1.2"></circle>
+                
+                  <circle cx="463" cy="138" r="3" fill="var(--sanctuary-red-ink)" stroke="var(--sanctuary-surface)" stroke-width="1.2"></circle>
+                
+                  <circle cx="515" cy="131" r="3" fill="var(--sanctuary-red-ink)" stroke="var(--sanctuary-surface)" stroke-width="1.2"></circle>
+                
+
+                <!-- Точки на графіку: Вхідне повідомлення -->
+                
+                  <circle cx="45" cy="25" r="4" fill="var(--sanctuary-blue)" stroke="var(--sanctuary-surface)" stroke-width="1.8"></circle>
+                  <text x="45" y="19" fill="var(--sanctuary-blue)" font-size="8" font-weight="700" text-anchor="middle">100%</text>
+                
+                  <circle cx="97" cy="25" r="4" fill="var(--sanctuary-blue)" stroke="var(--sanctuary-surface)" stroke-width="1.8"></circle>
+                  <text x="97" y="19" fill="var(--sanctuary-blue)" font-size="8" font-weight="700" text-anchor="middle">100%</text>
+                
+                  <circle cx="149" cy="25" r="4" fill="var(--sanctuary-blue)" stroke="var(--sanctuary-surface)" stroke-width="1.8"></circle>
+                  <text x="149" y="19" fill="var(--sanctuary-blue)" font-size="8" font-weight="700" text-anchor="middle">100%</text>
+                
+                  <circle cx="202" cy="44" r="4" fill="var(--sanctuary-blue)" stroke="var(--sanctuary-surface)" stroke-width="1.8"></circle>
+                  <text x="202" y="38" fill="var(--sanctuary-blue)" font-size="8" font-weight="700" text-anchor="middle">85%</text>
+                
+                  <circle cx="254" cy="38" r="4" fill="var(--sanctuary-blue)" stroke="var(--sanctuary-surface)" stroke-width="1.8"></circle>
+                  <text x="254" y="32" fill="var(--sanctuary-blue)" font-size="8" font-weight="700" text-anchor="middle">90%</text>
+                
+                  <circle cx="306" cy="150" r="4" fill="var(--sanctuary-blue)" stroke="var(--sanctuary-surface)" stroke-width="1.8"></circle>
+                  
+                
+                  <circle cx="358" cy="150" r="4" fill="var(--sanctuary-blue)" stroke="var(--sanctuary-surface)" stroke-width="1.8"></circle>
+                  
+                
+                  <circle cx="411" cy="150" r="4" fill="var(--sanctuary-blue)" stroke="var(--sanctuary-surface)" stroke-width="1.8"></circle>
+                  
+                
+                  <circle cx="463" cy="150" r="4" fill="var(--sanctuary-blue)" stroke="var(--sanctuary-surface)" stroke-width="1.8"></circle>
+                  
+                
+                  <circle cx="515" cy="150" r="4" fill="var(--sanctuary-blue)" stroke="var(--sanctuary-surface)" stroke-width="1.8"></circle>
+                  
+                
+
+                <!-- Підписи осей (X-Labels) -->
+                
+                  <text x="45" y="168" fill="var(--sanctuary-ink-secondary)" font-size="11" font-weight="500" text-anchor="middle">1</text>
+                
+                  <text x="97" y="168" fill="var(--sanctuary-ink-secondary)" font-size="11" font-weight="500" text-anchor="middle">2</text>
+                
+                  <text x="149" y="168" fill="var(--sanctuary-ink-secondary)" font-size="11" font-weight="500" text-anchor="middle">3</text>
+                
+                  <text x="202" y="168" fill="var(--sanctuary-ink-secondary)" font-size="11" font-weight="500" text-anchor="middle">4</text>
+                
+                  <text x="254" y="168" fill="var(--sanctuary-ink-secondary)" font-size="11" font-weight="500" text-anchor="middle">5</text>
+                
+                  <text x="306" y="168" fill="var(--sanctuary-ink-secondary)" font-size="11" font-weight="500" text-anchor="middle">6</text>
+                
+                  <text x="358" y="168" fill="var(--sanctuary-ink-secondary)" font-size="11" font-weight="500" text-anchor="middle">7</text>
+                
+                  <text x="411" y="168" fill="var(--sanctuary-ink-secondary)" font-size="11" font-weight="500" text-anchor="middle">8</text>
+                
+                  <text x="463" y="168" fill="var(--sanctuary-ink-secondary)" font-size="11" font-weight="500" text-anchor="middle">9</text>
+                
+                  <text x="515" y="168" fill="var(--sanctuary-ink-secondary)" font-size="11" font-weight="500" text-anchor="middle">10</text>
+                
+              </svg>
+            </div>
+          </div>
+
+          <!-- 3. Деталізація за факторами (Поелементна матриця ваг) -->
+          <div class="sc-card sc-dim-breakdown-card">
+            <span class="sc-card-title">Ознаки повідомлення</span>
+            <div class="sc-dim-grid">
+              
+                  <div class="sc-dim-row matched">
+                    <div class="sc-dim-meta">
+                      <span class="sc-dim-name"><span class="sc-dim-number">1</span>Винагорода</span>
+                      <div class="sc-dim-weights">
+                        <span class="sc-val-in" title="Вхідне повідомлення">Вхід: 100%</span>
+                        <span class="sc-val-proto" title="Еталон загрози">Еталон: 85%</span>
+                      </div>
+                    </div>
+                    <div class="sc-dim-bars">
+                      <!-- Bar 1: Input -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-blue" style="width: 100%;"></div>
+                      </div>
+                      <!-- Bar 2: Prototype -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-red" style="width: 85%;"></div>
+                      </div>
+                    </div>
+                    
+                      <div class="sc-dim-tokens">
+                        <span class="sc-dim-token-chip">плачу</span><span class="sc-dim-token-chip">500$</span><span class="sc-dim-token-chip">крипті</span>
+                      </div>
+                    
+                  </div>
+                
+                  <div class="sc-dim-row matched">
+                    <div class="sc-dim-meta">
+                      <span class="sc-dim-name"><span class="sc-dim-number">2</span>Дія / Завдання</span>
+                      <div class="sc-dim-weights">
+                        <span class="sc-val-in" title="Вхідне повідомлення">Вхід: 100%</span>
+                        <span class="sc-val-proto" title="Еталон загрози">Еталон: 90%</span>
+                      </div>
+                    </div>
+                    <div class="sc-dim-bars">
+                      <!-- Bar 1: Input -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-blue" style="width: 100%;"></div>
+                      </div>
+                      <!-- Bar 2: Prototype -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-red" style="width: 90%;"></div>
+                      </div>
+                    </div>
+                    
+                      <div class="sc-dim-tokens">
+                        <span class="sc-dim-token-chip">кур’єрів-розвідників</span><span class="sc-dim-token-chip">підійди</span><span class="sc-dim-token-chip">сфотографуй</span>
+                      </div>
+                    
+                  </div>
+                
+                  <div class="sc-dim-row matched">
+                    <div class="sc-dim-meta">
+                      <span class="sc-dim-name"><span class="sc-dim-number">3</span>Об’єкт / Будівлі</span>
+                      <div class="sc-dim-weights">
+                        <span class="sc-val-in" title="Вхідне повідомлення">Вхід: 100%</span>
+                        <span class="sc-val-proto" title="Еталон загрози">Еталон: 88%</span>
+                      </div>
+                    </div>
+                    <div class="sc-dim-bars">
+                      <!-- Bar 1: Input -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-blue" style="width: 100%;"></div>
+                      </div>
+                      <!-- Bar 2: Prototype -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-red" style="width: 88%;"></div>
+                      </div>
+                    </div>
+                    
+                      <div class="sc-dim-tokens">
+                        <span class="sc-dim-token-chip">адресою</span><span class="sc-dim-token-chip">будівлю</span><span class="sc-dim-token-chip">ТЦК</span><span class="sc-dim-token-chip">номери</span><span class="sc-dim-token-chip">машин,</span>
+                      </div>
+                    
+                  </div>
+                
+                  <div class="sc-dim-row matched">
+                    <div class="sc-dim-meta">
+                      <span class="sc-dim-name"><span class="sc-dim-number">4</span>Транспорт</span>
+                      <div class="sc-dim-weights">
+                        <span class="sc-val-in" title="Вхідне повідомлення">Вхід: 85%</span>
+                        <span class="sc-val-proto" title="Еталон загрози">Еталон: 82%</span>
+                      </div>
+                    </div>
+                    <div class="sc-dim-bars">
+                      <!-- Bar 1: Input -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-blue" style="width: 85%;"></div>
+                      </div>
+                      <!-- Bar 2: Prototype -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-red" style="width: 82%;"></div>
+                      </div>
+                    </div>
+                    
+                      <div class="sc-dim-tokens">
+                        <span class="sc-dim-token-chip">номери</span><span class="sc-dim-token-chip">машин</span>
+                      </div>
+                    
+                  </div>
+                
+                  <div class="sc-dim-row matched">
+                    <div class="sc-dim-meta">
+                      <span class="sc-dim-name"><span class="sc-dim-number">5</span>Фото / Відео</span>
+                      <div class="sc-dim-weights">
+                        <span class="sc-val-in" title="Вхідне повідомлення">Вхід: 90%</span>
+                        <span class="sc-val-proto" title="Еталон загрози">Еталон: 78%</span>
+                      </div>
+                    </div>
+                    <div class="sc-dim-bars">
+                      <!-- Bar 1: Input -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-blue" style="width: 90%;"></div>
+                      </div>
+                      <!-- Bar 2: Prototype -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-red" style="width: 78%;"></div>
+                      </div>
+                    </div>
+                    
+                      <div class="sc-dim-tokens">
+                        <span class="sc-dim-token-chip">фотографуй</span>
+                      </div>
+                    
+                  </div>
+                
+                  <div class="sc-dim-row ">
+                    <div class="sc-dim-meta">
+                      <span class="sc-dim-name"><span class="sc-dim-number">6</span>Диверсія</span>
+                      <div class="sc-dim-weights">
+                        <span class="sc-val-in" title="Вхідне повідомлення">Вхід: 0%</span>
+                        <span class="sc-val-proto" title="Еталон загрози">Еталон: 85%</span>
+                      </div>
+                    </div>
+                    <div class="sc-dim-bars">
+                      <!-- Bar 1: Input -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-blue" style="width: 0%;"></div>
+                      </div>
+                      <!-- Bar 2: Prototype -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-red" style="width: 85%;"></div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                
+                  <div class="sc-dim-row ">
+                    <div class="sc-dim-meta">
+                      <span class="sc-dim-name"><span class="sc-dim-number">7</span>Таємність</span>
+                      <div class="sc-dim-weights">
+                        <span class="sc-val-in" title="Вхідне повідомлення">Вхід: 0%</span>
+                        <span class="sc-val-proto" title="Еталон загрози">Еталон: 70%</span>
+                      </div>
+                    </div>
+                    <div class="sc-dim-bars">
+                      <!-- Bar 1: Input -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-blue" style="width: 0%;"></div>
+                      </div>
+                      <!-- Bar 2: Prototype -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-red" style="width: 70%;"></div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                
+                  <div class="sc-dim-row ">
+                    <div class="sc-dim-meta">
+                      <span class="sc-dim-name"><span class="sc-dim-number">8</span>Месенджер</span>
+                      <div class="sc-dim-weights">
+                        <span class="sc-val-in" title="Вхідне повідомлення">Вхід: 0%</span>
+                        <span class="sc-val-proto" title="Еталон загрози">Еталон: 65%</span>
+                      </div>
+                    </div>
+                    <div class="sc-dim-bars">
+                      <!-- Bar 1: Input -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-blue" style="width: 0%;"></div>
+                      </div>
+                      <!-- Bar 2: Prototype -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-red" style="width: 65%;"></div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                
+                  <div class="sc-dim-row ">
+                    <div class="sc-dim-meta">
+                      <span class="sc-dim-name"><span class="sc-dim-number">9</span>Ескроу</span>
+                      <div class="sc-dim-weights">
+                        <span class="sc-val-in" title="Вхідне повідомлення">Вхід: 0%</span>
+                        <span class="sc-val-proto" title="Еталон загрози">Еталон: 10%</span>
+                      </div>
+                    </div>
+                    <div class="sc-dim-bars">
+                      <!-- Bar 1: Input -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-blue" style="width: 0%;"></div>
+                      </div>
+                      <!-- Bar 2: Prototype -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-red" style="width: 10%;"></div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                
+                  <div class="sc-dim-row ">
+                    <div class="sc-dim-meta">
+                      <span class="sc-dim-name"><span class="sc-dim-number">10</span>Реквізити</span>
+                      <div class="sc-dim-weights">
+                        <span class="sc-val-in" title="Вхідне повідомлення">Вхід: 0%</span>
+                        <span class="sc-val-proto" title="Еталон загрози">Еталон: 15%</span>
+                      </div>
+                    </div>
+                    <div class="sc-dim-bars">
+                      <!-- Bar 1: Input -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-blue" style="width: 0%;"></div>
+                      </div>
+                      <!-- Bar 2: Prototype -->
+                      <div class="sc-bar-track">
+                        <div class="sc-bar-fill sc-bar-red" style="width: 15%;"></div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                
+            </div>
+          </div>
+        </div>
+      
+        </div>
+      </div>
+    </div></body></html>

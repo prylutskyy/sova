@@ -1,0 +1,1494 @@
+<!doctype html><html lang="uk"><meta charset="utf-8"><title>С.О.В.А. · modal · локальний preview</title><style>/* ==========================================================================
+   S.O.V.A. DESIGN SYSTEM: ATOMIC DESIGN TOKENS
+   ========================================================================== */
+
+:root, :host {
+  /* Surfaces & Glass Diffraction */
+  --sanctuary-canvas:         #F5F5F7;
+  --sanctuary-surface:        #FFFFFF;
+  --sanctuary-surface-subtle: #FAFAFC;
+  --sanctuary-surface-hover:  rgba(0, 0, 0, 0.03);
+  --sanctuary-surface-active: rgba(0, 0, 0, 0.06);
+  --sanctuary-glass-bg:       rgba(255, 255, 255, 0.85);
+  --sanctuary-glass-elevated: rgba(255, 255, 255, 0.92);
+  --sanctuary-backdrop:       rgba(0, 0, 0, 0.32);
+  --sanctuary-glass-sheen:    rgba(255, 255, 255, 0.65);
+
+  /* Typography Inks (Optically Tuned for WCAG 2.1 AA & AAA Compliance) */
+  --sanctuary-ink-primary:    #1D1D1F; /* 16.1:1 on #FFFFFF (Passes AAA) */
+  --sanctuary-ink-secondary:  #6E6E73; /* 5.05:1 on #FFFFFF, 4.62:1 on #F5F5F7 (Passes AA) */
+  --sanctuary-ink-tertiary:   #86868B; /* 3.58:1 on #FFFFFF (Passes AA for graphical elements/large text) */
+  --sanctuary-ink-quaternary: #A1A1A6; /* 2.52:1 (Calibrated for inactive placeholders & decorative hairlines) */
+
+  /* Functional Accents & Semantic Tints (WCAG 2.1 AA Calibrated) */
+  --sanctuary-blue:           #0071E3; /* 4.75:1 on #FFFFFF (Passes AA) */
+  --sanctuary-blue-hover:     #0065CC;
+  --sanctuary-blue-active:    #005BB5;
+  --sanctuary-blue-bg:        rgba(0, 113, 227, 0.08);
+  --sanctuary-blue-bd:        rgba(0, 113, 227, 0.20);
+  --sanctuary-blue-surface:   #F0F7FF;
+
+  --sanctuary-green:          #34C759;
+  --sanctuary-green-hover:    #2DB84F;
+  --sanctuary-green-ink:      #1E7E34; /* 5.15:1 on #FFFFFF (Passes AA) */
+  --sanctuary-green-bg:       rgba(52, 199, 89, 0.10);
+  --sanctuary-green-bd:       rgba(52, 199, 89, 0.24);
+
+  --sanctuary-amber:          #FF9500;
+  --sanctuary-amber-hover:    #E08500;
+  --sanctuary-amber-ink:      #A04F00; /* 5.20:1 on #FFFFFF (Passes AA) */
+  --sanctuary-amber-bg:       rgba(255, 149, 0, 0.10);
+  --sanctuary-amber-bd:       rgba(255, 149, 0, 0.24);
+  --sanctuary-amber-surface:  #FFF8EF;
+
+  --sanctuary-red:            #FF3B30;
+  --sanctuary-red-hover:      #E03228;
+  --sanctuary-red-ink:        #D70015; /* 5.40:1 on #FFFFFF (Passes AA) */
+  --sanctuary-red-ink-hover:  #B80012;
+  --sanctuary-red-bg:         rgba(255, 59, 48, 0.08);
+  --sanctuary-red-bd:         rgba(255, 59, 48, 0.22);
+  --sanctuary-red-surface:    #FFF3F2;
+
+  --sanctuary-purple-ink:     #8944AB; /* 5.10:1 on #FFFFFF (Passes AA) */
+  --sanctuary-teal-ink:       #007D8C; /* 4.65:1 on #FFFFFF (Passes AA) */
+
+  /* Hairlines & Dividers */
+  --sanctuary-hairline:        rgba(0, 0, 0, 0.07);
+  --sanctuary-hairline-subtle: rgba(0, 0, 0, 0.04);
+  --sanctuary-hairline-glass:  rgba(255, 255, 255, 0.45);
+  --sanctuary-divider:         rgba(0, 0, 0, 0.05);
+
+  /* Superellipse Radii */
+  --radius-pill:      9999px;
+  --radius-modal:     22px;
+  --radius-card:      14px;
+  --radius-control:   10px;
+  --radius-nested:    8px;
+  --radius-micro:     4px;
+
+  /* Layered Shadow Elevations */
+  --shadow-sm:         0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-card:       0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.07);
+  --shadow-modal:      0 0 0 1px rgba(255, 255, 255, 0.6) inset, 0 8px 20px rgba(0, 0, 0, 0.08), 0 24px 64px rgba(0, 0, 0, 0.16);
+  --shadow-knob:       0 0.5px 1.5px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.16);
+  --shadow-elevated:   0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+
+  /* Apple Spring Kinematics */
+  --ease-apple-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-apple-press:   cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-apple-sheet:   cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-apple-rebound: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Fonts */
+  --font-sanctuary: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:      "SF Mono", Menlo, Consolas, Monaco, monospace;
+
+  /* Shared scale for popup, diagnostics and in-page protection. */
+  --text-caption: 11px;
+  --text-body: 12px;
+  --text-title: 13px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --control-height: 32px;
+  --sanctuary-focus-ring: rgba(0, 113, 227, 0.30);
+  --sanctuary-scroll-thumb: rgba(0, 0, 0, 0.18);
+
+  /* Sanctuary Core Obsidian Dark HUD Tokens (Apple VisionOS Calibrated) */
+  --sc-obsidian-bg:               rgba(16, 16, 20, 0.94);
+  --sc-obsidian-blur:             blur(32px) saturate(190%);
+  --sc-obsidian-header:           rgba(24, 24, 30, 0.82);
+  --sc-obsidian-nav:              rgba(14, 14, 18, 0.88);
+  --sc-obsidian-card:             rgba(26, 26, 32, 0.70);
+  --sc-obsidian-card-elevated:    linear-gradient(135deg, rgba(28, 28, 36, 0.85) 0%, rgba(18, 18, 24, 0.95) 100%);
+  --sc-obsidian-well:             rgba(10, 10, 14, 0.85);
+  --sc-obsidian-code:             rgba(8, 8, 12, 0.95);
+  
+  --sc-obsidian-border:           rgba(255, 255, 255, 0.12);
+  --sc-obsidian-border-subtle:    rgba(255, 255, 255, 0.07);
+  --sc-obsidian-sheen:            rgba(255, 255, 255, 0.18);
+
+  --sc-ink-primary:               #FFFFFF;
+  --sc-ink-secondary:             rgba(255, 255, 255, 0.85);
+  --sc-ink-muted:                 rgba(255, 255, 255, 0.60);
+  --sc-ink-subtle:                rgba(255, 255, 255, 0.40);
+
+  --sc-emerald:                   #30D158;
+  --sc-emerald-bg:                rgba(48, 209, 88, 0.16);
+  --sc-emerald-border:            rgba(48, 209, 88, 0.32);
+  --sc-emerald-glow:              0 0 16px rgba(48, 209, 88, 0.35);
+
+  --sc-amber:                     #FF9F0A;
+  --sc-amber-bg:                  rgba(255, 159, 10, 0.16);
+  --sc-amber-border:              rgba(255, 159, 10, 0.32);
+  --sc-amber-glow:                0 0 16px rgba(255, 159, 10, 0.35);
+
+  --sc-crimson:                   #FF453A;
+  --sc-crimson-bg:                rgba(255, 69, 58, 0.16);
+  --sc-crimson-border:            rgba(255, 69, 58, 0.32);
+  --sc-crimson-glow:              0 0 16px rgba(255, 69, 58, 0.35);
+
+  --sc-sapphire:                  #0A84FF;
+  --sc-sapphire-hover:            #0077ED;
+  --sc-sapphire-bg:               rgba(10, 132, 255, 0.16);
+  --sc-sapphire-border:           rgba(10, 132, 255, 0.32);
+  --sc-sapphire-glow:             0 0 16px rgba(10, 132, 255, 0.40);
+
+  --sc-squircle-window:           20px;
+  --sc-squircle-card:             14px;
+  --sc-squircle-control:          8px;
+  --sc-squircle-chip:             6px;
+
+  /* Backward Compatibility Aliases */
+  --fx-canvas:         var(--sanctuary-canvas);
+  --fx-surface:        var(--sanctuary-surface);
+  --fx-surface-hover:  var(--sanctuary-surface-hover);
+  --fx-surface-active: var(--sanctuary-surface-active);
+  --fx-border:         var(--sanctuary-hairline);
+  --fx-border-subtle:  var(--sanctuary-hairline-subtle);
+  --fx-text:           var(--sanctuary-ink-primary);
+  --fx-text-secondary: var(--sanctuary-ink-secondary);
+  --fx-text-muted:     var(--sanctuary-ink-tertiary);
+
+  --fx-blue:           var(--sanctuary-blue);
+  --fx-blue-hover:     var(--sanctuary-blue-hover);
+  --fx-blue-active:    var(--sanctuary-blue-active);
+  --fx-blue-bg:        var(--sanctuary-blue-bg);
+  --fx-blue-bd:        var(--sanctuary-blue-bd);
+
+  --fx-green:          var(--sanctuary-green);
+  --fx-green-hover:    var(--sanctuary-green-hover);
+  --fx-green-bg:       var(--sanctuary-green-bg);
+  --fx-green-bd:       var(--sanctuary-green-bd);
+
+  --fx-amber:          var(--sanctuary-amber);
+  --fx-amber-bg:       var(--sanctuary-amber-bg);
+  --fx-amber-bd:       var(--sanctuary-amber-bd);
+
+  --fx-red:            var(--sanctuary-red);
+  --fx-red-hover:      var(--sanctuary-red-hover);
+  --fx-red-bg:         var(--sanctuary-red-bg);
+  --fx-red-bd:         var(--sanctuary-red-bd);
+}
+
+/* Foundations stay inside the popup document or an isolated ShadowRoot. */
+button, input, select, textarea {
+  font-family: var(--font-sanctuary);
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--sanctuary-blue) !important;
+  outline-offset: 2px !important;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(:root, :host) [class][class],
+  :is(:root, :host) [class][class]::before,
+  :is(:root, :host) [class][class]::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body{margin:0;padding:24px;background:var(--sanctuary-canvas);font-family:var(--font-sanctuary);color:var(--sanctuary-ink-primary)}.preview-frame{width:460px;height:680px;margin:0 auto}.preview-caption{text-align:center;font-size:12px;margin:0 0 16px;color:var(--sanctuary-ink-secondary)}</style><body><p class="preview-caption">Локальний preview · синтетичні дані</p><div class="preview-frame"><style id="threat-shield-base-styles">
+      /* ==========================================================================
+   S.O.V.A. DESIGN SYSTEM: ATOMIC DESIGN TOKENS
+   ========================================================================== */
+
+:root, :host {
+  /* Surfaces & Glass Diffraction */
+  --sanctuary-canvas:         #F5F5F7;
+  --sanctuary-surface:        #FFFFFF;
+  --sanctuary-surface-subtle: #FAFAFC;
+  --sanctuary-surface-hover:  rgba(0, 0, 0, 0.03);
+  --sanctuary-surface-active: rgba(0, 0, 0, 0.06);
+  --sanctuary-glass-bg:       rgba(255, 255, 255, 0.85);
+  --sanctuary-glass-elevated: rgba(255, 255, 255, 0.92);
+  --sanctuary-backdrop:       rgba(0, 0, 0, 0.32);
+  --sanctuary-glass-sheen:    rgba(255, 255, 255, 0.65);
+
+  /* Typography Inks (Optically Tuned for WCAG 2.1 AA & AAA Compliance) */
+  --sanctuary-ink-primary:    #1D1D1F; /* 16.1:1 on #FFFFFF (Passes AAA) */
+  --sanctuary-ink-secondary:  #6E6E73; /* 5.05:1 on #FFFFFF, 4.62:1 on #F5F5F7 (Passes AA) */
+  --sanctuary-ink-tertiary:   #86868B; /* 3.58:1 on #FFFFFF (Passes AA for graphical elements/large text) */
+  --sanctuary-ink-quaternary: #A1A1A6; /* 2.52:1 (Calibrated for inactive placeholders & decorative hairlines) */
+
+  /* Functional Accents & Semantic Tints (WCAG 2.1 AA Calibrated) */
+  --sanctuary-blue:           #0071E3; /* 4.75:1 on #FFFFFF (Passes AA) */
+  --sanctuary-blue-hover:     #0065CC;
+  --sanctuary-blue-active:    #005BB5;
+  --sanctuary-blue-bg:        rgba(0, 113, 227, 0.08);
+  --sanctuary-blue-bd:        rgba(0, 113, 227, 0.20);
+  --sanctuary-blue-surface:   #F0F7FF;
+
+  --sanctuary-green:          #34C759;
+  --sanctuary-green-hover:    #2DB84F;
+  --sanctuary-green-ink:      #1E7E34; /* 5.15:1 on #FFFFFF (Passes AA) */
+  --sanctuary-green-bg:       rgba(52, 199, 89, 0.10);
+  --sanctuary-green-bd:       rgba(52, 199, 89, 0.24);
+
+  --sanctuary-amber:          #FF9500;
+  --sanctuary-amber-hover:    #E08500;
+  --sanctuary-amber-ink:      #A04F00; /* 5.20:1 on #FFFFFF (Passes AA) */
+  --sanctuary-amber-bg:       rgba(255, 149, 0, 0.10);
+  --sanctuary-amber-bd:       rgba(255, 149, 0, 0.24);
+  --sanctuary-amber-surface:  #FFF8EF;
+
+  --sanctuary-red:            #FF3B30;
+  --sanctuary-red-hover:      #E03228;
+  --sanctuary-red-ink:        #D70015; /* 5.40:1 on #FFFFFF (Passes AA) */
+  --sanctuary-red-ink-hover:  #B80012;
+  --sanctuary-red-bg:         rgba(255, 59, 48, 0.08);
+  --sanctuary-red-bd:         rgba(255, 59, 48, 0.22);
+  --sanctuary-red-surface:    #FFF3F2;
+
+  --sanctuary-purple-ink:     #8944AB; /* 5.10:1 on #FFFFFF (Passes AA) */
+  --sanctuary-teal-ink:       #007D8C; /* 4.65:1 on #FFFFFF (Passes AA) */
+
+  /* Hairlines & Dividers */
+  --sanctuary-hairline:        rgba(0, 0, 0, 0.07);
+  --sanctuary-hairline-subtle: rgba(0, 0, 0, 0.04);
+  --sanctuary-hairline-glass:  rgba(255, 255, 255, 0.45);
+  --sanctuary-divider:         rgba(0, 0, 0, 0.05);
+
+  /* Superellipse Radii */
+  --radius-pill:      9999px;
+  --radius-modal:     22px;
+  --radius-card:      14px;
+  --radius-control:   10px;
+  --radius-nested:    8px;
+  --radius-micro:     4px;
+
+  /* Layered Shadow Elevations */
+  --shadow-sm:         0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-card:       0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.07);
+  --shadow-modal:      0 0 0 1px rgba(255, 255, 255, 0.6) inset, 0 8px 20px rgba(0, 0, 0, 0.08), 0 24px 64px rgba(0, 0, 0, 0.16);
+  --shadow-knob:       0 0.5px 1.5px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.16);
+  --shadow-elevated:   0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+
+  /* Apple Spring Kinematics */
+  --ease-apple-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-apple-press:   cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-apple-sheet:   cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-apple-rebound: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Fonts */
+  --font-sanctuary: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:      "SF Mono", Menlo, Consolas, Monaco, monospace;
+
+  /* Shared scale for popup, diagnostics and in-page protection. */
+  --text-caption: 11px;
+  --text-body: 12px;
+  --text-title: 13px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --control-height: 32px;
+  --sanctuary-focus-ring: rgba(0, 113, 227, 0.30);
+  --sanctuary-scroll-thumb: rgba(0, 0, 0, 0.18);
+
+  /* Sanctuary Core Obsidian Dark HUD Tokens (Apple VisionOS Calibrated) */
+  --sc-obsidian-bg:               rgba(16, 16, 20, 0.94);
+  --sc-obsidian-blur:             blur(32px) saturate(190%);
+  --sc-obsidian-header:           rgba(24, 24, 30, 0.82);
+  --sc-obsidian-nav:              rgba(14, 14, 18, 0.88);
+  --sc-obsidian-card:             rgba(26, 26, 32, 0.70);
+  --sc-obsidian-card-elevated:    linear-gradient(135deg, rgba(28, 28, 36, 0.85) 0%, rgba(18, 18, 24, 0.95) 100%);
+  --sc-obsidian-well:             rgba(10, 10, 14, 0.85);
+  --sc-obsidian-code:             rgba(8, 8, 12, 0.95);
+  
+  --sc-obsidian-border:           rgba(255, 255, 255, 0.12);
+  --sc-obsidian-border-subtle:    rgba(255, 255, 255, 0.07);
+  --sc-obsidian-sheen:            rgba(255, 255, 255, 0.18);
+
+  --sc-ink-primary:               #FFFFFF;
+  --sc-ink-secondary:             rgba(255, 255, 255, 0.85);
+  --sc-ink-muted:                 rgba(255, 255, 255, 0.60);
+  --sc-ink-subtle:                rgba(255, 255, 255, 0.40);
+
+  --sc-emerald:                   #30D158;
+  --sc-emerald-bg:                rgba(48, 209, 88, 0.16);
+  --sc-emerald-border:            rgba(48, 209, 88, 0.32);
+  --sc-emerald-glow:              0 0 16px rgba(48, 209, 88, 0.35);
+
+  --sc-amber:                     #FF9F0A;
+  --sc-amber-bg:                  rgba(255, 159, 10, 0.16);
+  --sc-amber-border:              rgba(255, 159, 10, 0.32);
+  --sc-amber-glow:                0 0 16px rgba(255, 159, 10, 0.35);
+
+  --sc-crimson:                   #FF453A;
+  --sc-crimson-bg:                rgba(255, 69, 58, 0.16);
+  --sc-crimson-border:            rgba(255, 69, 58, 0.32);
+  --sc-crimson-glow:              0 0 16px rgba(255, 69, 58, 0.35);
+
+  --sc-sapphire:                  #0A84FF;
+  --sc-sapphire-hover:            #0077ED;
+  --sc-sapphire-bg:               rgba(10, 132, 255, 0.16);
+  --sc-sapphire-border:           rgba(10, 132, 255, 0.32);
+  --sc-sapphire-glow:             0 0 16px rgba(10, 132, 255, 0.40);
+
+  --sc-squircle-window:           20px;
+  --sc-squircle-card:             14px;
+  --sc-squircle-control:          8px;
+  --sc-squircle-chip:             6px;
+
+  /* Backward Compatibility Aliases */
+  --fx-canvas:         var(--sanctuary-canvas);
+  --fx-surface:        var(--sanctuary-surface);
+  --fx-surface-hover:  var(--sanctuary-surface-hover);
+  --fx-surface-active: var(--sanctuary-surface-active);
+  --fx-border:         var(--sanctuary-hairline);
+  --fx-border-subtle:  var(--sanctuary-hairline-subtle);
+  --fx-text:           var(--sanctuary-ink-primary);
+  --fx-text-secondary: var(--sanctuary-ink-secondary);
+  --fx-text-muted:     var(--sanctuary-ink-tertiary);
+
+  --fx-blue:           var(--sanctuary-blue);
+  --fx-blue-hover:     var(--sanctuary-blue-hover);
+  --fx-blue-active:    var(--sanctuary-blue-active);
+  --fx-blue-bg:        var(--sanctuary-blue-bg);
+  --fx-blue-bd:        var(--sanctuary-blue-bd);
+
+  --fx-green:          var(--sanctuary-green);
+  --fx-green-hover:    var(--sanctuary-green-hover);
+  --fx-green-bg:       var(--sanctuary-green-bg);
+  --fx-green-bd:       var(--sanctuary-green-bd);
+
+  --fx-amber:          var(--sanctuary-amber);
+  --fx-amber-bg:       var(--sanctuary-amber-bg);
+  --fx-amber-bd:       var(--sanctuary-amber-bd);
+
+  --fx-red:            var(--sanctuary-red);
+  --fx-red-hover:      var(--sanctuary-red-hover);
+  --fx-red-bg:         var(--sanctuary-red-bg);
+  --fx-red-bd:         var(--sanctuary-red-bd);
+}
+
+/* Foundations stay inside the popup document or an isolated ShadowRoot. */
+button, input, select, textarea {
+  font-family: var(--font-sanctuary);
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--sanctuary-blue) !important;
+  outline-offset: 2px !important;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(:root, :host) [class][class],
+  :is(:root, :host) [class][class]::before,
+  :is(:root, :host) [class][class]::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+      :host {
+        all: initial;
+        display: block;
+        font-family: var(--font-sanctuary);
+        color: var(--sanctuary-ink-primary);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      /* Плавні анімації */
+      @keyframes threatBackdropFade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes threatModalScale {
+        from { opacity: 0; transform: scale(0.96) translateY(8px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+      }
+
+      @keyframes threatPulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.08); opacity: 0.85; }
+      }
+
+      @keyframes threatFlowDash {
+        to {
+          stroke-dashoffset: -24;
+        }
+      }
+
+      /* Скролбар всередині модального вікна */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: var(--radius-pill);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--sanctuary-scroll-thumb);
+        border-radius: var(--radius-pill);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--sanctuary-ink-tertiary);
+      }
+    </style><div id="threat-shield-unified-modal" style="position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100vh !important; z-index: 2147483647 !important; background: rgba(0, 0, 0, 0.32) !important; backdrop-filter: blur(24px) saturate(180%) !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 16px !important; box-sizing: border-box !important; animation: tsBackdrop 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important; pointer-events: auto !important;">
+      <style>
+        /* ==========================================================================
+   S.O.V.A. DESIGN SYSTEM: ATOMIC DESIGN TOKENS
+   ========================================================================== */
+
+:root, :host {
+  /* Surfaces & Glass Diffraction */
+  --sanctuary-canvas:         #F5F5F7;
+  --sanctuary-surface:        #FFFFFF;
+  --sanctuary-surface-subtle: #FAFAFC;
+  --sanctuary-surface-hover:  rgba(0, 0, 0, 0.03);
+  --sanctuary-surface-active: rgba(0, 0, 0, 0.06);
+  --sanctuary-glass-bg:       rgba(255, 255, 255, 0.85);
+  --sanctuary-glass-elevated: rgba(255, 255, 255, 0.92);
+  --sanctuary-backdrop:       rgba(0, 0, 0, 0.32);
+  --sanctuary-glass-sheen:    rgba(255, 255, 255, 0.65);
+
+  /* Typography Inks (Optically Tuned for WCAG 2.1 AA & AAA Compliance) */
+  --sanctuary-ink-primary:    #1D1D1F; /* 16.1:1 on #FFFFFF (Passes AAA) */
+  --sanctuary-ink-secondary:  #6E6E73; /* 5.05:1 on #FFFFFF, 4.62:1 on #F5F5F7 (Passes AA) */
+  --sanctuary-ink-tertiary:   #86868B; /* 3.58:1 on #FFFFFF (Passes AA for graphical elements/large text) */
+  --sanctuary-ink-quaternary: #A1A1A6; /* 2.52:1 (Calibrated for inactive placeholders & decorative hairlines) */
+
+  /* Functional Accents & Semantic Tints (WCAG 2.1 AA Calibrated) */
+  --sanctuary-blue:           #0071E3; /* 4.75:1 on #FFFFFF (Passes AA) */
+  --sanctuary-blue-hover:     #0065CC;
+  --sanctuary-blue-active:    #005BB5;
+  --sanctuary-blue-bg:        rgba(0, 113, 227, 0.08);
+  --sanctuary-blue-bd:        rgba(0, 113, 227, 0.20);
+  --sanctuary-blue-surface:   #F0F7FF;
+
+  --sanctuary-green:          #34C759;
+  --sanctuary-green-hover:    #2DB84F;
+  --sanctuary-green-ink:      #1E7E34; /* 5.15:1 on #FFFFFF (Passes AA) */
+  --sanctuary-green-bg:       rgba(52, 199, 89, 0.10);
+  --sanctuary-green-bd:       rgba(52, 199, 89, 0.24);
+
+  --sanctuary-amber:          #FF9500;
+  --sanctuary-amber-hover:    #E08500;
+  --sanctuary-amber-ink:      #A04F00; /* 5.20:1 on #FFFFFF (Passes AA) */
+  --sanctuary-amber-bg:       rgba(255, 149, 0, 0.10);
+  --sanctuary-amber-bd:       rgba(255, 149, 0, 0.24);
+  --sanctuary-amber-surface:  #FFF8EF;
+
+  --sanctuary-red:            #FF3B30;
+  --sanctuary-red-hover:      #E03228;
+  --sanctuary-red-ink:        #D70015; /* 5.40:1 on #FFFFFF (Passes AA) */
+  --sanctuary-red-ink-hover:  #B80012;
+  --sanctuary-red-bg:         rgba(255, 59, 48, 0.08);
+  --sanctuary-red-bd:         rgba(255, 59, 48, 0.22);
+  --sanctuary-red-surface:    #FFF3F2;
+
+  --sanctuary-purple-ink:     #8944AB; /* 5.10:1 on #FFFFFF (Passes AA) */
+  --sanctuary-teal-ink:       #007D8C; /* 4.65:1 on #FFFFFF (Passes AA) */
+
+  /* Hairlines & Dividers */
+  --sanctuary-hairline:        rgba(0, 0, 0, 0.07);
+  --sanctuary-hairline-subtle: rgba(0, 0, 0, 0.04);
+  --sanctuary-hairline-glass:  rgba(255, 255, 255, 0.45);
+  --sanctuary-divider:         rgba(0, 0, 0, 0.05);
+
+  /* Superellipse Radii */
+  --radius-pill:      9999px;
+  --radius-modal:     22px;
+  --radius-card:      14px;
+  --radius-control:   10px;
+  --radius-nested:    8px;
+  --radius-micro:     4px;
+
+  /* Layered Shadow Elevations */
+  --shadow-sm:         0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-card:       0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.07);
+  --shadow-modal:      0 0 0 1px rgba(255, 255, 255, 0.6) inset, 0 8px 20px rgba(0, 0, 0, 0.08), 0 24px 64px rgba(0, 0, 0, 0.16);
+  --shadow-knob:       0 0.5px 1.5px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.16);
+  --shadow-elevated:   0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+
+  /* Apple Spring Kinematics */
+  --ease-apple-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-apple-press:   cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-apple-sheet:   cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-apple-rebound: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Fonts */
+  --font-sanctuary: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:      "SF Mono", Menlo, Consolas, Monaco, monospace;
+
+  /* Shared scale for popup, diagnostics and in-page protection. */
+  --text-caption: 11px;
+  --text-body: 12px;
+  --text-title: 13px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --control-height: 32px;
+  --sanctuary-focus-ring: rgba(0, 113, 227, 0.30);
+  --sanctuary-scroll-thumb: rgba(0, 0, 0, 0.18);
+
+  /* Sanctuary Core Obsidian Dark HUD Tokens (Apple VisionOS Calibrated) */
+  --sc-obsidian-bg:               rgba(16, 16, 20, 0.94);
+  --sc-obsidian-blur:             blur(32px) saturate(190%);
+  --sc-obsidian-header:           rgba(24, 24, 30, 0.82);
+  --sc-obsidian-nav:              rgba(14, 14, 18, 0.88);
+  --sc-obsidian-card:             rgba(26, 26, 32, 0.70);
+  --sc-obsidian-card-elevated:    linear-gradient(135deg, rgba(28, 28, 36, 0.85) 0%, rgba(18, 18, 24, 0.95) 100%);
+  --sc-obsidian-well:             rgba(10, 10, 14, 0.85);
+  --sc-obsidian-code:             rgba(8, 8, 12, 0.95);
+  
+  --sc-obsidian-border:           rgba(255, 255, 255, 0.12);
+  --sc-obsidian-border-subtle:    rgba(255, 255, 255, 0.07);
+  --sc-obsidian-sheen:            rgba(255, 255, 255, 0.18);
+
+  --sc-ink-primary:               #FFFFFF;
+  --sc-ink-secondary:             rgba(255, 255, 255, 0.85);
+  --sc-ink-muted:                 rgba(255, 255, 255, 0.60);
+  --sc-ink-subtle:                rgba(255, 255, 255, 0.40);
+
+  --sc-emerald:                   #30D158;
+  --sc-emerald-bg:                rgba(48, 209, 88, 0.16);
+  --sc-emerald-border:            rgba(48, 209, 88, 0.32);
+  --sc-emerald-glow:              0 0 16px rgba(48, 209, 88, 0.35);
+
+  --sc-amber:                     #FF9F0A;
+  --sc-amber-bg:                  rgba(255, 159, 10, 0.16);
+  --sc-amber-border:              rgba(255, 159, 10, 0.32);
+  --sc-amber-glow:                0 0 16px rgba(255, 159, 10, 0.35);
+
+  --sc-crimson:                   #FF453A;
+  --sc-crimson-bg:                rgba(255, 69, 58, 0.16);
+  --sc-crimson-border:            rgba(255, 69, 58, 0.32);
+  --sc-crimson-glow:              0 0 16px rgba(255, 69, 58, 0.35);
+
+  --sc-sapphire:                  #0A84FF;
+  --sc-sapphire-hover:            #0077ED;
+  --sc-sapphire-bg:               rgba(10, 132, 255, 0.16);
+  --sc-sapphire-border:           rgba(10, 132, 255, 0.32);
+  --sc-sapphire-glow:             0 0 16px rgba(10, 132, 255, 0.40);
+
+  --sc-squircle-window:           20px;
+  --sc-squircle-card:             14px;
+  --sc-squircle-control:          8px;
+  --sc-squircle-chip:             6px;
+
+  /* Backward Compatibility Aliases */
+  --fx-canvas:         var(--sanctuary-canvas);
+  --fx-surface:        var(--sanctuary-surface);
+  --fx-surface-hover:  var(--sanctuary-surface-hover);
+  --fx-surface-active: var(--sanctuary-surface-active);
+  --fx-border:         var(--sanctuary-hairline);
+  --fx-border-subtle:  var(--sanctuary-hairline-subtle);
+  --fx-text:           var(--sanctuary-ink-primary);
+  --fx-text-secondary: var(--sanctuary-ink-secondary);
+  --fx-text-muted:     var(--sanctuary-ink-tertiary);
+
+  --fx-blue:           var(--sanctuary-blue);
+  --fx-blue-hover:     var(--sanctuary-blue-hover);
+  --fx-blue-active:    var(--sanctuary-blue-active);
+  --fx-blue-bg:        var(--sanctuary-blue-bg);
+  --fx-blue-bd:        var(--sanctuary-blue-bd);
+
+  --fx-green:          var(--sanctuary-green);
+  --fx-green-hover:    var(--sanctuary-green-hover);
+  --fx-green-bg:       var(--sanctuary-green-bg);
+  --fx-green-bd:       var(--sanctuary-green-bd);
+
+  --fx-amber:          var(--sanctuary-amber);
+  --fx-amber-bg:       var(--sanctuary-amber-bg);
+  --fx-amber-bd:       var(--sanctuary-amber-bd);
+
+  --fx-red:            var(--sanctuary-red);
+  --fx-red-hover:      var(--sanctuary-red-hover);
+  --fx-red-bg:         var(--sanctuary-red-bg);
+  --fx-red-bd:         var(--sanctuary-red-bd);
+}
+
+/* Foundations stay inside the popup document or an isolated ShadowRoot. */
+button, input, select, textarea {
+  font-family: var(--font-sanctuary);
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--sanctuary-blue) !important;
+  outline-offset: 2px !important;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(:root, :host) [class][class],
+  :is(:root, :host) [class][class]::before,
+  :is(:root, :host) [class][class]::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+        @keyframes tsBackdrop {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        @keyframes tsCardEnter {
+          from { opacity: 0; transform: scale(0.93) translateY(8px); }
+          to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        #ts-modal-card {
+          width: 470px;
+          max-width: 92vw;
+          max-height: 90vh;
+          overflow-y: auto;
+          background: var(--sanctuary-glass-elevated);
+          backdrop-filter: blur(32px) saturate(190%);
+          -webkit-backdrop-filter: blur(32px) saturate(190%);
+          border-radius: var(--radius-modal);
+          border: 1px solid var(--sanctuary-hairline);
+          box-shadow: var(--shadow-modal);
+          font-family: var(--font-sanctuary);
+          animation: tsCardEnter 0.3s var(--ease-apple-spring);
+          color: var(--sanctuary-ink-primary);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 28px 24px 22px;
+          box-sizing: border-box;
+          user-select: none;
+        }
+
+        #ts-modal-card::-webkit-scrollbar {
+          width: 4px;
+        }
+        #ts-modal-card::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.12);
+          border-radius: 4px;
+        }
+
+        .ts-emblem-box {
+          width: 52px;
+          height: 52px;
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 14px;
+        }
+
+        .ts-emblem-box.critical {
+          background: var(--sanctuary-red-bg);
+          border: 1px solid var(--sanctuary-red-bd);
+          color: var(--sanctuary-red);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .ts-emblem-box.warning {
+          background: var(--sanctuary-amber-bg);
+          border: 1px solid var(--sanctuary-amber-bd);
+          color: var(--sanctuary-amber);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .ts-title {
+          font-size: 18px;
+          font-weight: 600;
+          color: var(--sanctuary-ink-primary);
+          letter-spacing: -0.015em;
+          line-height: 1.3;
+          margin-bottom: 6px;
+        }
+
+        .ts-context-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 11.5px;
+          color: var(--sanctuary-ink-secondary);
+          margin-bottom: 16px;
+        }
+
+        .ts-context-tag {
+          font-family: var(--font-mono);
+          font-weight: 600;
+          color: var(--sanctuary-ink-primary);
+          background: var(--sanctuary-surface-subtle);
+          border: 1px solid var(--sanctuary-hairline);
+          padding: 2.5px 8px;
+          border-radius: 6px;
+          max-width: 240px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        /* Two-Column Contrast Grid (Intent vs Reality) */
+        .ts-contrast-grid {
+          width: 100%;
+          margin-bottom: 14px;
+          background: var(--sanctuary-surface);
+          border-radius: 12px;
+          border: 1px solid var(--sanctuary-hairline);
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          overflow: hidden;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+          text-align: left;
+        }
+
+        .ts-contrast-col-left {
+          padding: 12px 14px;
+          background: rgba(0, 113, 227, 0.03);
+          border-right: 1px solid var(--sanctuary-divider);
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .ts-contrast-col-right {
+          padding: 12px 14px;
+          background: rgba(255, 59, 48, 0.035);
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .ts-contrast-header-left {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 10px;
+          font-weight: 700;
+          color: var(--sanctuary-blue);
+          letter-spacing: 0.03em;
+          text-transform: uppercase;
+        }
+
+        .ts-contrast-header-right {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 10px;
+          font-weight: 700;
+          color: var(--sanctuary-red);
+          letter-spacing: 0.03em;
+          text-transform: uppercase;
+        }
+
+        .ts-contrast-val-left {
+          font-size: 12px;
+          font-weight: 500;
+          color: var(--sanctuary-ink-primary);
+          line-height: 1.4;
+        }
+
+        .ts-contrast-val-right {
+          font-size: 12px;
+          font-weight: 600;
+          color: var(--sanctuary-red-ink);
+          line-height: 1.4;
+        }
+
+        .ts-verdict {
+          font-size: 12px;
+          line-height: 1.5;
+          color: var(--sanctuary-ink-secondary);
+          margin-bottom: 16px;
+          padding: 0 4px;
+        }
+
+        .ts-remember-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 7px;
+          font-size: 11.5px;
+          color: var(--sanctuary-ink-secondary);
+          margin-bottom: 4px;
+          cursor: pointer;
+          user-select: none;
+        }
+
+        .ts-remember-row input {
+          accent-color: var(--sanctuary-blue);
+          width: 14px;
+          height: 14px;
+          cursor: pointer;
+        }
+
+        .ts-remember-row .ts-mono-host {
+          color: var(--sanctuary-ink-primary);
+          font-family: var(--font-mono);
+          font-size: 11px;
+        }
+
+        .ts-actions-stack {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .ts-btn-primary {
+          width: 100%;
+          height: 42px;
+          background: var(--sanctuary-blue);
+          color: #FFFFFF;
+          border: none;
+          border-radius: 10px;
+          font-size: 12.5px;
+          font-weight: 600;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          transition: all 0.15s var(--ease-apple-spring);
+          font-family: var(--font-sanctuary);
+          box-shadow: 0 1px 4px rgba(0, 113, 227, 0.25);
+        }
+
+        .ts-btn-primary:hover {
+          background: var(--sanctuary-blue-hover);
+        }
+
+        .ts-btn-primary.civic {
+          background: var(--sanctuary-red-ink);
+          box-shadow: var(--shadow-sm);
+        }
+
+        .ts-btn-primary.civic:hover {
+          background: var(--sanctuary-red-ink-hover);
+        }
+
+        .ts-btn-primary:active {
+          transform: scale(0.985);
+        }
+
+        .ts-btn-secondary-official {
+          width: 100%;
+          height: 42px;
+          background: rgba(0, 0, 0, 0.04);
+          color: var(--sanctuary-ink-primary);
+          border: 1px solid var(--sanctuary-hairline);
+          border-radius: 10px;
+          font-size: 12.5px;
+          font-weight: 600;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 7px;
+          transition: all 0.15s var(--ease-apple-spring);
+          font-family: var(--font-sanctuary);
+          box-sizing: border-box;
+        }
+
+        .ts-btn-secondary-official:hover {
+          background: rgba(0, 0, 0, 0.07);
+          border-color: rgba(0, 0, 0, 0.14);
+        }
+
+        .ts-btn-secondary-official:active {
+          transform: scale(0.985);
+        }
+
+        .ts-btn-decoy {
+          width: 100%;
+          height: 38px;
+          background: var(--sanctuary-green-bg);
+          color: var(--sanctuary-green-ink);
+          border: 1px solid var(--sanctuary-green-bd);
+          border-radius: 10px;
+          font-size: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          transition: all 0.15s;
+          font-family: var(--font-sanctuary);
+        }
+
+        .ts-btn-decoy:hover {
+          background: rgba(52, 199, 89, 0.16);
+        }
+
+        .ts-btn-decoy:active {
+          transform: scale(0.985);
+        }
+
+        /* 2000 ms Sensory Hold-to-Unlock Slider */
+        .ts-hold-btn {
+          position: relative;
+          width: 100%;
+          height: 42px;
+          background: rgba(118, 118, 128, 0.08);
+          border: 1px solid var(--sanctuary-hairline);
+          border-radius: 9999px;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          user-select: none;
+          outline: none;
+          transition: border-color 0.2s, background 0.2s;
+          font-family: var(--font-sanctuary);
+        }
+
+        .ts-hold-btn:hover {
+          border-color: var(--sanctuary-ink-tertiary);
+          background: rgba(118, 118, 128, 0.12);
+        }
+
+        .ts-hold-fill {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 0%;
+          background: rgba(0, 113, 227, 0.18);
+          pointer-events: none;
+          transition: width 0.05s linear;
+        }
+
+        .ts-hold-btn.rebound .ts-hold-fill {
+          transition: width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        }
+
+        .ts-hold-label {
+          position: relative;
+          z-index: 2;
+          font-size: 12px;
+          font-weight: 500;
+          color: var(--sanctuary-ink-secondary);
+          pointer-events: none;
+          transition: color 0.15s;
+        }
+
+        .ts-hold-btn.holding .ts-hold-label {
+          color: var(--sanctuary-ink-primary);
+          font-weight: 600;
+        }
+
+        .ts-hold-btn.unlocked {
+          border-color: var(--sanctuary-green);
+          background: var(--sanctuary-green-bg);
+        }
+
+        .ts-hold-btn.unlocked .ts-hold-label {
+          color: var(--sanctuary-green-ink);
+          font-weight: 600;
+        }
+
+        /* Apple-Inspired Inspector Disclosure */
+        .ts-btn-inspect {
+          background: rgba(118, 118, 128, 0.08);
+          border: 1px solid var(--sanctuary-hairline);
+          color: var(--sanctuary-ink-secondary);
+          font-size: 11.5px;
+          font-weight: 500;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          border-radius: 20px;
+          transition: all 0.2s var(--ease-apple-spring);
+          font-family: var(--font-sanctuary);
+          margin-top: 10px;
+          user-select: none;
+        }
+
+        .ts-btn-inspect:hover {
+          color: var(--sanctuary-ink-primary);
+          background: rgba(118, 118, 128, 0.14);
+        }
+
+        .ts-btn-inspect:active {
+          transform: scale(0.97);
+        }
+
+        .ts-btn-inspect .ts-inspect-chevron {
+          transition: transform 0.22s var(--ease-apple-spring);
+        }
+
+        .ts-btn-inspect.expanded .ts-inspect-chevron {
+          transform: rotate(180deg);
+        }
+
+        /* Inspector Sheet Container */
+        .ts-inspector-sheet {
+          display: none;
+          width: 100%;
+          background: rgba(0, 0, 0, 0.025);
+          border: 1px solid var(--sanctuary-hairline);
+          border-radius: 14px;
+          padding: 12px 14px;
+          margin-top: 10px;
+          animation: tsInspectorFade 0.24s var(--ease-apple-spring);
+          text-align: left;
+          box-sizing: border-box;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        @keyframes tsInspectorFade {
+          from { opacity: 0; transform: translateY(-4px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Telemetry Header */
+        .ts-xai-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+        }
+
+        .ts-xai-engine-tag {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 11px;
+          font-weight: 600;
+          color: var(--sanctuary-ink-secondary);
+        }
+
+        .ts-xai-pulse-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: var(--sanctuary-blue);
+        }
+
+        .ts-xai-score-pill {
+          font-size: 11px;
+          font-weight: 500;
+          padding: 2.5px 8px;
+          border-radius: 6px;
+          font-family: var(--font-sanctuary);
+        }
+
+        .ts-xai-score-pill strong {
+          font-family: var(--font-mono);
+          font-weight: 700;
+        }
+
+        .ts-xai-score-pill.critical {
+          background: var(--sanctuary-red-bg);
+          color: var(--sanctuary-red-ink);
+          border: 1px solid var(--sanctuary-red-bd);
+        }
+
+        .ts-xai-score-pill.warning {
+          background: var(--sanctuary-amber-bg);
+          color: var(--sanctuary-amber-ink);
+          border: 1px solid var(--sanctuary-amber-bd);
+        }
+
+        /* 3-Factor Risk Telemetry Grid */
+        .ts-xai-telemetry {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 6px;
+        }
+
+        .ts-xai-factor {
+          background: var(--sanctuary-surface);
+          border: 1px solid var(--sanctuary-hairline);
+          border-radius: 9px;
+          padding: 7px 9px 8px;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+
+        .ts-xai-factor-name {
+          font-size: 9px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.03em;
+          color: var(--sanctuary-ink-secondary);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .ts-xai-factor-value {
+          font-size: 12px;
+          font-weight: 700;
+          color: var(--sanctuary-ink-primary);
+          font-family: var(--font-mono);
+          display: flex;
+          align-items: baseline;
+          gap: 1px;
+        }
+
+        .ts-xai-factor-max {
+          font-size: 9.5px;
+          font-weight: 500;
+          color: var(--sanctuary-ink-secondary);
+          font-family: var(--font-sanctuary);
+        }
+
+        .ts-xai-meter {
+          height: 3px;
+          background: rgba(118, 118, 128, 0.12);
+          border-radius: 1.5px;
+          overflow: hidden;
+          margin-top: 3px;
+        }
+
+        .ts-xai-bar {
+          height: 100%;
+          border-radius: 1.5px;
+          transition: width 0.3s ease;
+        }
+
+        .ts-xai-bar.red {
+          background: var(--sanctuary-red);
+        }
+
+        .ts-xai-bar.amber {
+          background: var(--sanctuary-amber);
+        }
+
+        .ts-xai-bar.blue {
+          background: var(--sanctuary-blue);
+        }
+
+        /* Inset Grouped Indicators List */
+        .ts-xai-list {
+          background: var(--sanctuary-surface);
+          border: 1px solid var(--sanctuary-hairline);
+          border-radius: 10px;
+          overflow-y: auto;
+          max-height: 180px;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .ts-xai-list::-webkit-scrollbar {
+          width: 3px;
+        }
+
+        .ts-xai-list::-webkit-scrollbar-thumb {
+          background: rgba(118, 118, 128, 0.2);
+          border-radius: 3px;
+        }
+
+        .ts-xai-item {
+          padding: 9px 11px;
+          display: flex;
+          align-items: flex-start;
+          gap: 9px;
+          border-bottom: 1px solid var(--sanctuary-hairline);
+        }
+
+        .ts-xai-item:last-child {
+          border-bottom: none;
+        }
+
+        .ts-xai-icon-box {
+          width: 26px;
+          height: 26px;
+          border-radius: 7px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-top: 1px;
+        }
+
+        .ts-xai-icon-box.critical {
+          background: var(--sanctuary-red-bg);
+          color: var(--sanctuary-red);
+          border: 1px solid var(--sanctuary-red-bd);
+        }
+
+        .ts-xai-icon-box.warning {
+          background: var(--sanctuary-amber-bg);
+          color: var(--sanctuary-amber);
+          border: 1px solid var(--sanctuary-amber-bd);
+        }
+
+        .ts-xai-icon-box.info {
+          background: var(--sanctuary-blue-bg);
+          color: var(--sanctuary-blue);
+          border: 1px solid var(--sanctuary-blue-bd);
+        }
+
+        .ts-xai-item-body {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .ts-xai-item-top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 6px;
+          margin-bottom: 2px;
+        }
+
+        .ts-xai-item-title {
+          font-size: 11.5px;
+          font-weight: 600;
+          color: var(--sanctuary-ink-primary);
+          line-height: 1.3;
+        }
+
+        .ts-xai-item-badge {
+          font-size: 9px;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+          padding: 1.5px 5px;
+          border-radius: 4px;
+          white-space: nowrap;
+        }
+
+        .ts-xai-item-badge.critical {
+          background: var(--sanctuary-red-bg);
+          color: var(--sanctuary-red-ink);
+        }
+
+        .ts-xai-item-badge.warning {
+          background: var(--sanctuary-amber-bg);
+          color: var(--sanctuary-amber-ink);
+        }
+
+        .ts-xai-item-badge.info {
+          background: var(--sanctuary-blue-bg);
+          color: var(--sanctuary-blue);
+        }
+
+        .ts-xai-item-desc {
+          font-size: 11px;
+          color: var(--sanctuary-ink-secondary);
+          line-height: 1.4;
+        }
+
+        .ts-xai-evidence {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          margin-top: 4px;
+          padding: 2px 6px;
+          background: rgba(118, 118, 128, 0.08);
+          border-radius: 4px;
+          font-family: var(--font-mono);
+          font-size: 9.5px;
+          color: var(--sanctuary-ink-secondary);
+          max-width: 100%;
+          word-break: break-all;
+        }
+
+        .ts-xai-evidence-label {
+          font-weight: 600;
+          color: var(--sanctuary-ink-tertiary);
+          font-family: var(--font-sanctuary);
+        }
+
+        .ts-xai-tip {
+          display: flex;
+          align-items: flex-start;
+          gap: 7px;
+          background: rgba(0, 113, 227, 0.05);
+          border: 1px solid rgba(0, 113, 227, 0.12);
+          border-radius: 8px;
+          padding: 7px 10px;
+          font-size: 11px;
+          color: var(--sanctuary-ink-secondary);
+          line-height: 1.4;
+        }
+
+        .ts-xai-tip svg {
+          color: var(--sanctuary-blue);
+          flex-shrink: 0;
+          margin-top: 1px;
+        }
+      </style>
+
+      <div id="ts-modal-card">
+        <!-- AUTHENTIC S.O.V.A. LOGO EMBLEM -->
+        <div class="ts-emblem-box">
+          <div style="width: 42px; height: 42px; border-radius: 12px; overflow: hidden; background: #000000; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);">
+            <img class="ts-sova-logo-img" src="logo.png" alt="С.О.В.А." style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+        </div>
+
+        <!-- HEADLINE -->
+        <h2 class="ts-title">Перевірте платіж</h2>
+
+        <!-- CONTEXT PILL -->
+        <div class="ts-context-pill">
+          <span>Сайт:</span>
+          <span class="ts-context-tag">preview.sova.local</span>
+        </div>
+
+        <!-- TWO-COLUMN INTENT VS REALITY CONTRAST MATRIX -->
+        <div class="ts-contrast-grid">
+          <div class="ts-contrast-col-left">
+            <span class="ts-contrast-header-left">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              ВАШ ОЧІКУВАНИЙ НАМІР
+            </span>
+            <span class="ts-contrast-val-left">Ви намагаєтеся сплатити замовлення на суму кошти на балансі вашої картки</span>
+          </div>
+          <div class="ts-contrast-col-right">
+            <span class="ts-contrast-header-right">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              ПРИХОВАНА ЗАГРОЗА
+            </span>
+            <span class="ts-contrast-val-right">сайт надсилає реквізити не банку, а на сторонній неперевірений сервер (preview.sova.local) без банківської акредитації</span>
+          </div>
+        </div>
+
+        <!-- PLAIN LANGUAGE VERDICT -->
+        <p class="ts-verdict">Цей вебсервер не має банківської сертифікації для безпечного проведення платіжних операцій.</p>
+
+        <!-- ACTION STACK -->
+        <div class="ts-actions-stack">
+          
+
+          <!-- PRIMARY ACTION: Return to Safety / Block Contact -->
+          <button id="ts-primary-btn" class="ts-btn-primary ">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="9 12 11 14 15 10"></polyline></svg>
+            <span>Повернутися до безпеки</span>
+          </button>
+
+          
+            
+
+            <!-- SENSORY 2-SECOND HOLD-TO-UNLOCK -->
+            <div id="ts-hold-btn" class="ts-hold-btn" role="button" tabindex="0" title="Затисніть ліву кнопку миші на 2 секунди для переходу">
+              <div id="ts-hold-fill" class="ts-hold-fill"></div>
+              <span id="ts-hold-label" class="ts-hold-label">Утримуйте 2с для переходу на власний ризик</span>
+            </div>
+          
+        </div>
+
+        <!-- FOOTER: Inspector Toggle (Apple Disclosure Capsule) -->
+        <button id="ts-inspect-btn" class="ts-btn-inspect" type="button" aria-expanded="false" aria-controls="ts-inspector">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path>
+          </svg>
+          <span id="ts-inspect-text">Деталі перевірки (XAI)</span>
+          <svg class="ts-inspect-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <!-- DIAGNOSTIC SHEET (Apple Security Inspector) -->
+        <div id="ts-inspector" class="ts-inspector-sheet" style="display: none;">
+          <!-- TELEMETRY HEADER -->
+          <div class="ts-xai-header">
+            <div class="ts-xai-engine-tag">
+              <span class="ts-xai-pulse-dot"></span>
+              <span>Аналітичний модуль XAI</span>
+            </div>
+            <div class="ts-xai-score-pill warning">
+              <span>Індекс загрози: <strong>$1</strong>/100</span>
+            </div>
+          </div>
+
+          <!-- 3-FACTOR RISK TELEMETRY (R_tech, C_env, A_user) -->
+          <div class="ts-xai-telemetry">
+            <div class="ts-xai-factor">
+              <span class="ts-xai-factor-name">Форма та сервер</span>
+              <div class="ts-xai-factor-value">
+                <span>35</span>
+                <span class="ts-xai-factor-max">/60</span>
+              </div>
+              <div class="ts-xai-meter">
+                <div class="ts-xai-bar red" style="width: 58%;"></div>
+              </div>
+            </div>
+
+            <div class="ts-xai-factor">
+              <span class="ts-xai-factor-name">Контекст сесії</span>
+              <div class="ts-xai-factor-value">
+                <span>0</span>
+                <span class="ts-xai-factor-max">/35</span>
+              </div>
+              <div class="ts-xai-meter">
+                <div class="ts-xai-bar amber" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <div class="ts-xai-factor">
+              <span class="ts-xai-factor-name">Дія користувача</span>
+              <div class="ts-xai-factor-value">
+                <span>35</span>
+                <span class="ts-xai-factor-max">/45</span>
+              </div>
+              <div class="ts-xai-meter">
+                <div class="ts-xai-bar blue" style="width: 78%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INSET GROUPED INDICATORS LIST -->
+          <div class="ts-xai-list">
+            
+      <div class="ts-xai-item">
+        <div class="ts-xai-icon-box warning">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        </div>
+        <div class="ts-xai-item-body">
+          <div class="ts-xai-item-top">
+            <span class="ts-xai-item-title">Виявлений фактор ризику</span>
+            <span class="ts-xai-item-badge warning">Попередження</span>
+          </div>
+          <div class="ts-xai-item-desc">Сторінка запитує конфіденційні дані.</div>
+          
+        </div>
+      </div>
+    
+          </div>
+
+          <!-- EDUCATIONAL COUNTERMEASURE FOOTNOTE -->
+          
+            <div class="ts-xai-tip">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span>Акредитовані платіжні шлюзи захищені міжнародним стандартом безпеки PCI DSS і приймають дані картки на захищених захищених серверах банку, а не на сайті магазину.</span>
+            </div>
+          
+        </div>
+      </div>
+    </div></div></body></html>

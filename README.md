@@ -6,16 +6,16 @@
 </div>
 
 <p align="center">
-  <a href="https://github.com/prylutskyy/S.O.V.A./actions/workflows/evaluation.yml"><img src="https://github.com/prylutskyy/S.O.V.A./actions/workflows/evaluation.yml/badge.svg?branch=main" alt="Evaluation workflow" /></a>
-  <a href="https://prylutskyy.github.io/S.O.V.A./#combined"><img src="https://prylutskyy.github.io/S.O.V.A./badges/combined-f1.svg" alt="Зведений F1 перших двох локальних корпусів" /></a>
-  <a href="https://prylutskyy.github.io/S.O.V.A./#combined"><img src="https://prylutskyy.github.io/S.O.V.A./badges/combined-recall.svg" alt="Зведений recall перших двох локальних корпусів" /></a>
+  <a href="https://github.com/prylutskyy/sova/actions/workflows/evaluation.yml"><img src="https://github.com/prylutskyy/sova/actions/workflows/evaluation.yml/badge.svg?branch=main" alt="Evaluation workflow" /></a>
+  <a href="https://prylutskyy.github.io/sova/#combined"><img src="https://prylutskyy.github.io/sova/badges/combined-f1.svg" alt="Зведений F1 перших двох локальних корпусів" /></a>
+  <a href="https://prylutskyy.github.io/sova/#combined"><img src="https://prylutskyy.github.io/sova/badges/combined-recall.svg" alt="Зведений recall перших двох локальних корпусів" /></a>
 </p>
 
 <p align="center">
   <a href="docs/USER_GUIDE.md"><strong>Посібник зі скріншотами</strong></a> ·
-  <a href="https://prylutskyy.github.io/S.O.V.A./"><strong>Метрики та історія</strong></a> ·
+  <a href="https://prylutskyy.github.io/sova/"><strong>Метрики та історія</strong></a> ·
   <a href="#запустити-розширення"><strong>Встановлення</strong></a> ·
-  <a href="https://github.com/prylutskyy/S.O.V.A./issues"><strong>Долучитися</strong></a>
+  <a href="https://github.com/prylutskyy/sova/issues"><strong>Долучитися</strong></a>
 </p>
 
 **С.О.В.А. — розширення для Chromium, яке допомагає помітити соціальну інженерію в чатах і ризик передачі чутливих даних у вебформах.** Воно поєднує локальні перевірки, контекст розмови, персональне сховище маркерів і додатковий арбітраж ШІ.
@@ -154,10 +154,10 @@ flowchart TD
 
 | Блок | Що перевіряємо | Обсяг | F1 | Recall |
 | --- | --- | --- | --- | --- |
-| **1 · Регресії** | Відомі загрози, безпечні репліки та виправлені помилки; правила вже налаштовували за цими даними | 326 сценаріїв | [![Регресійний F1](https://prylutskyy.github.io/S.O.V.A./badges/f1-value.svg)](https://prylutskyy.github.io/S.O.V.A./#regression) | [![Регресійний recall](https://prylutskyy.github.io/S.O.V.A./badges/recall-value.svg)](https://prylutskyy.github.io/S.O.V.A./#regression) |
-| **2 · Нові діалоги** | Поступове входження в довіру, фальшиві керівники, знайомі, підтримка та редакції | 300: 200 визначених + 100 неоднозначних | [![F1 нових діалогів](https://prylutskyy.github.io/S.O.V.A./badges/challenge-f1-value.svg)](https://prylutskyy.github.io/S.O.V.A./#challenge) | [![Recall нових діалогів](https://prylutskyy.github.io/S.O.V.A./badges/challenge-recall-value.svg)](https://prylutskyy.github.io/S.O.V.A./#challenge) |
-| **3 · Сліпий A** | Контекстні діалоги з попереднім консенсусом двох ШІ-рецензій | 300: 244 у binary-оцінці, 239 у точному збігу | [![F1 A](https://prylutskyy.github.io/S.O.V.A./badges/reviewA-f1-value.svg)](https://prylutskyy.github.io/S.O.V.A./#review-stress) | [![Recall A](https://prylutskyy.github.io/S.O.V.A./badges/reviewA-recall-value.svg)](https://prylutskyy.github.io/S.O.V.A./#review-stress) |
-| **4 · Сліпий B** | Змішані мови, Unicode, розбиті запити та цитати; перетворення 60 кейсів A | 300: 240 у binary-оцінці | [![F1 B](https://prylutskyy.github.io/S.O.V.A./badges/reviewB-f1-value.svg)](https://prylutskyy.github.io/S.O.V.A./#review-stress) | [![Recall B](https://prylutskyy.github.io/S.O.V.A./badges/reviewB-recall-value.svg)](https://prylutskyy.github.io/S.O.V.A./#review-stress) |
+| **1 · Регресії** | Відомі загрози, безпечні репліки та виправлені помилки; правила вже налаштовували за цими даними | 326 сценаріїв | [![Регресійний F1](https://prylutskyy.github.io/sova/badges/f1-value.svg)](https://prylutskyy.github.io/sova/#regression) | [![Регресійний recall](https://prylutskyy.github.io/sova/badges/recall-value.svg)](https://prylutskyy.github.io/sova/#regression) |
+| **2 · Нові діалоги** | Поступове входження в довіру, фальшиві керівники, знайомі, підтримка та редакції | 300: 200 визначених + 100 неоднозначних | [![F1 нових діалогів](https://prylutskyy.github.io/sova/badges/challenge-f1-value.svg)](https://prylutskyy.github.io/sova/#challenge) | [![Recall нових діалогів](https://prylutskyy.github.io/sova/badges/challenge-recall-value.svg)](https://prylutskyy.github.io/sova/#challenge) |
+| **3 · Сліпий A** | Контекстні діалоги з попереднім консенсусом двох ШІ-рецензій | 300: 244 у binary-оцінці, 239 у точному збігу | [![F1 A](https://prylutskyy.github.io/sova/badges/reviewA-f1-value.svg)](https://prylutskyy.github.io/sova/#review-stress) | [![Recall A](https://prylutskyy.github.io/sova/badges/reviewA-recall-value.svg)](https://prylutskyy.github.io/sova/#review-stress) |
+| **4 · Сліпий B** | Змішані мови, Unicode, розбиті запити та цитати; перетворення 60 кейсів A | 300: 240 у binary-оцінці | [![F1 B](https://prylutskyy.github.io/sova/badges/reviewB-f1-value.svg)](https://prylutskyy.github.io/sova/#review-stress) | [![Recall B](https://prylutskyy.github.io/sova/badges/reviewB-recall-value.svg)](https://prylutskyy.github.io/sova/#review-stress) |
 
 **Як читати цифри:** precision — частка розмічених загроз серед спрацьовувань; recall — частка розмічених загроз, які виявлено; F1 поєднує ці дві метрики. Правильність конкретного типу та дії перевіряє окремий «точний збіг». Хибні блокування також рахуються окремо.
 
@@ -176,7 +176,7 @@ flowchart TD
 
 [Звіт local + Groq](tests/review/ROUTING_EVALUATION_REPORT.md) · [перший стрес-прогін A/B](tests/review/LOCAL_EVALUATION_REPORT.md) · [перевірка анонімізації через Groq](tests/results/GROQ_PRIVACY_SMOKE_REPORT.md).
 
-**Історія прогресу:** [dashboard](https://prylutskyy.github.io/S.O.V.A./) показує результати блоків та історію вимірювань; [CHANGELOG](CHANGELOG.md) пояснює зміни алгоритму. CI оцінює локальні корпуси на push і pull request, а Pages оновлюється з `main`. Живі виклики Groq запускаються окремо, вручну.
+**Історія прогресу:** [dashboard](https://prylutskyy.github.io/sova/) показує результати блоків та історію вимірювань; [CHANGELOG](CHANGELOG.md) пояснює зміни алгоритму. CI оцінює локальні корпуси на push і pull request, а Pages оновлюється з `main`. Живі виклики Groq запускаються окремо, вручну.
 
 ## Конфіденційність
 
@@ -193,8 +193,8 @@ flowchart TD
 Потрібні **Node.js 22.12+**, npm і браузер на основі Chromium. Поточний спосіб встановлення — локальна збірка.
 
 ```bash
-git clone https://github.com/prylutskyy/S.O.V.A..git
-cd S.O.V.A.
+git clone https://github.com/prylutskyy/sova.git
+cd sova
 npm ci
 npx wxt prepare
 npm run build
@@ -234,10 +234,10 @@ npm run build
 
 Найкорисніший внесок — **відтворювана проблема з прикладом**. Нам потрібні безпечні діалоги, що спричиняють тривогу, пропущені підозрілі запити, перевірки сумісності сайтів і вдосконалення інтерфейсу.
 
-1. Створіть [Issue](https://github.com/prylutskyy/S.O.V.A./issues): браузер, кроки, очікувана й фактична поведінка, синтетичний приклад. Приберіть приватні дані зі скріншотів та логів.
+1. Створіть [Issue](https://github.com/prylutskyy/sova/issues): браузер, кроки, очікувана й фактична поведінка, синтетичний приклад. Приберіть приватні дані зі скріншотів та логів.
 2. Для зміни алгоритму додайте регресійний тест і безпечний контрприклад. Не підганяйте правила під оцінювальні блоки; документуйте походження нових даних.
 3. Запустіть перевірку TypeScript і відповідні тести; для евристик — також оцінювання корпусів.
-4. Надішліть невеликий [pull request](https://github.com/prylutskyy/S.O.V.A./compare): проблема, рішення, результати перевірок і компроміси.
+4. Надішліть невеликий [pull request](https://github.com/prylutskyy/sova/compare): проблема, рішення, результати перевірок і компроміси.
 
 Можна допомогти й без коду: [перевірити розмітку діалогів](tests/review/README.md), запропонувати сценарій або описати незрозумілу поведінку UI.
 

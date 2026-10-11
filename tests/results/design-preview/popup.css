@@ -1,0 +1,2457 @@
+/* ==========================================================================
+   S.O.V.A. DESIGN SYSTEM: ATOMIC DESIGN TOKENS
+   ========================================================================== */
+
+:root, :host {
+  /* Surfaces & Glass Diffraction */
+  --sanctuary-canvas:         #F5F5F7;
+  --sanctuary-surface:        #FFFFFF;
+  --sanctuary-surface-subtle: #FAFAFC;
+  --sanctuary-surface-hover:  rgba(0, 0, 0, 0.03);
+  --sanctuary-surface-active: rgba(0, 0, 0, 0.06);
+  --sanctuary-glass-bg:       rgba(255, 255, 255, 0.85);
+  --sanctuary-glass-elevated: rgba(255, 255, 255, 0.92);
+  --sanctuary-backdrop:       rgba(0, 0, 0, 0.32);
+  --sanctuary-glass-sheen:    rgba(255, 255, 255, 0.65);
+
+  /* Typography Inks (Optically Tuned for WCAG 2.1 AA & AAA Compliance) */
+  --sanctuary-ink-primary:    #1D1D1F; /* 16.1:1 on #FFFFFF (Passes AAA) */
+  --sanctuary-ink-secondary:  #6E6E73; /* 5.05:1 on #FFFFFF, 4.62:1 on #F5F5F7 (Passes AA) */
+  --sanctuary-ink-tertiary:   #86868B; /* 3.58:1 on #FFFFFF (Passes AA for graphical elements/large text) */
+  --sanctuary-ink-quaternary: #A1A1A6; /* 2.52:1 (Calibrated for inactive placeholders & decorative hairlines) */
+
+  /* Functional Accents & Semantic Tints (WCAG 2.1 AA Calibrated) */
+  --sanctuary-blue:           #0071E3; /* 4.75:1 on #FFFFFF (Passes AA) */
+  --sanctuary-blue-hover:     #0065CC;
+  --sanctuary-blue-active:    #005BB5;
+  --sanctuary-blue-bg:        rgba(0, 113, 227, 0.08);
+  --sanctuary-blue-bd:        rgba(0, 113, 227, 0.20);
+  --sanctuary-blue-surface:   #F0F7FF;
+
+  --sanctuary-green:          #34C759;
+  --sanctuary-green-hover:    #2DB84F;
+  --sanctuary-green-ink:      #1E7E34; /* 5.15:1 on #FFFFFF (Passes AA) */
+  --sanctuary-green-bg:       rgba(52, 199, 89, 0.10);
+  --sanctuary-green-bd:       rgba(52, 199, 89, 0.24);
+
+  --sanctuary-amber:          #FF9500;
+  --sanctuary-amber-hover:    #E08500;
+  --sanctuary-amber-ink:      #A04F00; /* 5.20:1 on #FFFFFF (Passes AA) */
+  --sanctuary-amber-bg:       rgba(255, 149, 0, 0.10);
+  --sanctuary-amber-bd:       rgba(255, 149, 0, 0.24);
+  --sanctuary-amber-surface:  #FFF8EF;
+
+  --sanctuary-red:            #FF3B30;
+  --sanctuary-red-hover:      #E03228;
+  --sanctuary-red-ink:        #D70015; /* 5.40:1 on #FFFFFF (Passes AA) */
+  --sanctuary-red-ink-hover:  #B80012;
+  --sanctuary-red-bg:         rgba(255, 59, 48, 0.08);
+  --sanctuary-red-bd:         rgba(255, 59, 48, 0.22);
+  --sanctuary-red-surface:    #FFF3F2;
+
+  --sanctuary-purple-ink:     #8944AB; /* 5.10:1 on #FFFFFF (Passes AA) */
+  --sanctuary-teal-ink:       #007D8C; /* 4.65:1 on #FFFFFF (Passes AA) */
+
+  /* Hairlines & Dividers */
+  --sanctuary-hairline:        rgba(0, 0, 0, 0.07);
+  --sanctuary-hairline-subtle: rgba(0, 0, 0, 0.04);
+  --sanctuary-hairline-glass:  rgba(255, 255, 255, 0.45);
+  --sanctuary-divider:         rgba(0, 0, 0, 0.05);
+
+  /* Superellipse Radii */
+  --radius-pill:      9999px;
+  --radius-modal:     22px;
+  --radius-card:      14px;
+  --radius-control:   10px;
+  --radius-nested:    8px;
+  --radius-micro:     4px;
+
+  /* Layered Shadow Elevations */
+  --shadow-sm:         0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-card:       0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.07);
+  --shadow-modal:      0 0 0 1px rgba(255, 255, 255, 0.6) inset, 0 8px 20px rgba(0, 0, 0, 0.08), 0 24px 64px rgba(0, 0, 0, 0.16);
+  --shadow-knob:       0 0.5px 1.5px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.16);
+  --shadow-elevated:   0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+
+  /* Apple Spring Kinematics */
+  --ease-apple-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-apple-press:   cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-apple-sheet:   cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-apple-rebound: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Fonts */
+  --font-sanctuary: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:      "SF Mono", Menlo, Consolas, Monaco, monospace;
+
+  /* Shared scale for popup, diagnostics and in-page protection. */
+  --text-caption: 11px;
+  --text-body: 12px;
+  --text-title: 13px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --control-height: 32px;
+  --sanctuary-focus-ring: rgba(0, 113, 227, 0.30);
+  --sanctuary-scroll-thumb: rgba(0, 0, 0, 0.18);
+
+  /* Sanctuary Core Obsidian Dark HUD Tokens (Apple VisionOS Calibrated) */
+  --sc-obsidian-bg:               rgba(16, 16, 20, 0.94);
+  --sc-obsidian-blur:             blur(32px) saturate(190%);
+  --sc-obsidian-header:           rgba(24, 24, 30, 0.82);
+  --sc-obsidian-nav:              rgba(14, 14, 18, 0.88);
+  --sc-obsidian-card:             rgba(26, 26, 32, 0.70);
+  --sc-obsidian-card-elevated:    linear-gradient(135deg, rgba(28, 28, 36, 0.85) 0%, rgba(18, 18, 24, 0.95) 100%);
+  --sc-obsidian-well:             rgba(10, 10, 14, 0.85);
+  --sc-obsidian-code:             rgba(8, 8, 12, 0.95);
+  
+  --sc-obsidian-border:           rgba(255, 255, 255, 0.12);
+  --sc-obsidian-border-subtle:    rgba(255, 255, 255, 0.07);
+  --sc-obsidian-sheen:            rgba(255, 255, 255, 0.18);
+
+  --sc-ink-primary:               #FFFFFF;
+  --sc-ink-secondary:             rgba(255, 255, 255, 0.85);
+  --sc-ink-muted:                 rgba(255, 255, 255, 0.60);
+  --sc-ink-subtle:                rgba(255, 255, 255, 0.40);
+
+  --sc-emerald:                   #30D158;
+  --sc-emerald-bg:                rgba(48, 209, 88, 0.16);
+  --sc-emerald-border:            rgba(48, 209, 88, 0.32);
+  --sc-emerald-glow:              0 0 16px rgba(48, 209, 88, 0.35);
+
+  --sc-amber:                     #FF9F0A;
+  --sc-amber-bg:                  rgba(255, 159, 10, 0.16);
+  --sc-amber-border:              rgba(255, 159, 10, 0.32);
+  --sc-amber-glow:                0 0 16px rgba(255, 159, 10, 0.35);
+
+  --sc-crimson:                   #FF453A;
+  --sc-crimson-bg:                rgba(255, 69, 58, 0.16);
+  --sc-crimson-border:            rgba(255, 69, 58, 0.32);
+  --sc-crimson-glow:              0 0 16px rgba(255, 69, 58, 0.35);
+
+  --sc-sapphire:                  #0A84FF;
+  --sc-sapphire-hover:            #0077ED;
+  --sc-sapphire-bg:               rgba(10, 132, 255, 0.16);
+  --sc-sapphire-border:           rgba(10, 132, 255, 0.32);
+  --sc-sapphire-glow:             0 0 16px rgba(10, 132, 255, 0.40);
+
+  --sc-squircle-window:           20px;
+  --sc-squircle-card:             14px;
+  --sc-squircle-control:          8px;
+  --sc-squircle-chip:             6px;
+
+  /* Backward Compatibility Aliases */
+  --fx-canvas:         var(--sanctuary-canvas);
+  --fx-surface:        var(--sanctuary-surface);
+  --fx-surface-hover:  var(--sanctuary-surface-hover);
+  --fx-surface-active: var(--sanctuary-surface-active);
+  --fx-border:         var(--sanctuary-hairline);
+  --fx-border-subtle:  var(--sanctuary-hairline-subtle);
+  --fx-text:           var(--sanctuary-ink-primary);
+  --fx-text-secondary: var(--sanctuary-ink-secondary);
+  --fx-text-muted:     var(--sanctuary-ink-tertiary);
+
+  --fx-blue:           var(--sanctuary-blue);
+  --fx-blue-hover:     var(--sanctuary-blue-hover);
+  --fx-blue-active:    var(--sanctuary-blue-active);
+  --fx-blue-bg:        var(--sanctuary-blue-bg);
+  --fx-blue-bd:        var(--sanctuary-blue-bd);
+
+  --fx-green:          var(--sanctuary-green);
+  --fx-green-hover:    var(--sanctuary-green-hover);
+  --fx-green-bg:       var(--sanctuary-green-bg);
+  --fx-green-bd:       var(--sanctuary-green-bd);
+
+  --fx-amber:          var(--sanctuary-amber);
+  --fx-amber-bg:       var(--sanctuary-amber-bg);
+  --fx-amber-bd:       var(--sanctuary-amber-bd);
+
+  --fx-red:            var(--sanctuary-red);
+  --fx-red-hover:      var(--sanctuary-red-hover);
+  --fx-red-bg:         var(--sanctuary-red-bg);
+  --fx-red-bd:         var(--sanctuary-red-bd);
+}
+
+/* Foundations stay inside the popup document or an isolated ShadowRoot. */
+button, input, select, textarea {
+  font-family: var(--font-sanctuary);
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--sanctuary-blue) !important;
+  outline-offset: 2px !important;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(:root, :host) [class][class],
+  :is(:root, :host) [class][class]::before,
+  :is(:root, :host) [class][class]::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ==========================================================================
+   THREAT SHIELD POPUP: APPLE HIG CRAFTSMANSHIP (TABULA RASA)
+   Complies with DESIGN_SYSTEM_CARTE_BLANCHE.md
+   ========================================================================== */
+
+/* Universal Reset & Typography */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sanctuary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  color-scheme: light;
+  width: 390px;
+  height: 560px;
+  min-height: 560px;
+  max-height: 580px;
+  background-color: var(--sanctuary-canvas);
+  color: var(--sanctuary-ink-primary);
+  font-size: 13px;
+  line-height: 1.4;
+  user-select: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: -0.01em;
+}
+
+/* Apple Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.16);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.28);
+}
+
+/* ==========================================================================
+   1. APP HEADER: OPTICAL FLOAT GLASS
+   ========================================================================== */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 48px;
+  min-height: 48px;
+  flex-shrink: 0;
+  width: 100%;
+  padding: 0 16px;
+  background: var(--sanctuary-glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--sanctuary-hairline);
+  box-shadow: 0 1px 0 var(--sanctuary-glass-sheen) inset;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.brand-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--sanctuary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0, 113, 227, 0.25);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sanctuary-ink-primary);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.brand-subtitle {
+  font-size: 10.5px;
+  color: var(--sanctuary-ink-secondary);
+  line-height: 1.2;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Status Pill */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  transition: all 0.2s var(--ease-apple-spring);
+}
+
+.status-pill.active {
+  color: var(--sanctuary-green-ink);
+  background: var(--sanctuary-green-bg);
+  border: 1px solid var(--sanctuary-green-bd);
+}
+
+.status-pill.paused {
+  color: var(--sanctuary-amber-ink);
+  background: var(--sanctuary-amber-bg);
+  border: 1px solid var(--sanctuary-amber-bd);
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sanctuary-green);
+  box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.4);
+  animation: pulse 2.4s infinite;
+}
+
+.status-pill.paused .pulse-dot {
+  background: var(--sanctuary-amber);
+  box-shadow: 0 0 0 0 rgba(255, 149, 0, 0.4);
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(52, 199, 89, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52, 199, 89, 0); }
+}
+
+/* ==========================================================================
+   2. CUPERTINO SEGMENTED CONTROL
+   ========================================================================== */
+.nav-container {
+  padding: 6px 16px 4px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.segmented-control {
+  padding: 2.5px;
+  background: rgba(118, 118, 128, 0.12);
+  border-radius: var(--radius-control);
+  display: flex;
+  gap: 2px;
+  height: var(--control-height);
+}
+
+.segment-btn {
+  flex: 1;
+  height: 27px;
+  border: none;
+  background: transparent;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--sanctuary-ink-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+  outline: none;
+}
+
+.segment-btn:hover {
+  color: var(--sanctuary-ink-primary);
+}
+
+.segment-btn.active {
+  background: var(--sanctuary-surface);
+  color: var(--sanctuary-ink-primary);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.segment-btn.active svg {
+  stroke: var(--sanctuary-blue);
+}
+
+/* Focus Ring Accessibility */
+.segment-btn:focus-visible,
+.sanctuary-input:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.35);
+}
+
+/* ==========================================================================
+   3. SANCTUARY TABS & SECTIONS
+   ========================================================================== */
+.sanctuary-tab {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Pure Deterministic Visibility Control */
+.sanctuary-tab[hidden] {
+  display: none !important;
+}
+
+.section-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--sanctuary-ink-secondary);
+  padding: 0 4px;
+}
+
+.section-header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+/* ==========================================================================
+   4. CARDS & HERO SURFACES
+   ========================================================================== */
+.sanctuary-card {
+  background: var(--sanctuary-surface);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--sanctuary-hairline);
+  box-shadow: var(--shadow-card);
+  padding: 12px 14px;
+  transition: all 0.2s var(--ease-apple-spring);
+}
+
+/* Site Hero Card: Apple Squircle Sensor */
+.site-hero-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+}
+
+.site-hero-card.whitelisted {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFFDF7 100%);
+  border-color: var(--sanctuary-amber-bd);
+}
+
+.site-hero-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* Apple Squircle Sensor Box */
+.living-orb-box {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Redundant glowing halo eliminated per Apple HIG */
+.living-orb-glow {
+  display: none !important;
+}
+
+.living-orb-core {
+  position: relative;
+  z-index: 1;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s var(--ease-apple-spring);
+}
+
+.living-orb-core svg {
+  width: 20px;
+  height: 20px;
+}
+
+.living-orb-box.active .living-orb-core {
+  color: var(--sanctuary-green-ink);
+  border: 1px solid rgba(52, 199, 89, 0.28);
+  background: rgba(52, 199, 89, 0.12);
+}
+
+.living-orb-box.paused .living-orb-core {
+  color: var(--sanctuary-amber-ink);
+  border: 1px solid rgba(255, 149, 0, 0.28);
+  background: rgba(255, 149, 0, 0.12);
+}
+
+.site-hero-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.site-domain {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--sanctuary-ink-primary);
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 215px;
+}
+
+.site-status {
+  font-size: 11.5px;
+  font-weight: 500;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.site-status.green {
+  color: var(--sanctuary-green-ink);
+}
+
+.site-status.amber {
+  color: var(--sanctuary-amber-ink);
+}
+
+.status-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.status-pulse-dot.active {
+  background: var(--sanctuary-green);
+}
+
+.status-pulse-dot.paused {
+  background: var(--sanctuary-amber);
+}
+
+/* ==========================================================================
+   5. TAINTED CONTEXT ELEVATED BANNER: APPLE HIG CONTEXT BRIDGE
+   ========================================================================== */
+.tainted-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: taintedSlideDown 0.25s var(--ease-apple-spring);
+  flex-shrink: 0;
+}
+
+@keyframes taintedSlideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tainted-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+.tainted-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2.5px 7px;
+  border-radius: 6px;
+  background: rgba(255, 149, 0, 0.18);
+  border: 1px solid rgba(255, 149, 0, 0.3);
+  color: var(--sanctuary-amber-ink);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.tainted-pulse-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: amberPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes amberPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+.btn-tainted-reset {
+  height: 28px;
+  padding: 0 11px;
+  border-radius: 8px;
+  border: 1px solid var(--sanctuary-amber-bd);
+  background: var(--sanctuary-amber-surface);
+  color: var(--sanctuary-amber-ink);
+  font-size: 11.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.18s var(--ease-apple-spring);
+  font-family: var(--font-sanctuary);
+  text-decoration: none;
+  outline: none;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.btn-tainted-reset svg {
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  color: inherit;
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease-apple-spring);
+}
+
+.btn-tainted-reset:hover {
+  background: var(--sanctuary-amber-bg);
+  box-shadow: var(--shadow-card);
+}
+
+.btn-tainted-reset:hover svg {
+  transform: rotate(-45deg);
+}
+
+.btn-tainted-reset:active {
+  transform: scale(0.97);
+}
+
+.btn-tainted-reset:focus-visible {
+  outline: 2px solid var(--sanctuary-amber);
+  outline-offset: 2px;
+}
+
+.tainted-card {
+  background: var(--sanctuary-amber-bg);
+  border: 1px solid var(--sanctuary-amber-bd);
+  border-radius: var(--radius-card);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 1px 3px rgba(255, 149, 0, 0.08);
+}
+
+.tainted-lead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tainted-icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(255, 149, 0, 0.16);
+  border: 1px solid rgba(255, 149, 0, 0.28);
+  color: var(--sanctuary-amber-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tainted-icon-box svg {
+  width: 15px;
+  height: 15px;
+}
+
+.tainted-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+
+.tainted-headline {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--sanctuary-amber-ink);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.tainted-status-sub {
+  font-size: 10.5px;
+  color: var(--sanctuary-ink-secondary);
+  line-height: 1.2;
+}
+
+/* Visual Context Bridge Card */
+.tainted-bridge-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: var(--sanctuary-surface);
+  border: 1px solid var(--sanctuary-amber-bd);
+  border-radius: 9px;
+  padding: 5px 8px;
+}
+
+.bridge-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--sanctuary-ink-primary);
+}
+
+.bridge-node.origin svg {
+  color: var(--sanctuary-amber-ink);
+  flex-shrink: 0;
+}
+
+.bridge-node.target svg {
+  color: var(--sanctuary-red-ink);
+  flex-shrink: 0;
+}
+
+.bridge-node .chain-node {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bridge-node.target .chain-node.alert {
+  font-weight: 600;
+  color: var(--sanctuary-red-ink);
+}
+
+.bridge-arrow {
+  color: var(--sanctuary-ink-tertiary);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.tainted-body {
+  font-size: 11.5px;
+  color: var(--sanctuary-ink-primary);
+  line-height: 1.38;
+  padding: 0 1px;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   6. APPLE INSET GROUPED LIST
+   ========================================================================== */
+.inset-group {
+  background: var(--sanctuary-surface);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--sanctuary-hairline);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.inset-row {
+  gap: var(--space-3);
+  padding: 10px 14px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--sanctuary-divider);
+  transition: background 0.15s var(--ease-apple-spring);
+}
+
+.inset-row:last-child {
+  border-bottom: none;
+}
+
+.inset-row.interactive {
+  cursor: pointer;
+}
+
+.inset-row.interactive:hover {
+  background: var(--sanctuary-surface-hover);
+}
+
+.inset-lead {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.inset-icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.inset-icon-box svg {
+  width: 15px;
+  height: 15px;
+}
+
+.inset-icon-box.blue   { background: var(--sanctuary-blue-bg);   color: var(--sanctuary-blue); }
+.inset-icon-box.amber  { background: var(--sanctuary-amber-bg);  color: var(--sanctuary-amber-ink); }
+.inset-icon-box.purple { background: rgba(137, 68, 171, 0.10); color: var(--sanctuary-purple-ink); }
+.inset-icon-box.teal   { background: rgba(0, 125, 140, 0.10);  color: var(--sanctuary-teal-ink); }
+.inset-icon-box.dark   { background: rgba(0, 0, 0, 0.06);      color: var(--sanctuary-ink-primary); }
+
+.inset-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.inset-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--sanctuary-ink-primary);
+  line-height: 1.25;
+}
+
+.inset-desc {
+  font-size: 11px;
+  color: var(--sanctuary-ink-secondary);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.inset-end {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chevron-end {
+  stroke: var(--sanctuary-ink-secondary);
+  margin-left: 2px;
+}
+
+/* Module Badges */
+.module-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2.5px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.module-pill.green {
+  background: var(--sanctuary-green-bg);
+  color: var(--sanctuary-green-ink);
+  border: 1px solid var(--sanctuary-green-bd);
+}
+
+.module-pill.blue {
+  background: var(--sanctuary-blue-bg);
+  color: var(--sanctuary-blue);
+  border: 1px solid var(--sanctuary-blue-bd);
+}
+
+.module-pill.amber {
+  background: var(--sanctuary-amber-bg);
+  color: var(--sanctuary-amber-ink);
+  border: 1px solid var(--sanctuary-amber-bd);
+}
+
+/* ==========================================================================
+   7. APPLE IOS SWITCH (TOGGLE)
+   ========================================================================== */
+.ios-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.ios-switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.ios-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: rgba(120, 120, 128, 0.16);
+  border-radius: 26px;
+  transition: background-color 0.2s var(--ease-apple-spring);
+}
+
+.ios-slider::before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), 0 0.5px 1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s var(--ease-apple-spring);
+}
+
+.ios-switch input:checked + .ios-slider {
+  background-color: var(--sanctuary-green);
+}
+
+.ios-switch input:checked + .ios-slider::before {
+  transform: translateX(18px);
+}
+
+.ios-switch input:disabled + .ios-slider {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   8. VAULT SANCTUARY COMPONENTS
+   ========================================================================== */
+.vault-state-card {
+  background: var(--sanctuary-surface);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--sanctuary-hairline);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.vault-daemon-status-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3.5px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--sanctuary-green-bg);
+  border: 1px solid var(--sanctuary-green-bd);
+  color: var(--sanctuary-green-ink);
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.vault-daemon-status-banner.paused {
+  background: var(--sanctuary-amber-bg);
+  border-color: var(--sanctuary-amber-bd);
+  color: var(--sanctuary-amber-ink);
+}
+
+.vault-hero-emblem {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.vault-hero-emblem.blue {
+  background: var(--sanctuary-blue-bg);
+  color: var(--sanctuary-blue);
+  border: 1px solid var(--sanctuary-blue-bd);
+}
+
+.vault-hero-emblem.neutral {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--sanctuary-ink-secondary);
+  border: 1px solid var(--sanctuary-hairline);
+}
+
+.vault-state-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--sanctuary-ink-primary);
+  letter-spacing: -0.015em;
+}
+
+.vault-state-desc {
+  font-size: 12px;
+  color: var(--sanctuary-ink-secondary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+/* Vault Unlocked Apple Experience */
+.vault-unlocked-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Vault Health Hero Ring Card */
+.vault-health-card {
+  padding: 12px 14px;
+  background: var(--sanctuary-surface);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--sanctuary-hairline);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.vault-health-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vault-ring-container {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vault-ring-svg {
+  width: 52px;
+  height: 52px;
+  transform: rotate(-90deg);
+}
+
+.vault-ring-bg {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.06);
+  stroke-width: 5.5;
+}
+
+.vault-ring-progress {
+  fill: none;
+  stroke: var(--sanctuary-blue);
+  stroke-width: 5.5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.6s var(--ease-apple-spring), stroke 0.4s ease;
+}
+
+.vault-ring-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vault-ring-percent {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--sanctuary-ink-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.vault-health-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.vault-health-headline {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sanctuary-ink-primary);
+  letter-spacing: -0.01em;
+}
+
+.vault-enclave-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--sanctuary-blue);
+  background: var(--sanctuary-blue-bg);
+  padding: 1.5px 7px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--sanctuary-blue-bd);
+  align-self: flex-start;
+  letter-spacing: 0.02em;
+}
+
+.vault-health-sub {
+  font-size: 11px;
+  color: var(--sanctuary-ink-secondary);
+  line-height: 1.3;
+}
+
+/* Vault Apple Inset Groups */
+.vault-groups-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vault-group-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vault-group-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--sanctuary-ink-primary);
+  padding: 0 4px;
+}
+
+.vault-group-desc {
+  font-size: 10.5px;
+  color: var(--sanctuary-ink-secondary);
+  padding: 0 4px;
+  margin-bottom: 2px;
+  line-height: 1.35;
+}
+
+.vault-inset-group {
+  background: var(--sanctuary-surface);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--sanctuary-hairline);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+/* Accordion Item */
+.vault-accordion-item {
+  border-bottom: 1px solid var(--sanctuary-hairline);
+  transition: background-color 0.15s ease;
+}
+
+.vault-accordion-item:last-child {
+  border-bottom: none;
+}
+
+.vault-accordion-item.expanded {
+  background-color: #FAFAFC;
+}
+
+/* Row Header */
+.vault-item-row {
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.12s ease;
+  gap: 10px;
+}
+
+.vault-item-row:hover {
+  background-color: var(--sanctuary-surface-hover);
+}
+
+.vault-row-lead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.vault-row-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--sanctuary-hairline);
+  color: var(--sanctuary-ink-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.vault-row-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.vault-row-icon.active {
+  background: var(--sanctuary-blue-bg);
+  border-color: var(--sanctuary-blue-bd);
+  color: var(--sanctuary-blue);
+}
+
+.vault-row-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.vault-row-title {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--sanctuary-ink-primary);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vault-row-meta {
+  font-size: 10.5px;
+  color: var(--sanctuary-ink-secondary);
+  margin-top: 1px;
+  line-height: 1.25;
+}
+
+.vault-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--sanctuary-green);
+}
+
+.vault-row-end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Tone-on-Tone Status Capsules */
+.vault-status-capsule {
+  font-size: 10.5px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.vault-status-capsule.active {
+  color: var(--sanctuary-green-ink);
+  background: var(--sanctuary-green-bg);
+  border: 1px solid var(--sanctuary-green-bd);
+}
+
+.vault-status-capsule.empty {
+  color: var(--sanctuary-ink-secondary);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--sanctuary-hairline);
+}
+
+.vault-status-capsule.paused {
+  color: var(--sanctuary-amber-ink);
+  background: var(--sanctuary-amber-bg);
+  border: 1px solid var(--sanctuary-amber-bd);
+}
+
+.vault-chevron {
+  color: var(--sanctuary-ink-secondary);
+  transition: transform 0.25s var(--ease-apple-spring), color 0.15s ease;
+}
+
+.vault-chevron.rotated {
+  transform: rotate(180deg);
+  color: var(--sanctuary-blue);
+}
+
+/* Accordion Expand Panel */
+.vault-accordion-panel {
+  padding: 10px 12px 12px;
+  background: #FAFAFC;
+  border-top: 1px solid var(--sanctuary-hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: vaultPanelSlide 0.2s var(--ease-apple-spring);
+}
+
+@keyframes vaultPanelSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vault-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.vault-field-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--sanctuary-ink-secondary);
+}
+
+.vault-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.vault-input-wrap .sanctuary-input {
+  padding-right: 34px;
+}
+
+.vault-eye-btn {
+  position: absolute;
+  right: 5px;
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: transparent;
+  color: var(--sanctuary-ink-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.vault-eye-btn:hover {
+  color: var(--sanctuary-ink-primary);
+}
+
+.vault-field-hint {
+  font-size: 10.5px;
+  color: var(--sanctuary-ink-secondary);
+  line-height: 1.35;
+}
+
+.vault-help-box {
+  padding: 8px 10px;
+  background: rgba(0, 113, 227, 0.04);
+  border: 1px solid rgba(0, 113, 227, 0.12);
+  border-radius: var(--radius-nested);
+  font-size: 10.5px;
+  color: var(--sanctuary-ink-secondary);
+  line-height: 1.4;
+}
+
+.vault-help-box strong {
+  color: var(--sanctuary-ink-primary);
+  font-weight: 600;
+}
+
+.vault-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.vault-actions-row .vault-save-btn {
+  flex: 1;
+  height: var(--control-height);
+  font-size: 12px;
+}
+
+.vault-actions-row .vault-clear-btn {
+  height: var(--control-height);
+  font-size: 12px;
+  padding: 0 12px;
+}
+
+/* Vault Footer Actions */
+.vault-footer-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0 12px;
+}
+
+.vault-privacy-lock-btn {
+  height: 30px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--sanctuary-hairline);
+  background: var(--sanctuary-surface);
+  color: var(--sanctuary-ink-primary);
+  font-size: 11.5px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.15s ease;
+}
+
+.vault-privacy-lock-btn:hover {
+  background: var(--sanctuary-surface-subtle);
+  border-color: rgba(0, 0, 0, 0.12);
+  transform: translateY(-0.5px);
+}
+
+.vault-privacy-hint {
+  font-size: 10.5px;
+  color: var(--sanctuary-ink-secondary);
+  text-align: center;
+  max-width: 320px;
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   9. FORMS, INPUTS & BUTTONS
+   ========================================================================== */
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--sanctuary-ink-secondary);
+}
+
+.sanctuary-input {
+  width: 100%;
+  height: var(--control-height);
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid var(--sanctuary-hairline);
+  background: var(--sanctuary-surface-subtle);
+  color: var(--sanctuary-ink-primary);
+  font-size: 12.5px;
+  transition: all 0.15s var(--ease-apple-spring);
+}
+
+.sanctuary-input:focus {
+  background: var(--sanctuary-surface);
+  border-color: var(--sanctuary-blue);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.18);
+  outline: none;
+}
+
+.sanctuary-input.mono {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+}
+
+.input-with-action {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-action input {
+  padding-right: 32px;
+}
+
+.input-icon-btn {
+  position: absolute;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--sanctuary-ink-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.input-icon-btn:hover {
+  color: var(--sanctuary-ink-primary);
+}
+
+/* Buttons */
+.btn-primary {
+  height: var(--control-height);
+  padding: 0 14px;
+  border-radius: 8px;
+  border: none;
+  background: var(--sanctuary-blue);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.15s var(--ease-apple-spring);
+}
+
+.btn-primary:hover {
+  background: var(--sanctuary-blue-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary.compact {
+  height: var(--control-height);
+  flex-shrink: 0;
+}
+
+.btn-secondary {
+  height: var(--control-height);
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid var(--sanctuary-hairline);
+  background: var(--sanctuary-surface-subtle);
+  color: var(--sanctuary-ink-primary);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s var(--ease-apple-spring);
+}
+
+.btn-secondary:hover {
+  background: var(--sanctuary-surface-hover);
+}
+
+.btn-subtle {
+  height: 26px;
+  padding: 0 8px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--sanctuary-ink-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-subtle:hover {
+  color: var(--sanctuary-ink-primary);
+  background: var(--sanctuary-surface-hover);
+}
+
+.btn-subtle.danger {
+  color: var(--sanctuary-red-ink);
+}
+
+.btn-subtle.danger:hover {
+  background: var(--sanctuary-red-bg);
+}
+
+.btn-icon-subtle {
+  width: var(--control-height);
+  height: var(--control-height);
+  border-radius: var(--radius-nested);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--sanctuary-ink-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s var(--ease-apple-spring);
+}
+
+.btn-icon-subtle:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--sanctuary-ink-primary);
+  border-color: var(--sanctuary-hairline);
+  transform: scale(1.04);
+}
+
+.btn-icon-subtle:active {
+  transform: scale(0.96);
+}
+
+/* ==========================================================================
+   10. WHITELIST & SETTINGS TAB
+   ========================================================================== */
+.card-caption {
+  font-size: 11.5px;
+  color: var(--sanctuary-ink-secondary);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.manual-add-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  animation: springDrop 0.24s var(--ease-apple-spring);
+}
+
+@keyframes springDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Provider Segmented Control */
+.provider-segmented-control {
+  padding: 2.5px;
+  background: rgba(118, 118, 128, 0.08);
+  border-radius: var(--radius-control);
+  display: flex;
+  gap: 2.5px;
+  border: 1px solid var(--sanctuary-hairline);
+}
+
+.provider-segment-btn {
+  flex: 1;
+  height: 28px;
+  border: none;
+  background: transparent;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--sanctuary-ink-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 4px;
+  white-space: nowrap;
+  transition: all 0.18s var(--ease-apple-spring);
+  outline: none;
+}
+
+.provider-segment-btn:hover {
+  color: var(--sanctuary-ink-primary);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.provider-segment-btn.active {
+  background: var(--sanctuary-surface);
+  color: var(--sanctuary-ink-primary);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.provider-segment-btn.active svg {
+  color: var(--sanctuary-blue);
+  stroke: var(--sanctuary-blue);
+}
+
+.security-capsule-badge {
+  background: rgba(0, 113, 227, 0.05);
+  border: 1px solid rgba(0, 113, 227, 0.12);
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--sanctuary-blue);
+  line-height: 1.35;
+}
+
+/* Subtle Sync Button (API Model Refresh) */
+.subtle-sync-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--sanctuary-hairline);
+  color: var(--sanctuary-ink-secondary);
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  transition: all 0.18s var(--ease-apple-spring);
+  outline: none;
+}
+
+.subtle-sync-btn:hover {
+  background: rgba(0, 113, 227, 0.08);
+  border-color: rgba(0, 113, 227, 0.25);
+  color: var(--sanctuary-blue);
+}
+
+.subtle-sync-btn:active {
+  transform: scale(0.96);
+}
+
+.subtle-sync-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.subtle-sync-btn.is-loading .sync-icon {
+  animation: syncRotate 0.8s linear infinite;
+}
+
+@keyframes syncRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* API Key Status Pill & Close / Delete Button */
+.key-status-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.key-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  transition: all 0.2s var(--ease-apple-spring);
+  line-height: 1.2;
+}
+
+.key-status-badge.saved {
+  background: var(--sanctuary-green-bg);
+  color: var(--sanctuary-green-ink);
+  border: 1px solid var(--sanctuary-green-bd);
+  font-family: var(--font-mono);
+}
+
+.key-status-badge.not-saved {
+  background: rgba(118, 118, 128, 0.08);
+  color: var(--sanctuary-ink-tertiary);
+  border: 1px solid transparent;
+}
+
+.key-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--sanctuary-green);
+  flex-shrink: 0;
+}
+
+/* Tool Buttons & Close Icon from Sanctuary Prism */
+.sc-tool-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-nested);
+  border: none;
+  background: transparent;
+  color: var(--sanctuary-ink-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 3px;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sc-tool-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--sanctuary-ink-primary);
+}
+
+.sc-tool-btn-close:hover {
+  background: rgba(255, 59, 48, 0.14);
+  color: #D70015;
+}
+
+.sc-tool-btn:active {
+  transform: scale(0.9);
+}
+
+.whitelist-ul {
+  list-style: none;
+  border-radius: var(--radius-nested);
+  border: 1px solid var(--sanctuary-hairline-subtle);
+  background: var(--sanctuary-surface-subtle);
+  overflow: hidden;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.list-entry {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--sanctuary-divider);
+  font-size: 12px;
+}
+
+.list-entry:last-child {
+  border-bottom: none;
+}
+
+.btn-remove {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--sanctuary-ink-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-remove:hover {
+  background: var(--sanctuary-red-bg);
+  color: var(--sanctuary-red-ink);
+}
+
+.popup-footer {
+  text-align: center;
+  padding: 10px 0 4px;
+  font-size: 10.5px;
+  color: var(--sanctuary-ink-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   11. TRANSIENT SENSORY TOAST
+   ========================================================================== */
+.sanctuary-toast {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 100;
+  background: rgba(29, 29, 31, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #FFFFFF;
+  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 500;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  animation: toastEntrance 0.25s var(--ease-apple-spring);
+}
+
+@keyframes toastEntrance {
+  from { opacity: 0; transform: translateY(8px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ==========================================================================
+   12. CRAFTSMANSHIP: STATE-AWARE VAULT & CLOUD ARBITRATION
+   ========================================================================== */
+
+/* Vault Health Top Bar: In-Memory Badge + Quick Lock */
+.vault-health-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--sanctuary-hairline-subtle, rgba(0, 0, 0, 0.06));
+}
+
+.vault-enclave-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #1B5E20;
+  background: rgba(52, 199, 89, 0.12);
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(52, 199, 89, 0.25);
+  letter-spacing: 0.01em;
+}
+
+.status-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.status-pulse-dot.green {
+  background: #34C759;
+}
+
+.btn-lock-quick {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--sanctuary-hairline);
+  color: var(--sanctuary-ink-secondary);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.18s var(--ease-apple-spring);
+}
+
+.btn-lock-quick:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--sanctuary-ink-primary);
+}
+
+.btn-lock-quick:active {
+  transform: scale(0.96);
+}
+
+/* Apple Fact Note */
+.apple-fact-note {
+  font-size: 10.5px;
+  color: var(--sanctuary-ink-secondary);
+  line-height: 1.4;
+  background: rgba(0, 113, 227, 0.04);
+  border: 1px solid rgba(0, 113, 227, 0.12);
+  border-radius: 8px;
+  padding: 7px 10px;
+}
+
+.apple-fact-note strong {
+  color: var(--sanctuary-ink-primary);
+  font-weight: 600;
+}
+
+.groq-connected-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--sanctuary-green-bg);
+  border: 1px solid var(--sanctuary-green-bd);
+  border-radius: 8px;
+  padding: 6px 10px;
+  transition: all 0.2s var(--ease-apple-spring);
+}
+
+.groq-connected-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--sanctuary-green-ink);
+}
+
+.groq-key-hint {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  opacity: 0.8;
+  letter-spacing: 0.02em;
+}
+
+.groq-connected-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* ---- Cloud AI Progressive Disclosure Drawer ---- */
+.cloud-ai-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-disclosure {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--sanctuary-ink-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s var(--ease-apple-spring);
+  flex-shrink: 0;
+}
+
+.btn-disclosure:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--sanctuary-ink-primary);
+}
+
+.btn-disclosure:active {
+  transform: scale(0.94);
+}
+
+.btn-disclosure .disclosure-chevron {
+  transition: transform 0.25s var(--ease-apple-spring);
+}
+
+.btn-disclosure.rotated .disclosure-chevron {
+  transform: rotate(180deg);
+}
+
+.cloud-ai-drawer {
+  padding-top: 10px;
+  border-top: 1px solid var(--sanctuary-hairline);
+  animation: drawerSlideDown 0.24s var(--ease-apple-spring);
+}
+
+@keyframes drawerSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   13. SETTINGS REDESIGN — UNIFIED PATTERNS & MICRO-INTERACTIONS
+   ========================================================================== */
+
+/* Utility: Hidden */
+.hidden {
+  display: none !important;
+}
+
+/* Utility: Flex stacks (replace inline styles) */
+.stack-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack-col-6  { gap: 6px; }
+.stack-col-8  { gap: 8px; }
+.stack-col-10 { gap: 10px; }
+
+.row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row-center {
+  display: flex;
+  align-items: center;
+}
+
+.row-gap-6 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---- Empty State (Whitelist) ---- */
+.empty-state {
+  text-align: center;
+  padding: 20px 16px;
+}
+
+.empty-state-icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 10px;
+  background: var(--sanctuary-blue-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sanctuary-blue);
+}
+
+.empty-state-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--sanctuary-ink-primary);
+  margin-bottom: 3px;
+}
+
+.empty-state-desc {
+  font-size: 11.5px;
+  color: var(--sanctuary-ink-tertiary);
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+
+/* ---- Inline Validation (replaces alert()) ---- */
+.field-error {
+  font-size: 11px;
+  color: var(--sanctuary-red-ink);
+  padding: 3px 4px 0;
+  line-height: 1.3;
+  animation: fieldErrorFade 0.25s var(--ease-apple-spring);
+}
+
+@keyframes fieldErrorFade {
+  from { opacity: 0; transform: translateY(-3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.sanctuary-input.is-invalid {
+  border-color: var(--sanctuary-red);
+  animation: inputShake 0.45s var(--ease-apple-rebound);
+}
+
+@keyframes inputShake {
+  0%, 100% { transform: translateX(0); }
+  15%, 55% { transform: translateX(-4px); }
+  35%, 75% { transform: translateX(4px); }
+}
+
+.sanctuary-input.is-invalid:focus {
+  box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.18);
+  border-color: var(--sanctuary-red);
+}
+
+/* ---- Keyboard Shortcut Capsules ---- */
+kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--sanctuary-ink-secondary);
+  background: var(--sanctuary-surface-subtle);
+  border: 1px solid var(--sanctuary-hairline);
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  line-height: 1.4;
+}
+
+.kbd-group {
+  margin-left: 6px;
+  white-space: nowrap;
+}
+
+.kbd-plus {
+  font-size: 9px;
+  color: var(--sanctuary-ink-quaternary);
+  margin: 0 1px;
+}
+
+/* ---- Groq Connection Animations ---- */
+.groq-connected-bar.just-connected {
+  animation: connectionPulse 0.6s var(--ease-apple-spring);
+}
+
+@keyframes connectionPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--sanctuary-green);
+    box-shadow: 0 0 0 4px rgba(52, 199, 89, 0.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    border-color: var(--sanctuary-green-bd);
+    box-shadow: none;
+  }
+}
+
+.groq-connected-bar.disconnecting {
+  animation: disconnectFade 0.35s var(--ease-apple-spring) forwards;
+}
+
+@keyframes disconnectFade {
+  0%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.96); }
+}
+
+/* ---- Feedback Banner (replaces inline styles) ---- */
+.cloud-ai-feedback {
+  font-size: 11px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  line-height: 1.4;
+  animation: fieldErrorFade 0.25s var(--ease-apple-spring);
+}
+
+.cloud-ai-feedback.success {
+  background: var(--sanctuary-green-bg);
+  color: var(--sanctuary-green-ink);
+  border: 1px solid var(--sanctuary-green-bd);
+}
+
+.cloud-ai-feedback.error {
+  background: var(--sanctuary-red-bg);
+  color: var(--sanctuary-red-ink);
+  border: 1px solid var(--sanctuary-red-bd);
+}
+
+/* ---- Destructive Confirmation Sheet (replaces confirm()) ---- */
+.confirm-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  animation: sheetBackdropIn 0.2s ease;
+}
+
+@keyframes sheetBackdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.confirm-sheet {
+  width: 100%;
+  max-width: 320px;
+  background: var(--sanctuary-surface);
+  border: 1px solid var(--sanctuary-hairline);
+  border-radius: var(--radius-modal);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 24px 20px 18px;
+  animation: sheetScaleIn 0.28s var(--ease-apple-spring);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+@keyframes sheetScaleIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.confirm-sheet-emblem {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--sanctuary-red-bg);
+  border: 1px solid var(--sanctuary-red-bd);
+  color: var(--sanctuary-red-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.confirm-sheet-title {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--sanctuary-ink-primary);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.confirm-sheet-body {
+  font-size: 12.5px;
+  color: var(--sanctuary-ink-secondary);
+  line-height: 1.45;
+  padding: 0 4px;
+}
+
+.confirm-sheet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.confirm-sheet-actions .btn-primary.danger {
+  background: var(--sanctuary-red-ink);
+  color: #FFFFFF;
+  width: 100%;
+  height: 38px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-control);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s var(--ease-apple-spring);
+}
+
+.confirm-sheet-actions .btn-primary.danger:hover {
+  background: var(--sanctuary-red-ink-hover);
+}
+
+.confirm-sheet-actions .btn-primary.danger:active {
+  transform: scale(0.98);
+}
+
+.confirm-sheet-actions .btn-cancel {
+  width: 100%;
+  height: 38px;
+  border: 1px solid var(--sanctuary-hairline);
+  background: var(--sanctuary-surface-subtle);
+  color: var(--sanctuary-ink-primary);
+  font-size: 12.5px;
+  font-weight: 500;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.confirm-sheet-actions .btn-cancel:hover {
+  background: var(--sanctuary-surface-hover);
+}
+
+.confirm-sheet-actions .btn-cancel:active {
+  transform: scale(0.98);
+}
+
+/* ---- About Section (replaces footer) ---- */
+.about-inset-row .inset-title {
+  font-size: 13px;
+}
+
+.about-version {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--sanctuary-ink-tertiary);
+  font-family: var(--font-mono);
+}
+
+.inset-row.danger-row {
+  color: var(--sanctuary-red-ink);
+}
+
+.inset-row.danger-row .inset-title {
+  color: var(--sanctuary-red-ink);
+}
+
+.inset-row.danger-row .inset-icon-box {
+  background: var(--sanctuary-red-bg);
+  color: var(--sanctuary-red-ink);
+}
+
+.inset-row.danger-row:hover {
+  background: var(--sanctuary-red-bg);
+}
+
+/* Whitelist domain name styling (replaces inline style) */
+.domain-name {
+  font-weight: 500;
+  color: var(--sanctuary-ink-primary);
+}
+
+/* Whitelist empty placeholder (replaces inline style) */
+.list-entry.empty-placeholder {
+  justify-content: center;
+  color: var(--sanctuary-ink-tertiary);
+}
+
+/* Cloud AI inset-row for toggle */
+.cloud-ai-header {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--sanctuary-divider);
+}
+
+.cloud-ai-header .inset-info {
+  flex: 1;
+}
